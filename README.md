@@ -1,1 +1,1 @@
-# CSC621-lobby-15spring
+# CSC621/821 2015 Spring Lobby Team
