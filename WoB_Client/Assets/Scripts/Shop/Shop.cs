@@ -108,6 +108,9 @@ public class Shop : MonoBehaviour {
 
 	public void Initialize(string[] config, int[] speciesList) {
 		foreach (int species_id in speciesList) {
+			if (!SpeciesTable.speciesList.ContainsKey(species_id)) {
+				continue;
+			}
 			SpeciesData species = new SpeciesData(SpeciesTable.speciesList[species_id]);
 
 			species.image = Resources.Load(Constants.IMAGE_RESOURCES_PATH + species.name) as Texture;

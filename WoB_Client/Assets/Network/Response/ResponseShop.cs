@@ -39,12 +39,10 @@ public class ResponseShop : NetworkResponse {
 		string species = DataReader.ReadString(dataStream);
 		speciesList = Array.ConvertAll(species.Split(','), new Converter<string, int>(int.Parse));*/
 
+		speciesList = new int[size];
 		for (int i = 0; i < size; i++) {
 			speciesList[i] = DataReader.ReadInt(dataStream);
 		}
-
-
-
 	}
 	
 	public override ExtendedEventArgs process() {

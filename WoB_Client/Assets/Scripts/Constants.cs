@@ -77,10 +77,10 @@ public class Constants {
 	public static readonly short SMSG_BADGE_LIST = 229;
 	public static readonly short CMSG_ERROR_LOG = 130;
 	public static readonly short SMSG_ERROR_LOG = 230;
-	public static readonly short CMSG_PREDICTION = 131;
+	public static readonly short CMSG_PREDICTION = 159;
 	public static readonly short SMSG_PREDICTION = 231;
-	public static readonly short CMSG_TOPLIST = 132;
-	public static readonly short SMSG_TOPLIST = 232;
+	public static readonly short CMSG_TOPLIST = 158;
+	public static readonly short SMSG_TOPLIST = 272;
 
 	
 	// Response Only (3xx)

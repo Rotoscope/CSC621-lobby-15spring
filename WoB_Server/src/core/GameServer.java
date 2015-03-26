@@ -49,10 +49,10 @@ public class GameServer {
     private ExecutorService clientThreadPool;
     private ExecutorService seasonThread;
     // Reference Tables
-    private Map<String, GameClient> activeThreads = new HashMap<String, GameClient>(); // Session ID -> Client
-    private Map<Integer, Player> activePlayers = new HashMap<Integer, Player>(); // Player ID -> Player
-    private Map<Integer, AnimalType> animalTypes = new HashMap<Integer, AnimalType>(); // Species ID -> Animal
-    private Map<Integer, PlantType> plantTypes = new HashMap<Integer, PlantType>(); // Species ID -> Plant
+    private final Map<String, GameClient> activeThreads = new HashMap<>(); // Session ID -> Client
+    private final Map<Integer, Player> activePlayers = new HashMap<>(); // Player ID -> Player
+    private final Map<Integer, AnimalType> animalTypes = new HashMap<>(); // Species ID -> Animal
+    private final Map<Integer, PlantType> plantTypes = new HashMap<>(); // Species ID -> Plant
     //private Map<Integer, Tile> tiles = new HashMap<Integer, Tile>(); // TileID -> Tile
     // Other
     private EventHandler eventHandler;
@@ -291,7 +291,7 @@ public class GameServer {
     }
 
     public List<Player> getActivePlayers() {
-        return new ArrayList<Player>(activePlayers.values());
+        return new ArrayList<>(activePlayers.values());
     }
 
     public Player getActivePlayer(int player_id) {
