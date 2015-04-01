@@ -32,6 +32,10 @@ import utility.ExpTable;
 import utility.Log;
 import utility.SpeciesComparator;
 
+interface PlayerCallbackInterface {
+    public void operation(Player p, Object param);
+}
+
 /**
  * The GameServer class serves as the main module that runs the server.
  * Incoming connection requests are established and redirected to be managed
@@ -47,7 +51,10 @@ public class GameServer {
     private GameServerConf configuration; // Stores server config. variables
     private ServerSocket serverSocket;
     private ExecutorService clientThreadPool;
-    private ExecutorService seasonThread;
+    
+    // Season effects temporarily disabled by Yanxing
+    //private ExecutorService seasonThread;
+    
     // Reference Tables
     private final Map<String, GameClient> activeThreads = new HashMap<>(); // Session ID -> Client
     private final Map<Integer, Player> activePlayers = new HashMap<>(); // Player ID -> Player
@@ -75,8 +82,10 @@ public class GameServer {
         }
         // Preload world-related objects
         initialize(); 
+        
         //initialize season manager
-        seasonThread = Executors.newSingleThreadExecutor();
+        //seasonThread = Executors.newSingleThreadExecutor();
+        
         //seasonThread.execute(SeasonManager.getInstance());
         // Thread Pool for Clients
         clientThreadPool = Executors.newCachedThreadPool();
@@ -191,7 +200,7 @@ public class GameServer {
      */
     private void run() {
         try {
-        	seasonThread.execute(SeasonManager.getInstance());
+            //seasonThread.execute(SeasonManager.getInstance());
             // Open a connection using the given port to accept incoming connections
             serverSocket = new ServerSocket(configuration.getPortNumber());
             Log.printf("Server has started on port: %d", serverSocket.getLocalPort());
@@ -288,6 +297,13 @@ public class GameServer {
 
     public void addToActiveThreads(GameClient client) {
         activeThreads.put(client.getID(), client);
+    }
+    
+    public synchronized void traverseActivePlayers(Object param, PlayerCallbackInterface op) {
+        //System.out.println(activePlayers.size());
+        activePlayers.values().stream().forEach((p) -> {
+            op.operation(p,param);
+        });
     }
 
     public List<Player> getActivePlayers() {

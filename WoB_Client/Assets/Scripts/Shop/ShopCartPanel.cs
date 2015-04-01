@@ -14,6 +14,7 @@ public class ShopCartPanel : MonoBehaviour {
 	public ProgressBar biomassMeter;
 	public int totalBiomass;
 	private bool isAnHidden { get; set; }
+
 	// Use this for initialization
 	void Start () {
 		shopObject = GameObject.Find("Cube");
@@ -117,15 +118,17 @@ public class ShopCartPanel : MonoBehaviour {
 					GameObject.Find("MapCamera").GetComponent<MapCamera>().enabled = true;
 					GameObject.Find("MapCamera").GetComponent<MapCamera>().RoamingCursor.SetActive(true);
 
+					/*
 					foreach (int species_id in cartList.Keys) {
-						shopObject.GetComponent<GameState>().CreateSpecies(species_id, SpeciesTable.speciesList[species_id].name, "Animal", cartList[species_id]);
-
+						var state_obj = shopObject.GetComponent<GameState>();
+						state_obj.CreateSpecies(
+								species_id,
+						    	SpeciesTable.speciesList[species_id].name, 
+						        "Animal", 
+						        cartList[species_id]);
 					}
-
-
+					*/
 					cartList = new Dictionary<int, int>();
-
-
 				}
 			}
 		}

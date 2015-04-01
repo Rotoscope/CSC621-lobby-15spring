@@ -5,6 +5,8 @@ package core;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.Player;
 import networking.response.ResponseSeasonChange;
@@ -33,7 +35,7 @@ public class SeasonManager implements Runnable{
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         Log.println("Season Manager starts...");
 
         while (!isDone) {
@@ -42,12 +44,17 @@ public class SeasonManager implements Runnable{
                 ResponseSeasonChange response = new ResponseSeasonChange();
                 response.setStatus((short) 0);
                 response.setEventCode(0);
-                List<Player> players = GameServer.getInstance().getActivePlayers();
-                for (Player player: players){
-                    player.getClient().send(response);
+                //List<Player> players = GameServer.getInstance().getActivePlayers();
+                
+                GameServer.getInstance().traverseActivePlayers(response, (player, param) -> {
+                    try {
+                        player.getClient().send((ResponseSeasonChange)param);
+                    } catch (IOException ex) {
+                        Logger.getLogger(SeasonManager.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     Log.println("Sent response to change season");
                     isDone = true;
-                }
+                });
             }
             catch (Exception ex) {
                 Log.printf_e("SeasonManager Error:");
