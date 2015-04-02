@@ -297,14 +297,7 @@ public class GameServer {
 
     public void addToActiveThreads(GameClient client) {
         activeThreads.put(client.getID(), client);
-    }
-    
-    public synchronized void traverseActivePlayers(Object param, PlayerCallbackInterface op) {
-        //System.out.println(activePlayers.size());
-        activePlayers.values().stream().forEach((p) -> {
-            op.operation(p,param);
-        });
-    }
+    }    
 
     public List<Player> getActivePlayers() {
         return new ArrayList<>(activePlayers.values());

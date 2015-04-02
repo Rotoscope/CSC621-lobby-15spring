@@ -45,7 +45,7 @@ public class SeasonManager implements Runnable{
                 response.setStatus((short) 0);
                 response.setEventCode(0);
                 //List<Player> players = GameServer.getInstance().getActivePlayers();
-                
+                /*
                 GameServer.getInstance().traverseActivePlayers(response, (player, param) -> {
                     try {
                         player.getClient().send((ResponseSeasonChange)param);
@@ -55,6 +55,7 @@ public class SeasonManager implements Runnable{
                     Log.println("Sent response to change season");
                     isDone = true;
                 });
+                */
             }
             catch (Exception ex) {
                 Log.printf_e("SeasonManager Error:");
