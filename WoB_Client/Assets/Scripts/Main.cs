@@ -10,8 +10,8 @@ public class Main : MonoBehaviour {
 	void Awake() {
 		DontDestroyOnLoad(gameObject);
 		
-		gameObject.AddComponent("MessageQueue");
-		gameObject.AddComponent("ConnectionManager");
+		gameObject.AddComponent<MessageQueue>();
+		gameObject.AddComponent<ConnectionManager>();
 		SpeciesTable.Initialize();
 	}
 	

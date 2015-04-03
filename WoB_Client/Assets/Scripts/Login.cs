@@ -24,7 +24,7 @@ public class Login : MonoBehaviour {
 	void Awake() {
 		mainObject = GameObject.Find("MainObject");
 		map = (Map)GameObject.Find("Map").GetComponent<Map>();
-		mainObject.AddComponent("GameState");		//mainObject.AddComponent<Shop>();
+		mainObject.AddComponent<GameState>();		//mainObject.AddComponent<Shop>();
 		mainObject.GetComponent<MessageQueue>().AddCallback(Constants.SMSG_AUTH, ResponseLogin);
 		mainObject.GetComponent<MessageQueue>().AddCallback(Constants.SMSG_SPECIES_LIST, ResponseSpeciesList);
 		mainObject.GetComponent<MessageQueue>().AddCallback(Constants.SMSG_TILE_LIST, ResponseTileList);
@@ -135,7 +135,7 @@ public class Login : MonoBehaviour {
 	}
 	public void SwitchToRegister() {
 		isHidden = true;
-		gameObject.AddComponent("Register");
+		gameObject.AddComponent<Register>();
 	}
 
 	public void SwitchToTileSelect(int numTilesOwned) {
@@ -152,7 +152,7 @@ public class Login : MonoBehaviour {
 				if (numTilesOwned == 0)
 				{
 						GameObject.Find("MapCamera").GetComponent<MapCamera>().FirstTileProcess(true);
-						mainObject.AddComponent("TileSelectGUI");
+						mainObject.AddComponent<TileSelectGUI>();
 				}
 				GameObject.Find("Cube").GetComponent<Shop>().Show();
 				GameObject.Find("Cube").GetComponent<Shop>().enabled = true;

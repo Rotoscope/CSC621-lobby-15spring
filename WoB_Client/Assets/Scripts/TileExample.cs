@@ -26,13 +26,13 @@ public class TileExample : MonoBehaviour {
 	public GameObject CreateCube(Vector3 position) {
 		// Cube = "Tiles"
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		cube.collider.enabled = true;
-		cube.collider.isTrigger = true; // Ignore Physics Collisions
+		cube.GetComponent<Collider>().enabled = true;
+		cube.GetComponent<Collider>().isTrigger = true; // Ignore Physics Collisions
 		cube.transform.localScale = new Vector3(size, size, size);
 		cube.transform.position = position;
 		// Transparent Cubes (Visual Purposes Only)
-    	cube.renderer.material = new Material(Shader.Find("Transparent/Diffuse"));
-		cube.renderer.material.color = new Color(1, 1, 1, 0.3f);
+    	cube.GetComponent<Renderer>().material = new Material(Shader.Find("Transparent/Diffuse"));
+		cube.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.3f);
 		
 		return cube;
 	}

@@ -40,7 +40,7 @@ public class ShopCartPanel : MonoBehaviour {
 			GUI.Box(new Rect(0, 0, 555, Mathf.Max(500, height)), "");
 			
 			List<int> items = new List<int>(cartList.Keys);
-			Debug.Log(cartList.Count);
+			//Debug.Log(cartList.Count);
 			
 			for (int i = 0; i < cartList.Count; i++) {
 				int species_id = items[i];

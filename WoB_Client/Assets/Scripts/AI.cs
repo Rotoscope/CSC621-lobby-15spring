@@ -19,9 +19,9 @@ public class AI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isMoving) {
-			if (animation != null) {
-				if (transform.animation["walk"]) {
-					transform.animation.Play("walk");
+			if (GetComponent<Animation>() != null) {
+				if (transform.GetComponent<Animation>()["walk"]) {
+					transform.GetComponent<Animation>().Play("walk");
 				}
 			}
 
@@ -42,13 +42,13 @@ public class AI : MonoBehaviour {
 //			Debug.Log(gameObject.name + " enters Tile #" + tile_id);
 
 			// Entered "Tile" (Visual Purposes Only)
-			other.renderer.material.color = new Color(1, 0, 0, 0.3f);
+			other.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
 		}
 	}
 	
 	void OnTriggerExit(Collider other) {
 		// Exited "Tile" (Visual Purposes Only)
-		other.renderer.material.color = new Color(1, 1, 1, 0.3f);
+		other.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.3f);
 	}
 
 	public IEnumerator ChooseDestination(float time) {
@@ -82,7 +82,7 @@ public class AI : MonoBehaviour {
 	
 	public void CreateDestinationSphere(Vector3 destination) {
 		GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		sphere.collider.enabled = false;
+		sphere.GetComponent<Collider>().enabled = false;
 		sphere.transform.localScale = new Vector3(5f, 5f, 5f);
 		sphere.transform.position = destination;
 	}

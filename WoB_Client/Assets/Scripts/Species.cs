@@ -91,7 +91,7 @@ public class Species : MonoBehaviour {
 	
 	public GameObject createOrganism(Vector3 position) {
 		GameObject organism = Instantiate(World.speciesPrefabs["African Elephant"]) as GameObject;
-		organism.transform.GetChild(0).renderer.material.mainTexture = Resources.Load(Constants.TEXTURE_RESOURCES_PATH + "Species/" + name) as Texture;
+		organism.transform.GetChild(0).GetComponent<Renderer>().material.mainTexture = Resources.Load(Constants.TEXTURE_RESOURCES_PATH + "Species/" + name) as Texture;
 		organism.transform.position = position;
 
 		if (organism_type.Equals("Animal")) {

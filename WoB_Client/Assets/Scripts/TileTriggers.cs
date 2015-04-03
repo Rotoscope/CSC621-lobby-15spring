@@ -16,12 +16,12 @@ public class TileTriggers : MonoBehaviour {
 			// End
 
 			// Entered "Tile" (Visual Purposes Only)
-			other.renderer.material.color = new Color(1, 0, 0, 0.3f);
+			other.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
 		}
 	}
 	
 	void OnTriggerExit(Collider other) {
 		// Exited "Tile" (Visual Purposes Only)
-		other.renderer.material.color = new Color(1, 1, 1, 0.3f);
+		other.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0.3f);
 	}
 }

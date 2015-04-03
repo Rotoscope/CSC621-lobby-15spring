@@ -57,7 +57,7 @@ public class ResponseTileList : NetworkResponse {
 				tileGameObject.transform.position = Map.coordTo3D(new Vector3(x, y, z));
 				tileGameObject.transform.parent = GameObject.Find("Map").transform;
 
-				tileGameObject.AddComponent("Tile");
+				tileGameObject.AddComponent<Tile>();
 
 				Tile tile = tileGameObject.GetComponent<Tile>();
 				tile.TileID = tileID;

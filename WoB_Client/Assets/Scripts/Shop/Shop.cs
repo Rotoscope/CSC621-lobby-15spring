@@ -30,9 +30,9 @@ public class Shop : MonoBehaviour {
 		itemList = new Dictionary<int, SpeciesData>();
 		shopObject = GameObject.Find("Cube");
 		mainObject = GameObject.Find("MainObject");
-		shopObject.AddComponent("ShopPanel");
-		shopObject.AddComponent("ShopInfoPanel");
-		shopObject.AddComponent("ShopCartPanel");
+		shopObject.AddComponent<ShopPanel>();
+		shopObject.AddComponent<ShopInfoPanel>();
+		shopObject.AddComponent<ShopCartPanel>();
 		//shopObject.AddComponent("GameState");
 		isHidden = true;
 		mainObject.GetComponent<MessageQueue>().AddCallback(Constants.SMSG_SHOP, ResponseShop);

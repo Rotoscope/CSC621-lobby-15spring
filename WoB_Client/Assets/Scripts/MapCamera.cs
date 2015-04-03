@@ -39,10 +39,10 @@ public class MapCamera : MonoBehaviour {
 			}
 		
 			if(isZoomed == true){
-				camera.fieldOfView = Mathf.Lerp(camera.fieldOfView,cameraZoomed,Time.deltaTime*cameraSmoothing);
+				GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView,cameraZoomed,Time.deltaTime*cameraSmoothing);
 			}
 			else{
-				camera.fieldOfView = Mathf.Lerp(camera.fieldOfView,cameraNormal,Time.deltaTime*cameraSmoothing);
+				GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView,cameraNormal,Time.deltaTime*cameraSmoothing);
 			}
 				if (GUIUtility.hotControl == 0) {
 						ray = Camera.main.ScreenPointToRay(Input.mousePosition);
