@@ -76,7 +76,7 @@ public class ConnectionManager : MonoBehaviour {
 				}
 			}
 
-			Debug.Log("Received Response No. " + response_id + " [" + response.ToString() + "]");
+			//Debug.Log("Received Response No. " + response_id + " [" + response.ToString() + "]");
 		}
 	}
 
