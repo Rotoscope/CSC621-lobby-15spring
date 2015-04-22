@@ -64,6 +64,8 @@ public class GameRequestTable {
         add(NetworkCode.CONVERGE_HINT, "convergegame.RequestConvergeHint");
         add(NetworkCode.CONVERGE_HINT_COUNT, "convergegame.RequestConvergeHintCount");
         add(NetworkCode.CONVERGE_NEW_ATTEMPT_SCORE, "convergegame.RequestConvergeNewAttemptScore");
+        
+        add(NetworkCode.TOPLIST, "RequestTopList");
 
         Log.println("Done!");
     }

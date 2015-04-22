@@ -39,6 +39,7 @@ public class NetworkProtocolTable {
 		Add(NetworkCode.CONVERGE_HINT, "ConvergeHint");
 		Add(NetworkCode.CONVERGE_HINT_COUNT, "ConvergeHintCount");
 		Add(NetworkCode.CONVERGE_NEW_ATTEMPT_SCORE, "ConvergeNewAttemptScore");
+		Add(NetworkCode.TOPLIST, "TopList");
 	}
 	
 	public static void Add(short protocol_id, string name) {

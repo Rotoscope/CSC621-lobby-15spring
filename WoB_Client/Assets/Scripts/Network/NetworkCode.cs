@@ -60,4 +60,6 @@
 	public static readonly short CONVERGE_HINT = 150;
 	public static readonly short CONVERGE_HINT_COUNT = 151;
 	public static readonly short CONVERGE_NEW_ATTEMPT_SCORE = 152;
+
+	public static readonly short TOPLIST = 153;
 }

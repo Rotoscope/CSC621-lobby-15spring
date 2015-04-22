@@ -139,7 +139,11 @@ public class Login : MonoBehaviour {
 		
 		if (args.status == 0) {
 			GameState.account = args.account;
-			
+
+			NetworkManager.Send(
+				TopListProtocol.Prepare(),
+				ProcessTopList
+				);
 			NetworkManager.Send(
 				PlayerSelectProtocol.Prepare(0),
 				ProcessPlayerSelect
@@ -148,6 +152,14 @@ public class Login : MonoBehaviour {
 			Debug.Log ("login failed, server message = " + args.status);
 			//mainObject.GetComponent<Main>().CreateMessageBox("Login Failed");
 		}
+	}
+
+	public void ProcessTopList(NetworkResponse response) {
+		ResponseTopList args = response as ResponseTopList;
+		//client team -- use this data for the toplist functionality
+		Debug.Log ("rank 1 player: " + args.name1 + " with " + args.score1 + " points.");
+		Debug.Log ("rank 2 player: " + args.name2 + " with " + args.score2 + " points.");
+		Debug.Log ("rank 3 player: " + args.name3 + " with " + args.score3 + " points.");
 	}
 	
 	public void ProcessPlayerSelect(NetworkResponse response) {
