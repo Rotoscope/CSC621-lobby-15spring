@@ -21,10 +21,10 @@ import util.Log;
  * @author Gary
  */
 public final class AccountDAO {
-
+    
     private AccountDAO() {
     }
-
+    
     /**
      * Creates an account profile using the information as provided to the
      * method into the database.
@@ -39,31 +39,31 @@ public final class AccountDAO {
      */
     public static Account createAccount(String email, String password, String username, String first_name, String last_name, String last_ip) {
         Account account = null;
-
+        
         String query = "INSERT INTO `account` (`email`, `password`, `salt`, `username`, `first_name`, `last_name`, `last_ip`) VALUES (?, MD5(CONCAT(?, ?)), ?, ?, ?, ?, ?)";
-
+        
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
+        
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, email);
             pstmt.setString(2, password);
-
+            
             String salt = Functions.getMD5(Long.toString(System.currentTimeMillis()).getBytes());
             pstmt.setString(3, salt);
             pstmt.setString(4, salt);
-
+            
             pstmt.setString(5, username);
             pstmt.setString(6, first_name);
             pstmt.setString(7, last_name);
             pstmt.setString(8, last_ip);
             pstmt.executeUpdate();
-
+            
             rs = pstmt.getGeneratedKeys();
-
+            
             if (rs.next()) {
                 int account_id = rs.getInt(1);
                 account = new Account(account_id, email, password, salt, username, first_name, last_name);
@@ -73,10 +73,10 @@ public final class AccountDAO {
         } finally {
             GameDB.closeConnection(con, pstmt, rs);
         }
-
+        
         return account;
     }
-
+    
     /**
      * Retrieve account information from the database using both email and
      * password.
@@ -89,22 +89,22 @@ public final class AccountDAO {
      */
     public static Account getAccount(String user_id, String password) {
         Account account = null;
-
+        
         String query = "SELECT * FROM `account` WHERE (`email` = ? OR `username` = ?) AND `password` = MD5(CONCAT(?, `salt`))";
-
+        
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
+        
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, user_id);
             pstmt.setString(2, user_id);
             pstmt.setString(3, password);
-
+            
             rs = pstmt.executeQuery();
-
+            
             if (rs.next()) {
                 account = new Account(rs.getInt("account_id"));
                 account.setUsername(rs.getString("username"));
@@ -113,16 +113,18 @@ public final class AccountDAO {
                 account.setPlayTime(rs.getLong("play_time"));
                 account.setActiveTime(rs.getLong("active_time"));
                 account.setLastLogout(rs.getString("last_logout"));
+                account.setGameName(rs.getString("game_name"));
+                account.setInGame(rs.getInt("in_game"));
             }
         } catch (SQLException ex) {
             Log.println_e(ex.getMessage());
         } finally {
             GameDB.closeConnection(con, pstmt, rs);
         }
-
+        
         return account;
     }
-
+    
     /**
      * Confirms if the email already exists in the "player" table.
      *
@@ -131,18 +133,18 @@ public final class AccountDAO {
      */
     public static boolean containsEmail(String email) {
         boolean status = false;
-
+        
         String query = "SELECT * FROM `account` WHERE `email` = ?";
-
+        
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
+        
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, email);
-
+            
             rs = pstmt.executeQuery();
             status = rs.next();
         } catch (SQLException ex) {
@@ -150,10 +152,10 @@ public final class AccountDAO {
         } finally {
             GameDB.closeConnection(con, pstmt, rs);
         }
-
+        
         return status;
     }
-
+    
     /**
      * Confirms if the username already exists in the "player" table.
      *
@@ -162,18 +164,18 @@ public final class AccountDAO {
      */
     public static boolean containsUsername(String username) {
         boolean status = false;
-
+        
         String query = "SELECT * FROM `account` WHERE `username` = ?";
-
+        
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-
+        
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
-
+            
             rs = pstmt.executeQuery();
             status = rs.next();
         } catch (SQLException ex) {
@@ -181,10 +183,10 @@ public final class AccountDAO {
         } finally {
             GameDB.closeConnection(con, pstmt, rs);
         }
-
+        
         return status;
     }
-
+    
     /**
      * Updates the database by marking the account active and recording at which
      * time, including location, the account was accessed.
@@ -195,28 +197,28 @@ public final class AccountDAO {
      */
     public static boolean updateLogin(int account_id, String address) {
         boolean status = false;
-
+        
         String query = "UPDATE `account` SET `online` = 1, `last_login` = NOW(), `last_ip` = ?  WHERE `account_id` = ?";
-
+        
         Connection con = null;
         PreparedStatement pstmt = null;
-
+        
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, address);
             pstmt.setInt(2, account_id);
-
+            
             status = pstmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             Log.println_e(ex.getMessage());
         } finally {
             GameDB.closeConnection(con, pstmt);
         }
-
+        
         return status;
     }
-
+    
     /**
      * Updates the database by marking the account inactive, recording the total
      * time the account has been in use, and the time when the user logged off.
@@ -226,27 +228,27 @@ public final class AccountDAO {
      */
     public static boolean updateLogout(int account_id) {
         boolean status = false;
-
+        
         String query = "UPDATE `account` SET `online` = 0, `last_logout` = NOW() WHERE `account_id` = ?";
-
+        
         Connection con = null;
         PreparedStatement pstmt = null;
-
+        
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query);
             pstmt.setInt(1, account_id);
-
+            
             status = pstmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             Log.println_e(ex.getMessage());
         } finally {
             GameDB.closeConnection(con, pstmt);
         }
-
+        
         return status;
     }
-
+    
     /**
      * Updates the database by recording the total time the account has been in
      * use.
@@ -258,26 +260,91 @@ public final class AccountDAO {
      */
     public static boolean updatePlayTime(int account_id, long play_time, long active_time) {
         boolean status = false;
-
+        
         String query = "UPDATE `account` SET `play_time` = ?, `active_time` = ? WHERE `account_id` = ?";
-
+        
         Connection con = null;
         PreparedStatement pstmt = null;
-
+        
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query);
             pstmt.setLong(1, play_time);
             pstmt.setLong(2, active_time);
             pstmt.setInt(3, account_id);
-
+            
             status = pstmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             Log.println_e(ex.getMessage());
         } finally {
             GameDB.closeConnection(con, pstmt);
         }
-
+        
+        return status;
+    }
+    
+    /**
+     * Updates the database by recording the name of mini game player is
+     * playing.
+     *
+     * @param account_id used to identify the specific account
+     * @param game_name holds the name of the game that player is playing.
+     * @return
+     */
+    public static boolean updateGameName(int account_id, String game_name) {
+        boolean status = false;
+        
+        String query = "UPDATE `account` SET `game_name` = ? WHERE `player_id` = ?";
+        
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            con = GameDB.getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, game_name);
+            pstmt.setInt(2, account_id);
+            
+            status = pstmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            Log.println_e(ex.getMessage());
+        } finally {
+            GameDB.closeConnection(con, pstmt);
+        }
+        
+        return status;
+    }
+    
+    /**
+     * Updates the database by recording the name of mini game player is
+     * playing.
+     *
+     * @param account_id used to identify the specific account
+     * @param in_game holds the value of whether the player is playing a
+     * mini game or not.
+     * @return
+     */
+    public static boolean updateInGame(int account_id, int in_game) {
+        boolean status = false;
+        
+        String query = "UPDATE `account` SET `in_game` = ? WHERE `player_id` = ?";
+        
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            con = GameDB.getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, in_game);
+            pstmt.setInt(2, account_id);
+            
+            status = pstmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            Log.println_e(ex.getMessage());
+        } finally {
+            GameDB.closeConnection(con, pstmt);
+        }
+        
         return status;
     }
 }
