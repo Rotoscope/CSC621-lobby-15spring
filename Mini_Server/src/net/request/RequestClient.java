@@ -22,10 +22,6 @@ public class RequestClient extends GameRequest {
 
     @Override
     public void process() throws Exception {
-        if (!session_id.isEmpty()) {
-            
-        }
-
         client.setVersion(version);
 
         ResponseClient response = new ResponseClient();
