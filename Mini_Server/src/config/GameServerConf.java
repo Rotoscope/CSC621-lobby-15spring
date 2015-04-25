@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class GameServerConf {
 
-    private Map<String, String> confRecords = new HashMap<String, String>(); // Stores server config. variables
+    private Map<String, String> confRecords = new HashMap<>(); // Stores server config. variables
 
     public GameServerConf(Map<String, String> confRecords) {
         this.confRecords = confRecords;
