@@ -1,14 +1,37 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Network\Protocol\NoWaitForGameProtocol.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/World/WorldController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Network\Protocol\WaitForGameProtocol.cs" Line="8" Column="4" />
-      <File FileName="Assets\Scripts\Network\NetworkCode.cs" Line="70" Column="47" />
-      <File FileName="Assets\Scripts\Network\Protocol\NoWaitForGameProtocol.cs" Line="13" Column="2" />
-      <File FileName="Assets\Scripts\Network\Protocol\WaitingListProtocol.cs" Line="30" Column="64" />
-      <File FileName="Assets\Scripts\Login.cs" Line="157" Column="56" />
-      <File FileName="Assets\Scripts\Network\Protocol\WaitStatusProtocol.cs" Line="10" Column="19" />
-      <File FileName="Assets\Scripts\Network\Protocol\StartGameProtocol.cs" Line="17" Column="49" />
+      <File FileName="Assets/Scripts/CardsOfWildGUI.cs" Line="27" Column="82" />
+      <File FileName="Assets/Scripts/Network/ConnectionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Game.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TileSelectGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Strings.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SpeciesTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SpeciesData.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Species.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/RegisterColorPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Register.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ProgressBar.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MessageBox.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Menu.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MainGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Login.cs" Line="27" Column="37" />
+      <File FileName="Assets/Scripts/GameState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameLoop.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ExtendedEventArgs.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Clock.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AnimalAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/World/Map.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/World/MapCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/World/WorldController.cs" Line="33" Column="3" />
+      <File FileName="Assets/Scripts/GUI/TileInfoGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerList/PlayerList.cs" Line="8" Column="2" />
+      <File FileName="Assets/Scripts/PlayerList/PlayerListPanel.cs" Line="8" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

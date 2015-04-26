@@ -57,4 +57,5 @@ public class ResponseWaitForGame : NetworkResponse {
 	public ResponseWaitForGame() {
 		protocol_id = NetworkCode.WAITLIST;
 	}
+
 }

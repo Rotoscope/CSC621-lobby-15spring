@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_2;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_2;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\AnimalAI.cs" />
      <Compile Include="Assets\Scripts\Camera\BasicCamera.cs" />
+     <Compile Include="Assets\Scripts\CardsOfWildGUI.cs" />
      <Compile Include="Assets\Scripts\Clock.cs" />
      <Compile Include="Assets\Scripts\Constants.cs" />
      <Compile Include="Assets\Scripts\Containers\Account.cs" />
@@ -119,7 +120,6 @@
      <Compile Include="Assets\Scripts\Network\Protocol\LoginProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\LogoutProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\MessageProtocol.cs" />
-     <Compile Include="Assets\Scripts\Network\Protocol\NoWaitForGameProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PlayerSelectProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PlayersProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PredictionProtocol.cs" />
@@ -133,8 +133,6 @@
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateEnvScoreProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateResourcesProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateTimeProtocol.cs" />
-     <Compile Include="Assets\Scripts\Network\Protocol\WaitForGameProtocol.cs" />
-     <Compile Include="Assets\Scripts\Network\Protocol\WaitingListProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\WorldProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ZoneListProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ZoneProtocol.cs" />
@@ -149,6 +147,7 @@
      <Compile Include="Assets\Scripts\ProgressBar.cs" />
      <Compile Include="Assets\Scripts\Register.cs" />
      <Compile Include="Assets\Scripts\RegisterColorPanel.cs" />
+     <Compile Include="Assets\Scripts\RunningRhinoGUI.cs" />
      <Compile Include="Assets\Scripts\Shop\Shop.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopCartPanel.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopInfoPanel.cs" />
@@ -165,10 +164,10 @@
      <Compile Include="Assets\Scripts\World\Zone.cs" />
      <Compile Include="Assets\Scripts\WorldMenu.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.Sqlite">
- <HintPath>C:/Users/Jacob/Documents/mgd_project_v2/CSC621-lobby-15spring/WoB_Client/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ <HintPath>/Users/jeremybrubaker/ComputerScience/CSC631/CSC621-lobby-15spring/WoB_Client/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
