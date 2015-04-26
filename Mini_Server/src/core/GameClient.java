@@ -1,6 +1,8 @@
 package core;
 
 // Java Imports
+import game.GameRoom;
+import game.GameRoomManager;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -42,6 +44,9 @@ public class GameClient {
     private final GameTimer saveTimer = new GameTimer();
     private final long lastSave = System.currentTimeMillis(); // Last time saved to the database
     private long lastActivity = System.currentTimeMillis();
+    
+    // user's name
+    private String name = "Your Name"; // default
 
     /**
      * Initialize the GameClient using the client socket and creating both input
@@ -52,6 +57,8 @@ public class GameClient {
      * @throws IOException
      */
     public GameClient(String session_id, Socket clientSocket) throws IOException {
+        Log.console("Constructing client object..");
+        
         this.session_id = session_id;
         this.clientSocket = clientSocket;
 
@@ -209,5 +216,19 @@ public class GameClient {
     }
 
     public void startSaveTimer() {        
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

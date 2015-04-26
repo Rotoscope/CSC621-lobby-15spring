@@ -12,6 +12,10 @@ public class NetworkCode {
 
     // Request + Response
     public final static short CLIENT = 100;
+    public final static short HEARTBEAT = 101;
+    public final static short MESSAGE = 107;
+    
+    public final static short CHANGE_NAME = 153;
 
     /**
      * Check for duplicate values, if any.

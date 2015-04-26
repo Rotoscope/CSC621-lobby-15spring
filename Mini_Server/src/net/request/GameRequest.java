@@ -51,24 +51,16 @@ public abstract class GameRequest {
 
     @Override
     public String toString() {
-        String str = "";
-
-        str += "-----" + "\n";
-        str += getClass().getName() + "\n";
-        str += "\n";
+        String str = "-----\n";
+        str += getClass().getName() + "\n\n";
 
         for (Field field : getClass().getDeclaredFields()) {
             try {
                 str += field.getName() + " - " + field.get(this) + "\n";
-            } catch (IllegalArgumentException ex) {
-                Log.println_e(ex.getMessage());
-            } catch (IllegalAccessException ex) {
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
                 Log.println_e(ex.getMessage());
             }
         }
-
-        str += "-----";
-
-        return str;
+        return str + "-----";
     }
 }

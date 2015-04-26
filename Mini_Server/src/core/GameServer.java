@@ -13,6 +13,8 @@ import java.util.UUID;
 
 // Other Imports
 import config.GameServerConf;
+import game.GameRoom;
+import game.GameRoomManager;
 import metadata.Constants;
 import metadata.GameRequestTable;
 import util.ConfFileParser;
@@ -81,11 +83,17 @@ public class GameServer {
                 // Accept the incoming connection from client
                 Socket clientSocket = serverSocket.accept();
                 Log.printf("%s is connecting...", clientSocket.getInetAddress().getHostAddress());
+                
                 // "Random" ID
                 String session_id = UUID.randomUUID().toString();
+                
                 // Create a runnable instance to represent a client that holds the client socket
                 GameClient client = new GameClient(session_id, clientSocket);
                 activeClients.put(client.getID(), client);
+                
+                // Pair player and get a room
+                GameRoomManager.getInstance().pairClient(client);
+                
                 // Keep track of the new client thread
                 if (clientHandlerThreads.size() > num_threads) {
                     Collections.sort(clientHandlerThreads, ClientHandler.SizeComparator);

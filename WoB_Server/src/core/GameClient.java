@@ -23,7 +23,6 @@ import model.Player;
 import net.request.GameRequest;
 import net.response.GameResponse;
 import net.response.ResponseLogout;
-import net.response.ResponseMessage;
 import net.response.ResponsePlayerSelect;
 import util.DataReader;
 import util.GameTimer;
@@ -70,6 +69,7 @@ public class GameClient {
 
         inputStream = new DataInputStream(clientSocket.getInputStream());
         outputStream = clientSocket.getOutputStream();
+        
     }
 
     public String getID() {

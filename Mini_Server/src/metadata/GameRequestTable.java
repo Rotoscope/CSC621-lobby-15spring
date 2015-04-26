@@ -14,7 +14,7 @@ import util.Log;
  */
 public class GameRequestTable {
 
-    private static final Map<Short, Class> requestTable = new HashMap<Short, Class>(); // Request Code -> Class
+    private static final Map<Short, Class> requestTable = new HashMap<>(); // Request Code -> Class
 
     /**
      * Initialize the hash map by populating it with request codes and classes.
@@ -25,6 +25,9 @@ public class GameRequestTable {
         NetworkCode.check();
         // Populate the table using request codes and class names
         add(NetworkCode.CLIENT, "RequestClient");
+        add(NetworkCode.HEARTBEAT, "RequestHeartbeat");
+        add(NetworkCode.MESSAGE, "RequestMessage");
+        add(NetworkCode.CHANGE_NAME, "RequestChangeName");
 
         Log.println("Done!");
     }
@@ -57,7 +60,6 @@ public class GameRequestTable {
      */
     public static GameRequest get(short request_id) {
         GameRequest request = null;
-
         try {
             Class name = requestTable.get(request_id);
 
