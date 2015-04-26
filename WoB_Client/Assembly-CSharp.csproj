@@ -145,11 +145,8 @@
      <Compile Include="Assets\Scripts\Network\Protocol\SpeciesActionProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\SpeciesCreateProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\SpeciesListProtocol.cs" />
-<<<<<<< HEAD
      <Compile Include="Assets\Scripts\Network\Protocol\StartGameProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\TopListProtocol.cs" />
-=======
->>>>>>> 3bef4169b9c5d15738177c2bb2f720ad32fad9fb
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateEnvScoreProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateResourcesProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateTimeProtocol.cs" />
