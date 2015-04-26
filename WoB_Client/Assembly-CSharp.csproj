@@ -46,6 +46,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DontEatMeAssets\Scripts\BuildInfo.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\BuildMenu.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\CarnivoreObject.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\DefaultVelocity.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\GameOverWall.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\Grass.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\Health.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\HerbivoreObject.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\HintBoard.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\MoveObject.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\PlantObject.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\Predator_Hunger.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\Prey_Hunger.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\Soil.cs" />
+     <Compile Include="Assets\DontEatMeAssets\Scripts\SpawnPredator.cs" />
      <Compile Include="Assets\Game.cs" />
      <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\AnimalAI.cs" />
@@ -63,6 +78,7 @@
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeHint.cs" />
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeManager.cs" />
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeParam.cs" />
+     <Compile Include="Assets\Scripts\DontEatMeGUI.cs" />
      <Compile Include="Assets\Scripts\Ecosystem\EcosystemCamera.cs" />
      <Compile Include="Assets\Scripts\Ecosystem\EcosystemController.cs" />
      <Compile Include="Assets\Scripts\Ecosystem\EcosystemMouse.cs" />
@@ -120,6 +136,7 @@
      <Compile Include="Assets\Scripts\Network\Protocol\LoginProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\LogoutProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\MessageProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\NoWaitForGameProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PlayerSelectProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PlayersProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PredictionProtocol.cs" />
@@ -129,10 +146,14 @@
      <Compile Include="Assets\Scripts\Network\Protocol\SpeciesActionProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\SpeciesCreateProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\SpeciesListProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\StartGameProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\TopListProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateEnvScoreProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateResourcesProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\UpdateTimeProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\WaitForGameProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\WaitStatusProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\WaitingListProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\WorldProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ZoneListProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ZoneProtocol.cs" />
