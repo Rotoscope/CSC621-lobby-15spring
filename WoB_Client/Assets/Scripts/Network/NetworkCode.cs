@@ -62,4 +62,10 @@
 	public static readonly short CONVERGE_NEW_ATTEMPT_SCORE = 152;
 
 	public static readonly short TOPLIST = 153;
+
+	public static readonly short WAITFORGAME = 154;
+	public static readonly short NOWAITFORGAME = 155;
+	public static readonly short WAITLIST = 156;
+	public static readonly short WAITSTATUS = 157;
+	public static readonly short STARTGAME = 158;
 }

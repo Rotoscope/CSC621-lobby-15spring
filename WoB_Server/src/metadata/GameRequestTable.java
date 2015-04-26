@@ -66,6 +66,12 @@ public class GameRequestTable {
         add(NetworkCode.CONVERGE_NEW_ATTEMPT_SCORE, "convergegame.RequestConvergeNewAttemptScore");
         
         add(NetworkCode.TOPLIST, "RequestTopList");
+        
+        add(NetworkCode.WAITFORGAME, "RequestWaitForGame");
+        add(NetworkCode.NOWAITFORGAME, "RequestNoWaitForGame");
+        add(NetworkCode.WAITLIST, "RequestWaitList");
+        add(NetworkCode.WAITSTATUS, "RequestWaitStatus");
+        add(NetworkCode.STARTGAME, "RequestStartGame");
 
         Log.println("Done!");
     }
