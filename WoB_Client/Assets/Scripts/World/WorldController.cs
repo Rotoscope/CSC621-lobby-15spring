@@ -26,6 +26,19 @@ public class WorldController : MonoBehaviour {
 		if (GUI.Button(new Rect(10, 10, 80, 30), "Ecosystem")) {
 			Camera.main.GetComponent<MapCamera>().Move(GameState.player.GetID());
 		}
+		if (GUI.Button (new Rect (10, 50, 100, 30), "Cards of Wild")) {
+			gameObject.AddComponent ("CardsOfWildGUI"); //Multiplayer
+		}
+		GUI.Button (new Rect (10, 90, 120, 30), "Class of Species"); // Single Player
+
+		GUI.Button (new Rect (10, 130, 100, 30), "Don't Eat Me"); // Single Player
+
+		if (GUI.Button (new Rect (10, 170, 100, 30), "Running Rhino")) {
+			gameObject.AddComponent ("RunningRhinoGUI"); // Multiplayer
+		}
+
+
+
 	}
 	
 	public void ProcessWorld(NetworkResponse response) {

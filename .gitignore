@@ -1,16 +1,55 @@
+.DS_Store
+*/nbproject/
+WoB_Server/.svn/
+WoB_Client/.svn/
+
+# Exclude files with login credentials
+WoB_Server/conf/db.conf*
+WoB_Server/src/simulation/config/webserviceLogin.properties 
+
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Library/
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+WoB_Server/.idea/
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+/*.class
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-/WoB_Server/nbproject/private/
+WoB_Server/.idea/workspace.xml
+/nbproject/private/
+/build/
 /WoB_Server/build/
-/WoB_Server/dist/
-/Mini_Server/nbproject/private/
+<<<<<<< HEAD
+*.sln
+=======
+*.csproj
+>>>>>>> 5cd44735cd917a8a8c0a6c6028d52ec2e6f80e3a
+WoB_Server/.idea/workspace.xml
+*.sln
+*.iml

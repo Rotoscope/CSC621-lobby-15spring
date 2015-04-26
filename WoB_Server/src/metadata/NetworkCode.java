@@ -70,6 +70,14 @@ public class NetworkCode {
     public final static short CONVERGE_HINT = 150;
     public final static short CONVERGE_HINT_COUNT = 151;
     public final static short CONVERGE_NEW_ATTEMPT_SCORE = 152;
+    
+    public final static short TOPLIST = 153;
+    
+    public final static short WAITFORGAME = 154;
+    public final static short NOWAITFORGAME = 155;
+    public final static short WAITLIST = 156;
+    public final static short WAITSTATUS = 157;
+    public final static short STARTGAME = 158;
 
     /**
      * Check for duplicate values, if any.
