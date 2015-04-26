@@ -17,7 +17,7 @@ public class NoWaitForGameProtocol {
 	}
 	
 	public static NetworkResponse Parse(MemoryStream dataStream) {
-		ResponseNoWaitForGame response = new ResponseWaitForGame();
+		ResponseNoWaitForGame response = new ResponseNoWaitForGame();
 		response.status = DataReader.ReadInt(dataStream);
 		
 		return response;

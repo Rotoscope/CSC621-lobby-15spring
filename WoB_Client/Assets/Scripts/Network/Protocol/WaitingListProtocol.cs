@@ -28,7 +28,7 @@ public class WaitingListProtocol {
 	}
 	
 	public static NetworkResponse Parse(MemoryStream dataStream) {
-		ResponseWaitForGame response = new ResponseWaitForGame();
+		ResponseWaitingList response = new ResponseWaitingList();
 		String tempName;
 		int tempId;
 
@@ -49,12 +49,12 @@ public class WaitingListProtocol {
 	}
 }
 
-public class ResponseWaitForGame : NetworkResponse {
+public class ResponseWaitingList : NetworkResponse {
 
-	public Queue<String> nameQueue = new Queue();
-	public Queue<int> idQueue = new Queue();
+	public Queue<String> nameQueue = new Queue<String>();
+	public Queue<int> idQueue = new Queue<int>();
 	
-	public ResponseWaitForGame() {
+	public ResponseWaitingList() {
 		protocol_id = NetworkCode.WAITLIST;
 	}
 
