@@ -20,6 +20,8 @@ public class Login : MonoBehaviour {
 	private Rect windowRect;
 	private bool isActive = true;
 	private bool isInitial = true;
+	private String[] topPlayers;
+	private int playerRank = -1;
 	
 	void Awake() {
 		//DontDestroyOnLoad(gameObject);
@@ -61,6 +63,25 @@ public class Login : MonoBehaviour {
 			if (Event.current.type == EventType.KeyUp && Event.current.keyCode == KeyCode.Return) {
 				Submit();
 			}
+		}
+
+		if (playerRank != -1) {
+			switch (playerRank) {
+			case 1:
+				GUI.Label (new Rect (Screen.width / 2, Screen.height / 2, 120, 50), "Congratulations, you're player number 1!!");
+				break;
+			case 2:
+				GUI.Label (new Rect (Screen.width / 2, Screen.height / 2, 120, 50), "Congratulations, you're player number 2!!");
+				break;
+			case 3:
+				GUI.Label (new Rect (Screen.width / 2, Screen.height / 2, 120, 50), "Congratulations, you're player number 3!!");
+				break;
+			default:
+				Debug.Log ("Showing message!");
+				if (GUI.Button (new Rect (10, 50, 100, 30), "Cards of Wild")) {}
+				break;
+			}
+			playerRank = -1;
 		}
 	}
 	
@@ -157,6 +178,10 @@ public class Login : MonoBehaviour {
 	public void ProcessTopList(NetworkResponse response) {
 		ResponseTopList args = response as ResponseTopList;
 		//client team -- use this data for the toplist functionality
+		topPlayers = new string[3];
+		topPlayers [0] = args.name1;
+		topPlayers [1] = args.name2;
+		topPlayers [2] = args.name3;
 		Debug.Log ("rank 1 player: " + args.name1 + " with " + args.score1 + " points.");
 		Debug.Log ("rank 2 player: " + args.name2 + " with " + args.score2 + " points.");
 		Debug.Log ("rank 3 player: " + args.name3 + " with " + args.score3 + " points.");
@@ -167,8 +192,26 @@ public class Login : MonoBehaviour {
 		
 		if (args.status == 0) {
 			GameState.player = args.player;
-			Game.SwitchScene("World"); //"World");
+			playerRank = PlayerIsTop(user_id);
+			StartCoroutine ("wait");
 		}
+	}
+
+	IEnumerator wait()
+	{
+		yield return new WaitForSeconds(3f);
+		Game.SwitchScene("World"); //"World");
+	}
+
+	public int PlayerIsTop(String name) {
+		if (name.Equals(topPlayers[0]))
+			return 1;
+		else if (name.Equals(topPlayers[1]))
+			return 2;
+		else if (name.Equals (topPlayers [2]))
+			return 3;
+		else
+			return 0;
 	}
 	
 	public void SwitchToRegister() {
