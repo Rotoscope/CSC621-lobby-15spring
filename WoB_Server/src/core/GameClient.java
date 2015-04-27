@@ -167,7 +167,7 @@ public class GameClient {
         AccountDAO.updateLogin(account.getID(), this.getIP());
         GameServer.getInstance().setActiveAccount(account);
 
-        startSaveTimer();
+        startSaveTimer();        
     }
 
     public void select(Player player) {
@@ -336,5 +336,9 @@ public class GameClient {
                 UserLogDAO.updateTimeLog(account.getID(), (int) seconds);
             }
         }, Constants.SAVE_INTERVAL, Constants.SAVE_INTERVAL);
+    }
+    
+    public void getGameRoom() {
+        
     }
 }

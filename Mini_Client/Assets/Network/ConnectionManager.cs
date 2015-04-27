@@ -14,6 +14,7 @@ public class ConnectionManager {
 	public static readonly short SUCCESS = 0;
 	public static readonly short FAILED = 1;
 	public static readonly short CONNECTED = 2;
+
 	// Variables
 	private TcpClient mySocket = new TcpClient();
 	public bool Connected { get { return mySocket.Connected; } }

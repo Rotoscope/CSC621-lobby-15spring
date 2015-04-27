@@ -72,6 +72,9 @@ public class GameRequestTable {
         add(NetworkCode.WAITLIST, "RequestWaitList");
         add(NetworkCode.WAITSTATUS, "RequestWaitStatus");
         add(NetworkCode.STARTGAME, "RequestStartGame");
+        
+        add(NetworkCode.PAIR, "RequestPair");
+
 
         Log.println("Done!");
     }

@@ -68,4 +68,6 @@
 	public static readonly short WAITLIST = 156;
 	public static readonly short WAITSTATUS = 157;
 	public static readonly short STARTGAME = 158;
+
+	public static readonly short PAIR = 159;
 }

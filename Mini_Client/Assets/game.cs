@@ -8,25 +8,33 @@ public class game : MonoBehaviour {
 
 	public Button SubmitBtn = null;
 	public Button ChangeNameBtn = null;
+	public Button ReadyBtn = null;
 	public InputField ChatInputText = null;
 	public InputField NameInputText = null;
 	public Text ChatText = null;
 
 	private string message = "";
-	//private List<string> msgList = new List<string>();
 
 	// Use this for initialization
 	void Start () {
 		SubmitBtn.onClick.AddListener(() => { OnSubmit(); });
 		ChangeNameBtn.onClick.AddListener(() => { OnChangeName(); });
+		ReadyBtn.onClick.AddListener(() => { OnReady(); });
+
 		NameInputText.text = "Your Name";
+
+		PutSystemMessage ("Welcome! Click 'Ready' button and chat with a random stranger.");
 	}
 
 	void Awake() {
-		print ("listering");
 		NetworkManager.Listen(
 			NetworkCode.MESSAGE,
 			ProcessMessage
+		);
+
+		NetworkManager.Listen(
+			NetworkCode.PAIR,
+			ProcessReadyReply
 		);
 	}
 
@@ -44,14 +52,10 @@ public class game : MonoBehaviour {
 			string message = "";
 			
 			if (args.type == 0) {
-				//if (args.username.Equals(GameState.player.name)) {
-				//	return;
-				//}
 				message += "<b>" + args.username + "</b>: ";
 			}
 			
 			message += args.message;
-			//print(message);
 			PutMessange(message);
 		}
 	}
@@ -66,6 +70,10 @@ public class game : MonoBehaviour {
 	}
 
 	void Update () {
+	}
+
+	void PutSystemMessage(string message) {
+		ChatText.text += "<color=navy>" + message + "</color>\n";
 	}
 
 	void PutMessange(string message) {
@@ -91,6 +99,20 @@ public class game : MonoBehaviour {
 		NetworkManager.Send(
 			ChangeNameProtocol.Prepare(name)
 		);
+	}
+
+	void OnReady() {
+		NetworkManager.Send(
+			PairProtocol.Prepare()
+		);
+	}
+
+	public void ProcessReadyReply(NetworkResponse response) {
+		ResponsePair args = response as ResponsePair;
+		if (args.status == 0) { // new room, waiting for other client
+			print ("");
+		} else { // paired sucessfully
+		}
 	}
 
 	void OnGUI() {

@@ -14,6 +14,7 @@ public class NetworkProtocolTable {
 		Add(NetworkCode.CLIENT, "Client");
 		Add(NetworkCode.MESSAGE, "Message");
 		Add(NetworkCode.CHANGE_NAME, "ChangeName");
+		Add(NetworkCode.PAIR, "Pair");
 	}
 	
 	public static void Add(short protocol_id, string name) {

@@ -23,6 +23,7 @@ public class GameRequestTable {
         Log.console("Loading Requests...");
 
         NetworkCode.check();
+        
         // Populate the table using request codes and class names
         add(NetworkCode.CLIENT, "RequestClient");
         add(NetworkCode.HEARTBEAT, "RequestHeartbeat");

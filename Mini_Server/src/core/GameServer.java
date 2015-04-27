@@ -13,7 +13,6 @@ import java.util.UUID;
 
 // Other Imports
 import config.GameServerConf;
-import game.GameRoom;
 import game.GameRoomManager;
 import metadata.Constants;
 import metadata.GameRequestTable;

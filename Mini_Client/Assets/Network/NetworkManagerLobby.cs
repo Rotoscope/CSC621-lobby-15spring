@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 
-public class NetworkManager : MonoBehaviour {
+public class NetworkManagerLobby : MonoBehaviour {
 
 	public delegate void Callback(NetworkResponse response);
 	private static Dictionary<int, Queue<Callback>> callbackList = new Dictionary<int, Queue<Callback>>();
@@ -20,15 +20,14 @@ public class NetworkManager : MonoBehaviour {
 	private static int interval = 50;
 
 	void Awake() {
-		Debug.Log ("Initializing protocols...");
-		NetworkProtocolTable.Init();
+		//NetworkProtocolTable.Init();
 	}
 	
 	// Use this for initialization
 	void Start() {
-		Debug.Log ("Connecting server...");
-		if (connectManager.Connect(Constants.REMOTE_HOST, Constants.REMOTE_PORT) == ConnectionManager.SUCCESS) {
-			NetworkManager.Send(
+		Debug.Log ("Connecting lobby server...");
+		if (connectManager.Connect(Constants.REMOTE_HOST, Constants.REMOTE_PORT_LOBBY) == ConnectionManager.SUCCESS) {
+			NetworkManagerLobby.Send(
 				ClientProtocol.Prepare(Constants.CLIENT_VERSION, Constants.SESSION_ID),
 				ProcessClient
 			);
@@ -54,7 +53,7 @@ public class NetworkManager : MonoBehaviour {
 
 		counter++;
 		if (counter == interval) {
-			//Debug.Log ("checking response buffer... (+50)");
+			//Debug.Log ("checking lobby response buffer... (+50)");
 			counter = 0;
 		}
 		foreach (NetworkResponse args in connectManager.Read()) {
@@ -90,7 +89,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 	
 	public static void Send(NetworkRequest packet, Callback callback) {
-		NetworkManager.Send(packet);
+		NetworkManagerLobby.Send(packet);
 
 		int protocol_id = packet.GetID();
 		if (!callbackList.ContainsKey(protocol_id)) {

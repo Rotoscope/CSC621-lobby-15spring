@@ -7,7 +7,8 @@ public class Constants {
 	// Constants
 	public static readonly string CLIENT_VERSION = "1.00";
 	public static readonly string REMOTE_HOST = "localhost"; //"localhost";  "smurf.sfsu.edu";
-	public static readonly int REMOTE_PORT = 9245;
+	public static readonly int REMOTE_PORT = 9245; //game server
+	public static readonly int REMOTE_PORT_LOBBY = 9254; // lobby server
 	public static readonly float HEARTBEAT_RATE = 1f;
 	
 	// Other

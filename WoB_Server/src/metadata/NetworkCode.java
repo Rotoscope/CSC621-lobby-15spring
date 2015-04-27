@@ -78,6 +78,8 @@ public class NetworkCode {
     public final static short WAITLIST = 156;
     public final static short WAITSTATUS = 157;
     public final static short STARTGAME = 158;
+    
+    public final static short PAIR = 159;
 
     /**
      * Check for duplicate values, if any.
