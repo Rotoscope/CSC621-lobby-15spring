@@ -5,8 +5,13 @@
  */
 package lobby;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Log;
 
 /**
@@ -69,13 +74,44 @@ public class MiniGame {
 
     void run() throws IOException {
         Log.println("Running server: " + this.name);
-        Process ps = Runtime.getRuntime().exec(new String[]{"java", "-jar", this.serverPath});
-        /*
-        ps.waitFor();
-        java.io.InputStream is = ps.getInputStream();
-        byte b[] = new byte[is.available()];
-        is.read(b,0,b.length);
-        System.out.println(new String(b));
-        */
+        
+        File file = new File(this.serverPath);
+        String absolutePath = file.getAbsolutePath();
+        
+        String filePath = absolutePath.substring(0,absolutePath.lastIndexOf(File.separator));
+        ProcessBuilder pb = new ProcessBuilder("java", "-jar", this.serverPath);
+        pb.directory(new File(filePath));
+        try {
+            Process p = pb.start();
+            LogStreamReader lsr = new LogStreamReader(p.getInputStream(), this.name);
+            Thread thread = new Thread(lsr, "LogStreamReader");
+            thread.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class LogStreamReader implements Runnable {
+
+    private BufferedReader reader;
+    private String name;
+    
+    public LogStreamReader(InputStream is, String name) {
+        this.reader = new BufferedReader(new InputStreamReader(is));
+        this.name = name;
+    }
+
+    public void run() {
+        try {
+            String line = reader.readLine();
+            while (line != null) {
+                System.out.println("[" + name + "] " + line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
