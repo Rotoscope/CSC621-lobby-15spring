@@ -78,8 +78,7 @@ public class CardsOfWildGUI : MonoBehaviour {
 
 		if (args.status == 0) {
 			logText += "Paired successfully, ready to start the game!\n";
-
-			// Change scene
+			Application.LoadLevel("MiniClient");
 		} else {
 			logText += "Game room created, waiting for another player...\n";
 		}

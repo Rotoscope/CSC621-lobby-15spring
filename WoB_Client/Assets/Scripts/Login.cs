@@ -167,8 +167,7 @@ public class Login : MonoBehaviour {
 		
 		if (args.status == 0) {
 			GameState.player = args.player;
-			//Game.SwitchScene("World"); //"World");
-			Application.LoadLevel("MiniClient");
+			Game.SwitchScene("World"); //"World");
 		}
 	}
 	
