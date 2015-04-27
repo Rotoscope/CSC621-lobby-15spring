@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.Log;
 
 /**
@@ -23,15 +21,21 @@ public class MiniGame {
     private String name = "";
     private boolean singlePlayer = true;
     private boolean available = true;
+    private int port = 0;
     private String serverPath = ""; // path to the jar file
+    private String absServerPath = "";
+    private Process process;
 
     public MiniGame(String name) {
         this.name = name;
     }
     
-    public void setAsMultiPlayerGame(String path) {
+    public void setAsMultiPlayerGame(String path, int port) {
         this.setSinglePlayer(false);
         this.serverPath = path;
+        File file = new File(this.serverPath);
+        this.absServerPath = file.getAbsolutePath();
+        this.port = port;
         validate();
     }
     
@@ -64,6 +68,10 @@ public class MiniGame {
     public String getName() {
         return name;
     }
+    
+    public int getPort() {
+        return this.port;
+    }
 
     /**
      * @return the available
@@ -74,16 +82,14 @@ public class MiniGame {
 
     void run() throws IOException {
         Log.println("Running server: " + this.name);
+        Log.println("Jar: " + this.serverPath);
         
-        File file = new File(this.serverPath);
-        String absolutePath = file.getAbsolutePath();
-        
-        String filePath = absolutePath.substring(0,absolutePath.lastIndexOf(File.separator));
-        ProcessBuilder pb = new ProcessBuilder("java", "-jar", this.serverPath);
+        String filePath = absServerPath.substring(0, absServerPath.lastIndexOf(File.separator));
+        ProcessBuilder pb = new ProcessBuilder("java", "-jar", this.absServerPath);
         pb.directory(new File(filePath));
         try {
-            Process p = pb.start();
-            LogStreamReader lsr = new LogStreamReader(p.getInputStream(), this.name);
+            this.process = pb.start();            
+            LogStreamReader lsr = new LogStreamReader(this.process.getInputStream(), this.name);
             Thread thread = new Thread(lsr, "LogStreamReader");
             thread.start();
         } catch (IOException e) {
@@ -102,6 +108,7 @@ class LogStreamReader implements Runnable {
         this.name = name;
     }
 
+    @Override
     public void run() {
         try {
             String line = reader.readLine();

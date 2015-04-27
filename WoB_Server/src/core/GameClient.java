@@ -69,7 +69,6 @@ public class GameClient {
 
         inputStream = new DataInputStream(clientSocket.getInputStream());
         outputStream = clientSocket.getOutputStream();
-        
     }
 
     public String getID() {

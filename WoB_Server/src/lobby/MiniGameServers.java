@@ -55,7 +55,7 @@ public class MiniGameServers {
 
         // test
         game = new MiniGame("Cards of Wild");
-        game.setAsMultiPlayerGame("../Mini_Server/dist/Mini_Server.jar");
+        game.setAsMultiPlayerGame("../Mini_Server/dist/Mini_Server.jar", 9245);
         miniGames.put(game.getName(), game);
     }
 }
