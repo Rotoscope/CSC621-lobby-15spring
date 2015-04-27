@@ -40,6 +40,7 @@ public class NetworkProtocolTable {
 		Add(NetworkCode.CONVERGE_HINT_COUNT, "ConvergeHintCount");
 		Add(NetworkCode.CONVERGE_NEW_ATTEMPT_SCORE, "ConvergeNewAttemptScore");
 		Add(NetworkCode.TOPLIST, "TopList");
+		Add(NetworkCode.PAIR, "Pair");
 	}
 	
 	public static void Add(short protocol_id, string name) {

@@ -31,7 +31,9 @@ public class WorldController : MonoBehaviour {
 		}
 		GUI.Button (new Rect (10, 90, 120, 30), "Class of Species"); // Single Player
 
-		GUI.Button (new Rect (10, 130, 100, 30), "Don't Eat Me"); // Single Player
+		if (GUI.Button (new Rect (10, 130, 100, 30), "Don't Eat Me")) {
+			gameObject.AddComponent ("DontEatMeGUI"); // Single Player
+		}
 
 		if (GUI.Button (new Rect (10, 170, 100, 30), "Running Rhino")) {
 			gameObject.AddComponent ("RunningRhinoGUI"); // Multiplayer

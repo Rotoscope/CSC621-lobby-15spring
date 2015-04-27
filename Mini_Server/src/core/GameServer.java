@@ -13,8 +13,9 @@ import java.util.UUID;
 
 // Other Imports
 import config.GameServerConf;
-import game.GameRoom;
 import game.GameRoomManager;
+import java.io.File;
+import java.security.CodeSource;
 import metadata.Constants;
 import metadata.GameRequestTable;
 import util.ConfFileParser;
@@ -159,13 +160,24 @@ public class GameServer {
      * whenever it crashes.
      *
      * @param args contains additional launching parameters
+     * @throws java.net.URISyntaxException
      */
     public static void main(String[] args) {
         Log.printf("Mini Server v%s is starting...", Constants.CLIENT_VERSION);
-
+        
         try {
             Log.console("Loading Configuration File...");
-            GameServerConf config = new GameServerConf(new ConfFileParser("conf/gameServer.conf").parse());
+            String serverConf = "conf/gameServer.conf";
+            File f = new File(serverConf);
+            if (!f.exists()) {
+                
+                // get current absolute path
+                CodeSource codeSource = GameServer.class.getProtectionDomain().getCodeSource();
+                File jarFile = new File(codeSource.getLocation().toURI().getPath());
+                serverConf = jarFile.getParentFile().getPath() + "/../conf/gameServer.conf";
+            }
+        
+            GameServerConf config = new GameServerConf(new ConfFileParser(serverConf).parse());
             Log.println("Done!");
 
             server = new GameServer(config.getPortNumber(), Constants.MAX_CLIENT_THREADS);

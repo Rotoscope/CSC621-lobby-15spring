@@ -70,6 +70,7 @@ public class Game : MonoBehaviour {
 		if (gObject != null) {
 			switch (name) {
 				case "Login":
+				case "MiniClient":
 					Destroy(gObject.GetComponent<EcosystemScore>());
 					Destroy(gObject.GetComponent<GameResources>());
 					Destroy(gObject.GetComponent<Clock>());

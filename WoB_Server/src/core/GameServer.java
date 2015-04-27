@@ -15,6 +15,8 @@ import java.util.UUID;
 import config.GameServerConf;
 import core.badge.BadgeController;
 import core.world.WorldController;
+import java.nio.file.Paths;
+import lobby.MiniGameServers;
 import metadata.Constants;
 import metadata.GameRequestTable;
 import model.Account;
@@ -214,6 +216,9 @@ public class GameServer {
 
             server = new GameServer(config.getPortNumber(), Constants.MAX_CLIENT_THREADS);
             server.configure();
+            
+            MiniGameServers.getInstance().runServers();
+            
             server.run();
         } catch (IOException ex) {
             Log.printf_e("Port %d is in use", server.getPort());
