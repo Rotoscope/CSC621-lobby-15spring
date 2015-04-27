@@ -20,10 +20,7 @@ public class CardsOfWildGUI : MonoBehaviour {
 		mainObject = GameObject.Find("MainObject");
 		window_id = Constants.GetUniqueID();
 
-		NetworkManager.Listen(
-			NetworkCode.PAIR,
-			OnPairResult
-			);
+		NetworkManager.Listen(NetworkCode.PAIR, OnPairResult);
 
 		NetworkManager.Send(PairProtocol.Prepare());	
 	}
@@ -78,9 +75,10 @@ public class CardsOfWildGUI : MonoBehaviour {
 
 		if (args.status == 0) {
 			logText += "Paired successfully, ready to start the game!\n";
-			Application.LoadLevel("MiniClient");
+			Game.SwitchScene("MiniClient");
 		} else {
 			logText += "Game room created, waiting for another player...\n";
+			//Game.SwitchScene("MiniClient"); // test
 		}
 	}
 	
