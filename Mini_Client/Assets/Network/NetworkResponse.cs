@@ -1,3 +1,4 @@
+namespace MiniClient {
 public abstract class NetworkResponse {
 	
 	protected short protocol_id;
@@ -5,4 +6,5 @@ public abstract class NetworkResponse {
 	public short GetID() {
 		return protocol_id;
 	}
+}
 }

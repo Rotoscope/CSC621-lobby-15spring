@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 
+namespace MiniClient {
 public class NetworkManager : MonoBehaviour {
 
 	public delegate void Callback(NetworkResponse response);
@@ -140,4 +141,5 @@ public class NetworkManager : MonoBehaviour {
 		ResponseClient args = response as ResponseClient;
 		Constants.SESSION_ID = args.session_id;
 	}
+}
 }

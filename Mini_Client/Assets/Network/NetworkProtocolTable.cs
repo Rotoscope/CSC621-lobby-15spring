@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
+namespace MiniClient {
 public class NetworkProtocolTable {
 
 	private static Dictionary<short, Type> table = new Dictionary<short, Type>();
@@ -18,7 +19,7 @@ public class NetworkProtocolTable {
 	}
 	
 	public static void Add(short protocol_id, string name) {
-		Type type = Type.GetType(name + "Protocol");
+		Type type = Type.GetType("MiniClient." + name + "Protocol");
 
 		if (type != null) {
 			if (!table.ContainsKey(protocol_id)) {
@@ -42,4 +43,5 @@ public class NetworkProtocolTable {
 		
 		return type;
 	}
+}
 }

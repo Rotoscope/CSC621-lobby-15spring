@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
+namespace MiniClient {
 public class DataReader {
 	
 	public static short ReadShort(MemoryStream dataStream) {
@@ -36,4 +37,5 @@ public class DataReader {
 		buffer = Encoding.Convert(Encoding.GetEncoding("iso-8859-1"), Encoding.UTF8, buffer);
         return Encoding.UTF8.GetString(buffer, 0, length);
 	}
+}
 }

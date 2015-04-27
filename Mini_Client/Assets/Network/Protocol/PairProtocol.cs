@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 
+namespace MiniClient {
 public class PairProtocol {
 	
 	public static NetworkRequest Prepare() {
@@ -22,4 +23,5 @@ public class ResponsePair : NetworkResponse {
 	public ResponsePair() {
 		protocol_id = NetworkCode.PAIR;
 	}
+}
 }

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
+namespace MiniClient {
 public class GamePacketStream {
 	
 	private MemoryStream stream = new MemoryStream();
@@ -52,4 +53,5 @@ public class GamePacketStream {
 	public int Size() {
 		return (int) stream.Length;
 	}
+}
 }

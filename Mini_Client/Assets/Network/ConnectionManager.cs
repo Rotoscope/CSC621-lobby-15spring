@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 
+namespace MiniClient {
 public class ConnectionManager {
 
 	// Status Codes
@@ -153,4 +154,5 @@ public class ConnectionManager {
 		}
 	}
 
+}
 }

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 
+namespace MiniClient {
 public class HeartbeatProtocol {
 	
 	public static NetworkRequest Prepare() {
@@ -12,4 +13,5 @@ public class HeartbeatProtocol {
 	public static NetworkResponse Parse(MemoryStream dataStream) {
 		return null;
 	}
+}
 }

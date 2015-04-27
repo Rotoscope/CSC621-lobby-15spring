@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+namespace MiniClient {
+
 public class game : MonoBehaviour {
 
 	public Button SubmitBtn = null;
@@ -120,4 +122,5 @@ public class game : MonoBehaviour {
 		//	OnSubmit();
 		//}
 	}
+}
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+namespace MiniClient {
 public class Background : MonoBehaviour {
 
 	// Use this for initialization
@@ -15,4 +17,5 @@ public class Background : MonoBehaviour {
 
 	void OnGUI () {
 	}
+}
 }

@@ -1,6 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ConvergeGame/ConvergeGame.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Network/NetworkCode.cs">
     <Files>
       <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/RunningRhinoGUI.cs" Line="1" Column="1" />
@@ -9,27 +9,20 @@
       <File FileName="Assets/Scripts/PlayerList/PlayerList.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Login.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CardsOfWildGUI.cs" Line="82" Column="19" />
+      <File FileName="Assets/Scripts/CardsOfWildGUI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/NetworkCode.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/NetworkProtocolTable.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GUI/Chat/Chat.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ConvergeGame/ConvergeGame.cs" Line="2" Column="1" />
+      <File FileName="Assets/Scripts/ConvergeGame/ConvergeGame.cs" Line="19" Column="32" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="ConvergeGame" expanded="True">
-                <Node name="ConvergeGame.cs" selected="True" />
-              </Node>
-              <Node name="GUI" expanded="True">
-                <Node name="Chat" expanded="True" />
-              </Node>
               <Node name="Network" expanded="True">
-                <Node name="Protocol" expanded="True" />
+                <Node name="NetworkCode.cs" selected="True" />
               </Node>
-              <Node name="PlayerList" expanded="True" />
             </Node>
           </Node>
         </State>

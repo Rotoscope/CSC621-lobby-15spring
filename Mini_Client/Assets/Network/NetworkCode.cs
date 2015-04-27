@@ -1,4 +1,5 @@
-﻿public class NetworkCode {
+﻿namespace MiniClient {
+public class NetworkCode {
 	
 	// Request + Response
 	public static readonly short CLIENT = 100;
@@ -63,4 +64,5 @@
 
 	public static readonly short CHANGE_NAME = 153;
 	public static readonly short PAIR = 154;	
+}
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 using System.Collections.Generic;
 
+namespace MiniClient {
 public class Constants {
 	
 	// Constants
@@ -70,4 +71,5 @@ public class Constants {
 	public static string SESSION_ID = "";
 	
 	public static int MONTH_DURATION = 180;
+}
 }

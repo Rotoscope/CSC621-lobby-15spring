@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 
+namespace MiniClient {
 public class ChangeNameProtocol {
 
 	public static NetworkRequest Prepare(string name) {
@@ -12,4 +13,5 @@ public class ChangeNameProtocol {
 	public static NetworkResponse Parse(MemoryStream dataStream) {
 		return null;
 	}
+}
 }

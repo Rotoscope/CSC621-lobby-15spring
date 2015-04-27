@@ -1,3 +1,4 @@
+namespace MiniClient {
 public class NetworkRequest {
 
 	private short protocol_id;
@@ -46,4 +47,5 @@ public class NetworkRequest {
 	public byte[] GetBytes() {
 		return buffer.ToByteArray();
 	}
+}
 }

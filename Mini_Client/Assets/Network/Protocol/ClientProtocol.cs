@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 
+namespace MiniClient {
 public class ClientProtocol {
 
 	public static NetworkRequest Prepare(string version, string session_id) {
@@ -31,4 +32,6 @@ public class ResponseClient : NetworkResponse {
 	public ResponseClient() {
 		protocol_id = NetworkCode.CLIENT;
 	}
+}
+
 }
