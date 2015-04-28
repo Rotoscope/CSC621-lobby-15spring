@@ -66,6 +66,45 @@ public final class ScoreDAO {
 
         return scoreList;
     }
+    
+    
+    /* Jacob:
+     * The getBestEnvScore method didn't work for me.
+     * Since whoever wrote it was so kind as to document it fabulously (as in not at all),
+     * I had to change it to get it to work for the toplist. But I didn't want to break anything else that used it,
+     * so I made this version.
+     */
+    public static List<String[]> getBestEnvScore_2(int min_range, int max_range) {
+        List<String[]> scoreList = new ArrayList<String[]>();
+
+        String query = "SELECT * FROM `ecosystem` z INNER JOIN `player` p ON z.`player_id` = p.`player_id`";
+
+        query += " GROUP BY p.`account_id` ORDER BY z.`high_score` DESC LIMIT ?, ?";
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = GameDB.getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, min_range);
+            pstmt.setInt(2, max_range);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String[] score = new String[]{rs.getString("player_id"), rs.getString("high_score")};
+                scoreList.add(score);
+            }
+        } catch (SQLException ex) {
+            Log.println_e(ex.getMessage());
+        } finally {
+            GameDB.closeConnection(con, pstmt, rs);
+        }
+
+        return scoreList;
+    }
 
     public static List<String[]> getBestTotalEnvScore(int min_range, int max_range, List<String> patternList) {
         List<String[]> scoreList = new ArrayList<String[]>();

@@ -3,8 +3,11 @@ package net.request;
 // Java Imports
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.List;
 
 // Other Imports
+import db.PlayerDAO;
+import db.ScoreDAO;
 import net.response.ResponseTopList;
 
 public class RequestTopList extends GameRequest {
@@ -16,7 +19,15 @@ public class RequestTopList extends GameRequest {
     @Override
     public void process() throws Exception {
         ResponseTopList response = new ResponseTopList();
-        response.setData("Player1", 1, "Player2", 2, "Player3", 3); //server team - pass actual data here
+        String names[] = new String[3];
+        int scores[] = new int[3];
+        List<String[]> scoreList = ScoreDAO.getBestEnvScore_2(0, 3);
+        
+        for (int i=0; i<3; i++) {
+            names[i] = PlayerDAO.getPlayer(Integer.parseInt(scoreList.get(i)[0])).getName();
+            scores[i] = Integer.parseInt(scoreList.get(i)[1]);
+        }
+        response.setData(names[0], scores[0], names[1], scores[1], names[2], scores[2]);
         client.add(response);
     }
 }
