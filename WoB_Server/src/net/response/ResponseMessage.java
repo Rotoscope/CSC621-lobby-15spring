@@ -6,6 +6,14 @@ import util.GamePacket;
 
 /**
  * The ResponseMessage class is used to sent chat messages to the client.
+ * types:
+ * 0 - regular message
+ * 1 - server message (?)
+ * 2 - private message
+ * 
+ * status:
+ * 0 - OK
+ * 1 - whipser failed
  */
 public class ResponseMessage extends GameResponse {
 
@@ -24,7 +32,7 @@ public class ResponseMessage extends GameResponse {
         packet.addShort16(status);
         packet.addShort16(type);
 
-        if (type == 0) {
+        if (type == 0 || type == 2) {
             packet.addString(name);
         }
 

@@ -113,9 +113,43 @@ public class Chat : MonoBehaviour {
 	public void SendMessage() {
 		if (message == "") {
 //			GUI.FocusControl("");
+		} else if (message[0] == '/') { //parse command
+			int i=1;
+			for (; i < message.Length && message[i] != ' '; i++);
+
+			string command;
+			if (i-1 < message.Length) command = message.Substring(1, i-1);
+			else command = "";
+
+			if (command == "w") { //direct message - parse recipient+message and send protocol if everything is OK
+				int j = i+1;
+				for (; j < message.Length && message[j] != ' '; j++);
+
+				string recipient;
+				if (j < message.Length) recipient = message.Substring(i+1, j-1-i);
+				else recipient = "";
+
+				if (j < message.Length) message = message.Substring(j+1);
+				else message = "";
+
+				if (recipient.Length > 0 && message.Length > 0) {
+					NetworkManager.Send(
+						MessageProtocol.Prepare(2, message, recipient)
+					);
+
+					SetMessage("To [" + recipient + "]: " + message);
+					message = "";
+				} else {
+					SetMessage("Invalid command.");
+					message = "";
+				}
+			} else {
+				SetMessage("Invalid command.");
+				message = "";
+			}
 		} else {
 			NetworkManager.Send(
-				MessageProtocol.Prepare(0, message)
+				MessageProtocol.Prepare(0, message, "")
 			);
 
 			SetMessage("[" + GameState.player.name + "] says: " + message);
@@ -130,9 +164,10 @@ public class Chat : MonoBehaviour {
 	
 	public void ProcessMessage(NetworkResponse response) {
 		ResponseMessage args = response as ResponseMessage;
+		string message = "";
 
 		if (args.status == 0) {
-			string message = "";
+			message = "";
 			
 			if (args.type == 0) {
 				if (args.username.Equals(GameState.player.name)) {
@@ -140,9 +175,14 @@ public class Chat : MonoBehaviour {
 				}
 
 				message += "[" + args.username + "] says: ";
+			} else if (args.type == 2) {
+				message += "Whisper from [" + args.username + "]: ";
 			}
 			
 			message += args.message;
+			SetMessage(message);
+		} else if (args.status == 1) {
+			message = "Whisper failed.";
 			SetMessage(message);
 		}
 	}
