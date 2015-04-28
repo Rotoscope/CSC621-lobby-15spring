@@ -10,7 +10,7 @@ public class DontEatMeGUI : MonoBehaviour {
 	private float height = 500;
 	// Other
 	private int window_id;
-	private string message = "Waiting for other players";
+	private string message = "Single Player Game. Click start to play.";
 	private Rect windowRect;
 	
 	void Awake() {
@@ -20,6 +20,7 @@ public class DontEatMeGUI : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start() {
+		Game.StartEnterTransition ();
 		windowRect = new Rect ((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
 	}
 	
@@ -65,6 +66,7 @@ public class DontEatMeGUI : MonoBehaviour {
 
 	public void StartGame() {
 		//Do protocol stuff
+		Destroy (this);
 		Game.SwitchScene("DontEatMe");
 	}
 	
