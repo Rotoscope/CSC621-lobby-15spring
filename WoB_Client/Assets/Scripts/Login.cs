@@ -68,20 +68,19 @@ public class Login : MonoBehaviour {
 		if (playerRank != -1) {
 			switch (playerRank) {
 			case 1:
-				GUI.Label (new Rect (Screen.width / 2, Screen.height / 2, 120, 50), "Congratulations, you're player number 1!!");
+				GUI.Button(new Rect (Screen.width/2 - 200, Screen.height/2 - 100, 400, 150), "Congratulations, you're player number 1!!");
 				break;
 			case 2:
-				GUI.Label (new Rect (Screen.width / 2, Screen.height / 2, 120, 50), "Congratulations, you're player number 2!!");
+				GUI.Button(new Rect (Screen.width/2 - 200, Screen.height/2 - 100, 400, 150), "Congratulations, you're player number 2!!");
 				break;
 			case 3:
-				GUI.Label (new Rect (Screen.width / 2, Screen.height / 2, 120, 50), "Congratulations, you're player number 3!!");
+				GUI.Button(new Rect (Screen.width/2 - 200, Screen.height/2 - 100, 400, 150), "Congratulations, you're player number 3!!");;
 				break;
 			default:
-				Debug.Log ("Showing message!");
-				if (GUI.Button (new Rect (10, 50, 100, 30), "Cards of Wild")) {}
+				GUI.Button(new Rect (Screen.width/2 - 200, Screen.height/2 - 100, 400, 150), "Test button (not in 3 first players)");
 				break;
 			}
-			playerRank = -1;
+			StartCoroutine ("wait");
 		}
 	}
 	
@@ -191,15 +190,17 @@ public class Login : MonoBehaviour {
 		ResponsePlayerSelect args = response as ResponsePlayerSelect;
 		
 		if (args.status == 0) {
+			isActive = false;
 			GameState.player = args.player;
 			playerRank = PlayerIsTop(user_id);
-			StartCoroutine ("wait");
 		}
 	}
 
 	IEnumerator wait()
 	{
+		Debug.Log ("Waiting");
 		yield return new WaitForSeconds(3f);
+		Debug.Log ("Done waiting");
 		Game.SwitchScene("World"); //"World");
 	}
 
