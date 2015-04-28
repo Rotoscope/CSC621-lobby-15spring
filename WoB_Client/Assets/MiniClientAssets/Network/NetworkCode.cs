@@ -63,5 +63,6 @@ public class NetworkCode {
 	public static readonly short CONVERGE_NEW_ATTEMPT_SCORE = 152;
 
 	public static readonly short CHANGE_NAME = 153;
+	public static readonly short REQUEST_START = 154;
 }
 }

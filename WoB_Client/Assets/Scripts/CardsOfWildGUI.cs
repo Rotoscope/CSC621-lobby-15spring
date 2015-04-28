@@ -2,7 +2,8 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class CardsOfWildGUI : MonoBehaviour {
+public class CardsOfWildGUI : MonoBehaviour
+{
 	
 	private GameObject mainObject;
 	// Window Properties
@@ -13,76 +14,86 @@ public class CardsOfWildGUI : MonoBehaviour {
 	private int window_id;
 	private string message = "";
 	private Rect windowRect;
-
 	public string logText = "";
 	
-	void Awake() {
-		mainObject = GameObject.Find("MainObject");
-		window_id = Constants.GetUniqueID();
+	void Awake ()
+	{
+		mainObject = GameObject.Find ("MainObject");
+		window_id = Constants.GetUniqueID ();
 
-		NetworkManager.Listen(NetworkCode.PAIR, OnPairResult);
+		NetworkManager.Listen (NetworkCode.PAIR, OnPairResult);
 
-		NetworkManager.Send(PairProtocol.Prepare());	
+		NetworkManager.Send (PairProtocol.Prepare ());	
 	}
 	
 	// Use this for initialization
-	void Start() {
+	void Start ()
+	{
 		windowRect = new Rect ((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
 	}
 	
-	void OnGUI() {
-		windowRect = GUILayout.Window(window_id, windowRect, MakeWindow, "Cards of Wild");
+	void OnGUI ()
+	{
+		windowRect = GUILayout.Window (window_id, windowRect, MakeWindow, "Cards of Wild");
 	}
 
-	void OnDestroy() {
-		NetworkManager.Ignore(
+	void OnDestroy ()
+	{
+		NetworkManager.Ignore (
 			NetworkCode.PAIR,
 			OnPairResult
-			);
+		);
 	}
 	
-	void MakeWindow(int id) {
-		GUILayout.Space(10);
+	void MakeWindow (int id)
+	{
+		GUILayout.Space (10);
 
-		GUIStyle style = new GUIStyle();
+		GUIStyle style = new GUIStyle ();
 		//style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
 		
-		GUILayout.Label(message, style);
+		GUILayout.Label (message, style);
 
-		GUILayout.Label(logText);
+		GUILayout.Label (logText);
 
-		GUILayout.Space(30);
+		GUILayout.Space (30);
 		
-		if (GUI.Button(new Rect(windowRect.width / 2 + 80, windowRect.height - 40, 100, 30), "Quit")) {
-			OnQuit();
+		if (GUI.Button (new Rect (windowRect.width / 2 + 80, windowRect.height - 40, 100, 30), "Quit")) {
+			OnQuit ();
 		}
 
-		GUI.BringWindowToFront(window_id);
-		GUI.DragWindow();
+		GUI.BringWindowToFront (window_id);
+		GUI.DragWindow ();
 	}
 	
-	public void setMessage(string message) {
+	public void setMessage (string message)
+	{
 		this.message = message;
 	}
 	
-	public void OnQuit() {
+	public void OnQuit ()
+	{
 		//Destroy(this);
 	}
 
-	public void OnPairResult(NetworkResponse response) {
+	public void OnPairResult (NetworkResponse response)
+	{
 		ResponsePair args = response as ResponsePair;
 
 		if (args.status == 0) {
 			logText += "Paired successfully, ready to start the game!\n";
-			Game.SwitchScene("MiniClient");
+			MiniClient.MiniGame.reservedRoomID = args.id;
+			Game.SwitchScene ("MiniClient");
 		} else {
-			logText += "Game room created, waiting for another player...\n";
-			//Game.SwitchScene("MiniClient"); // test
+			logText += "Game room allocated: " + args.id + "\n";
+			logText += "Waiting for another player...\n";
+			//Game.SwitchScene ("MiniClient"); // test
 		}
 	}
 	
 	// Update is called once per frame
-	void Update() {
+	void Update ()
+	{
 	}
 }

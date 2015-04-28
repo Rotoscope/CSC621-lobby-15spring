@@ -14,6 +14,7 @@ import util.GamePacket;
  */
 public class ResponsePair extends GameResponse {
     private short status = 0;
+    private int id = 0;
 
     public ResponsePair() {
         response_id = NetworkCode.PAIR;
@@ -23,11 +24,16 @@ public class ResponsePair extends GameResponse {
     public byte[] getBytes() {
         GamePacket packet = new GamePacket(response_id);
         packet.addShort16(status);
+        packet.addInt32(id);
 
         return packet.getBytes();
     }
 
     public void setStatus(short status) {
         this.status = status;
+    }
+    
+    public void setID(int id) {
+        this.id = id;
     }
 }

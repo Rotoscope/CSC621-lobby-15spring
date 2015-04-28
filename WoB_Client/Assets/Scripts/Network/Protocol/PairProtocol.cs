@@ -11,6 +11,7 @@ public class PairProtocol {
 	public static NetworkResponse Parse(MemoryStream dataStream) {
 		var response = new ResponsePair();
 		response.status = DataReader.ReadShort(dataStream);
+		response.id = DataReader.ReadInt(dataStream);
 		return response;
 	}
 }
@@ -18,6 +19,7 @@ public class PairProtocol {
 public class ResponsePair : NetworkResponse {
 	
 	public short status { get; set; }
+	public int id { get; set; }
 	
 	public ResponsePair() {
 		protocol_id = NetworkCode.PAIR;

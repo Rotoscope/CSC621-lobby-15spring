@@ -5,6 +5,7 @@ import core.GameServer;
 import core.GameClient;
 import net.request.GameRequest;
 import net.response.GameResponse;
+import util.Log;
 
 /**
  *
@@ -23,6 +24,7 @@ public class GameRoom {
     
     public boolean addClient(GameClient player) {
         if(mNumClients == 2) {
+            Log.println_e("Game room is full!");
             return false;
         }
         mClients[mNumClients++] = player;

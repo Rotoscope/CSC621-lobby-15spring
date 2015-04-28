@@ -14,7 +14,7 @@ public class WorldController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start() {
-		
+		Game.StartEnterTransition ();
 	}
 
 	// Update is called once per frame

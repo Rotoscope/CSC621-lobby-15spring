@@ -46,24 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DontEatMeAssets\Scripts\BuildInfo.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\BuildMenu.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\CarnivoreObject.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\DefaultVelocity.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\GameOverWall.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\Grass.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\Health.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\HerbivoreObject.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\HintBoard.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\MoveObject.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\PlantObject.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\Predator_Hunger.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\Prey_Hunger.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\Soil.cs" />
-     <Compile Include="Assets\DontEatMeAssets\Scripts\SpawnPredator.cs" />
      <Compile Include="Assets\Game.cs" />
      <Compile Include="Assets\MiniClientAssets\Background.cs" />
      <Compile Include="Assets\MiniClientAssets\Constants.cs" />
+     <Compile Include="Assets\MiniClientAssets\MiniGame.cs" />
      <Compile Include="Assets\MiniClientAssets\Network\ConnectionManager.cs" />
      <Compile Include="Assets\MiniClientAssets\Network\DataReader.cs" />
      <Compile Include="Assets\MiniClientAssets\Network\GamePacketStream.cs" />
@@ -77,11 +63,14 @@
      <Compile Include="Assets\MiniClientAssets\Network\Protocol\ClientProtocol.cs" />
      <Compile Include="Assets\MiniClientAssets\Network\Protocol\HeartbeatProtocol.cs" />
      <Compile Include="Assets\MiniClientAssets\Network\Protocol\MessageProtocol.cs" />
-     <Compile Include="Assets\MiniClientAssets\game.cs" />
+     <Compile Include="Assets\MiniClientAssets\Network\Protocol\RequestStart.cs" />
      <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\AnimalAI.cs" />
+     <Compile Include="Assets\Scripts\BuildInfo.cs" />
+     <Compile Include="Assets\Scripts\BuildMenu.cs" />
      <Compile Include="Assets\Scripts\Camera\BasicCamera.cs" />
      <Compile Include="Assets\Scripts\CardsOfWildGUI.cs" />
+     <Compile Include="Assets\Scripts\CarnivoreObject.cs" />
      <Compile Include="Assets\Scripts\Clock.cs" />
      <Compile Include="Assets\Scripts\Constants.cs" />
      <Compile Include="Assets\Scripts\Containers\Account.cs" />
@@ -94,6 +83,7 @@
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeHint.cs" />
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeManager.cs" />
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeParam.cs" />
+     <Compile Include="Assets\Scripts\DefaultVelocity.cs" />
      <Compile Include="Assets\Scripts\DontEatMeGUI.cs" />
      <Compile Include="Assets\Scripts\Ecosystem\EcosystemCamera.cs" />
      <Compile Include="Assets\Scripts\Ecosystem\EcosystemController.cs" />
@@ -120,14 +110,20 @@
      <Compile Include="Assets\Scripts\GUI\PlayerListing.cs" />
      <Compile Include="Assets\Scripts\GUI\TileInfoGUI.cs" />
      <Compile Include="Assets\Scripts\GameLoop.cs" />
+     <Compile Include="Assets\Scripts\GameOverWall.cs" />
      <Compile Include="Assets\Scripts\GameState.cs" />
+     <Compile Include="Assets\Scripts\Grass.cs" />
      <Compile Include="Assets\Scripts\HUD\EcosystemScore.cs" />
      <Compile Include="Assets\Scripts\HUD\GameResources.cs" />
      <Compile Include="Assets\Scripts\HUD\HighScores.cs" />
+     <Compile Include="Assets\Scripts\Health.cs" />
+     <Compile Include="Assets\Scripts\HerbivoreObject.cs" />
+     <Compile Include="Assets\Scripts\HintBoard.cs" />
      <Compile Include="Assets\Scripts\Login.cs" />
      <Compile Include="Assets\Scripts\MainGUI.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MessageBox.cs" />
+     <Compile Include="Assets\Scripts\MoveObject.cs" />
      <Compile Include="Assets\Scripts\Network\ConnectionManager.cs" />
      <Compile Include="Assets\Scripts\Network\DataReader.cs" />
      <Compile Include="Assets\Scripts\Network\GamePacketStream.cs" />
@@ -180,8 +176,11 @@
      <Compile Include="Assets\Scripts\Other\Functions.cs" />
      <Compile Include="Assets\Scripts\Other\GUIExtended.cs" />
      <Compile Include="Assets\Scripts\Other\InputExtended.cs" />
+     <Compile Include="Assets\Scripts\PlantObject.cs" />
      <Compile Include="Assets\Scripts\PlayerList\PlayerList.cs" />
      <Compile Include="Assets\Scripts\PlayerList\PlayerListPanel.cs" />
+     <Compile Include="Assets\Scripts\Predator_Hunger.cs" />
+     <Compile Include="Assets\Scripts\Prey_Hunger.cs" />
      <Compile Include="Assets\Scripts\ProgressBar.cs" />
      <Compile Include="Assets\Scripts\Register.cs" />
      <Compile Include="Assets\Scripts\RegisterColorPanel.cs" />
@@ -190,6 +189,8 @@
      <Compile Include="Assets\Scripts\Shop\ShopCartPanel.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopInfoPanel.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopPanel.cs" />
+     <Compile Include="Assets\Scripts\Soil.cs" />
+     <Compile Include="Assets\Scripts\SpawnPredator.cs" />
      <Compile Include="Assets\Scripts\Species.cs" />
      <Compile Include="Assets\Scripts\SpeciesData.cs" />
      <Compile Include="Assets\Scripts\SpeciesTable.cs" />

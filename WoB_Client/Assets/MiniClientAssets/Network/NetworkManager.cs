@@ -21,7 +21,6 @@ public class NetworkManager : MonoBehaviour {
 	private static int interval = 50;
 
 	void Awake() {
-		Debug.Log ("Initializing protocols...");
 		NetworkProtocolTable.Init();
 	}
 	

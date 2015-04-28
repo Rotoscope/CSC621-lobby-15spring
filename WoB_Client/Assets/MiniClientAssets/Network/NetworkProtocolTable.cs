@@ -12,9 +12,12 @@ public class NetworkProtocolTable {
 	private NetworkProtocolTable() {}
 
 	public static void Init() {
-		Add(NetworkCode.CLIENT, "Client");
-		Add(NetworkCode.MESSAGE, "Message");
-		Add(NetworkCode.CHANGE_NAME, "ChangeName");
+		if (table.Count == 0) {
+			Add (NetworkCode.CLIENT, "Client");
+			Add (NetworkCode.MESSAGE, "Message");
+			Add (NetworkCode.CHANGE_NAME, "ChangeName");
+			Add (NetworkCode.REQUEST_START, "RequestStart");
+		}
 	}
 	
 	public static void Add(short protocol_id, string name) {
