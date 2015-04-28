@@ -57,7 +57,7 @@ public class GameClient {
      * @throws IOException
      */
     public GameClient(String session_id, Socket clientSocket) throws IOException {
-        Log.console("Constructing client object..");
+        Log.println("Constructing client object..");
         
         this.session_id = session_id;
         this.clientSocket = clientSocket;

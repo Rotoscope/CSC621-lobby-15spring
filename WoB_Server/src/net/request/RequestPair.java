@@ -28,6 +28,7 @@ public class RequestPair extends GameRequest {
         
         ResponsePair response = new ResponsePair();        
         response.setStatus(room.isFull() ? (short)0 : (short)1);
+        response.setID(room.getID());
         
         room.sendResponse(response);
     }

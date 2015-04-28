@@ -29,6 +29,7 @@ public class GameRequestTable {
         add(NetworkCode.HEARTBEAT, "RequestHeartbeat");
         add(NetworkCode.MESSAGE, "RequestMessage");
         add(NetworkCode.CHANGE_NAME, "RequestChangeName");
+        add(NetworkCode.REQUEST_START, "RequestStart");
 
         Log.println("Done!");
     }

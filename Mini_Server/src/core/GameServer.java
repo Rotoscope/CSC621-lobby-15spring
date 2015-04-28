@@ -90,10 +90,7 @@ public class GameServer {
                 
                 // Create a runnable instance to represent a client that holds the client socket
                 GameClient client = new GameClient(session_id, clientSocket);
-                activeClients.put(client.getID(), client);
-                
-                // Pair player and get a room
-                GameRoomManager.getInstance().pairClient(client);
+                activeClients.put(client.getID(), client);                
                 
                 // Keep track of the new client thread
                 if (clientHandlerThreads.size() > num_threads) {
@@ -115,9 +112,9 @@ public class GameServer {
         synchronized (this) {
             isActive = false;
 
-            for (GameClient client : activeClients.values()) {
+            activeClients.values().stream().forEach((client) -> {
                 client.end();
-            }
+            });
         }
     }
 
@@ -160,7 +157,6 @@ public class GameServer {
      * whenever it crashes.
      *
      * @param args contains additional launching parameters
-     * @throws java.net.URISyntaxException
      */
     public static void main(String[] args) {
         Log.printf("Mini Server v%s is starting...", Constants.CLIENT_VERSION);

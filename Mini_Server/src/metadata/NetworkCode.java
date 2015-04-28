@@ -16,6 +16,7 @@ public class NetworkCode {
     public final static short MESSAGE = 107;
     
     public final static short CHANGE_NAME = 153;
+    public final static short REQUEST_START = 154;
 
     /**
      * Check for duplicate values, if any.

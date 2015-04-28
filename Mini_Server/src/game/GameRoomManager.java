@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 
 import core.GameClient;
+import util.Log;
 
 /**
  *
@@ -16,12 +17,10 @@ public class GameRoomManager {
     
     private static GameRoomManager sInstance = null;
     
-    private final List<GameRoom> mRooms = new ArrayList<>();
+    private final Map<Integer, GameRoom> mRooms = new HashMap<>();
     
     // key is session_id
     private final Map<String, GameRoom> mRoomTable = new HashMap<>();
-    
-    private int mRoomIDCount = 0;
     
     public GameRoomManager() {
         
@@ -34,23 +33,24 @@ public class GameRoomManager {
         return sInstance;
     }
     
-    public GameRoom pairClient(GameClient client) {
-        for (GameRoom r : this.mRooms) {
-            if (!r.isFull()) {
-                r.addClient(client);
-                mRoomTable.put(client.getID(), r);
-                return r;
-            }
+    public GameRoom getRoomWithID(int id) {
+        if (mRooms.containsKey(id)) {
+            return mRooms.get(id);
+        } else {
+            GameRoom room = new GameRoom();
+            room.setID(id);
+            mRooms.put(id, room);
+            Log.println("Game room allocated with ID = " + Integer.toString(id));
+            return room;
         }
-        
-        GameRoom room = new GameRoom();
-        room.setID(mRoomIDCount++);
-        room.addClient(client);
-        mRooms.add(room);
-        mRoomTable.put(client.getID(), room);
-        return room;
     }
     
+    public void addClientToRoom(GameClient client, int roomID) {
+        GameRoom room = getRoomWithID(roomID);
+        room.addClient(client);
+        mRoomTable.put(client.getID(), room);
+    }
+
     public GameRoom getRoom(String id) {
         return mRoomTable.getOrDefault(id, null);
     }
