@@ -74,7 +74,7 @@ public class TileInfoGUI : MonoBehaviour {
 				GUI.Label(new Rect(0, 0, windowRect.width, 25), "Owner: " + owner_name, style);
 			}
 
-			GUI.Label(new Rect(0, owner_name == "" ? 0 : 25, windowRect.width, 25), "Terrian Type: " + terrain_type, style);
+			GUI.Label(new Rect(0, owner_name == "" ? 0 : 25, windowRect.width, 25), "Terrain Type: " + terrain_type, style);
 			GUI.Label(new Rect(0, owner_name == "" ? 25 : 50, windowRect.width, 25), "Vegetation Capacity: " + v_capacity, style);
 		GUI.EndGroup();
 	}
