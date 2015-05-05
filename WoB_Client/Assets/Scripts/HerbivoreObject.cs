@@ -7,7 +7,6 @@ public class HerbivoreObject : MoveObject
 	// Use this for initialization
 	public override void Start ()
 	{
-		//Game.StartEnterTransition ();
 		this.SetObjectType ((int)GAME_TYPE.Herbivore);
 		base.Start();
 	}

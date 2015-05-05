@@ -195,6 +195,9 @@
      <Compile Include="Assets\Scripts\SpeciesData.cs" />
      <Compile Include="Assets\Scripts\SpeciesTable.cs" />
      <Compile Include="Assets\Scripts\Strings.cs" />
+     <Compile Include="Assets\Scripts\Tile\Globals.cs" />
+     <Compile Include="Assets\Scripts\Tile\Map.cs" />
+     <Compile Include="Assets\Scripts\Tile\Tile.cs" />
      <Compile Include="Assets\Scripts\TileSelectGUI.cs" />
      <Compile Include="Assets\Scripts\World\Map.cs" />
      <Compile Include="Assets\Scripts\World\MapCamera.cs" />

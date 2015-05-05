@@ -80,7 +80,7 @@ public class WorldController : MonoBehaviour {
 	public void SwitchToTileSelect(int numTilesOwned) {
 		//If player owns no tiles, they will need to pick a new home tile
 		if (numTilesOwned == 0) {
-//			GameObject.Find("MapCamera").GetComponent<MapCamera>().FirstTileProcess(true);
+			GameObject.Find("MapCamera").GetComponent<MapCamera>().FirstTileProcess(true);
 			gameObject.AddComponent("TileSelectGUI");
 		}
 	}

@@ -27,6 +27,16 @@ public class MapCamera : MonoBehaviour {
 	private Vector3 startPos;
 	private float startZoom;
 
+	public Tile CurrentTile { get; set; }
+	public Tile AttackerTile { get; set; }
+	public Tile DefenderTile { get; set; }
+	public Tile FirstTile { get; set; }
+
+	//Type of battle initiated; 0 = none, 1 = proxy, 2 = direct
+	public int battleType { get; private set; }
+	bool choosingFirstTile = false;
+
+
 	// Use this for initialization
 	void Start() {
 		Setup();
@@ -114,5 +124,26 @@ public class MapCamera : MonoBehaviour {
 		if (Physics.Raycast(camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2)), out hit)) {
 			cameraOffset = transform.position.z - hit.point.z;
 		}
+	}
+
+	public void reset() {
+		if (choosingFirstTile) {
+			mode = 3;
+		}
+		else {
+			mode = 0;
+			RoamingCursor.SetActive(true);
+		}
+		battleType = 0;
+		GameObject.Find("MainObject").GetComponent<Battle>().isHidden = true;
+		DefenderCursor.SetActive(false);
+		AttackerCursor.SetActive(false);
+		AttackerTile = null;
+		DefenderTile = null;
+		FirstTile = null;
+	}
+
+	public void FirstTileProcess(bool ongoing) {
+		choosingFirstTile = ongoing;
 	}
 }
