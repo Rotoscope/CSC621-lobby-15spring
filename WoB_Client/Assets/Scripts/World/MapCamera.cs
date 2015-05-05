@@ -132,12 +132,12 @@ public class MapCamera : MonoBehaviour {
 		}
 		else {
 			mode = 0;
-			RoamingCursor.SetActive(true);
+			//RoamingCursor.SetActive(true);
 		}
 		battleType = 0;
-		GameObject.Find("MainObject").GetComponent<Battle>().isHidden = true;
-		DefenderCursor.SetActive(false);
-		AttackerCursor.SetActive(false);
+		//GameObject.Find("MainObject").GetComponent<Battle>().isHidden = true;
+		//DefenderCursor.SetActive(false);
+		//AttackerCursor.SetActive(false);
 		AttackerTile = null;
 		DefenderTile = null;
 		FirstTile = null;
