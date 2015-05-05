@@ -76,6 +76,7 @@ public class Game : MonoBehaviour {
 					Destroy(gObject.GetComponent<GameResources>());
 					Destroy(gObject.GetComponent<Clock>());
 					Destroy(gObject.GetComponent<Chat>());
+					Destroy(gObject.GetComponent<Shop>());
 					//on non-initial login, need to reset isFading 1->0
 					StartEnterTransition();
 					break;

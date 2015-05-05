@@ -25,7 +25,7 @@ public class LoginProtocol {
 
 			response.account = account;
 		} else {
-			Debug.LogError ("Login failed, server message = " + response.status);
+			Debug.Log ("Login failed, server message = " + response.status);
 		}
 		
 		return response;

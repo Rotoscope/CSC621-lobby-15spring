@@ -276,11 +276,11 @@ public class Database : MonoBehaviour
 		}
 
 		//jtc - override with info from manager
-		string name = manager.MatchSeriesLabel (card.name);
+		string name = manager.
+			MatchSeriesLabel (card.name);
 		if (name != null) {
 			color = manager.seriesColors [name];
-			card.color = color;
-
+			card.color = color;		
 		}
 		card.Draw ();
 

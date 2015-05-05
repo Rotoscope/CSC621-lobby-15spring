@@ -26,25 +26,20 @@ public class WorldController : MonoBehaviour {
 		if (GUI.Button(new Rect(10, 10, 80, 30), "Ecosystem")) {
 			Camera.main.GetComponent<MapCamera>().Move(GameState.player.GetID());
 		}
-		
-		if (GUI.Button(new Rect(10, 10, 80, 30), "Ecosystem")) {
-			Camera.main.GetComponent<MapCamera>().Move(GameState.player.GetID());
-		}
-		if (GUI.Button (new Rect (10, 50, 100, 30), "Cards of Wild")) {
+
+		if (GUI.Button (new Rect (100, 10, 100, 30), "Cards of Wild")) {
 			gameObject.AddComponent ("CardsOfWildGUI"); //Multiplayer
 		}
-		//GUI.Button (new Rect (10, 90, 120, 30), "Clash of Species"); // Single Player
 
-		if (GUI.Button (new Rect (10, 90, 100, 30), "Don't Eat Me")) {
+		GUI.Button (new Rect (210, 10, 120, 30), "Class of Species"); // Single Player
+
+		if (GUI.Button (new Rect (340, 10, 100, 30), "Don't Eat Me")) {
 			gameObject.AddComponent ("DontEatMeGUI"); // Single Player
 		}
 
-		//if (GUI.Button (new Rect (10, 170, 100, 30), "Running Rhino")) {
-		//	gameObject.AddComponent ("RunningRhinoGUI"); // Multiplayer
-		//}
-
-
-
+		if (GUI.Button (new Rect (450, 10, 100, 30), "Running Rhino")) {
+			gameObject.AddComponent ("RunningRhinoGUI"); // Multiplayer
+		}
 	}
 	
 	public void ProcessWorld(NetworkResponse response) {
@@ -72,6 +67,10 @@ public class WorldController : MonoBehaviour {
 				
 				if (gObject.GetComponent<Chat>() == null) {
 					gObject.AddComponent<Chat>();
+				}
+
+				if (GameObject.Find("Cube").GetComponent<Shop>() == null) {
+					GameObject.Find("Cube").AddComponent<Shop>();
 				}
 			}
 		}

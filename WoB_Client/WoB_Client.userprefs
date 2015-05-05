@@ -1,5 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/World/MapCamera.cs">
     <Files>
       <File FileName="Assets/Scripts/World/Map.cs" Line="1" Column="1" />
@@ -10,6 +11,41 @@
       <File FileName="Assets/Scripts/Tile/Map.cs" Line="91" Column="7" />
       <File FileName="Assets/Scripts/Tile/Globals.cs" Line="1" Column="1" />
     </Files>
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Shop/ShopCartPanel.cs">
+    <Files>
+      <File FileName="Assets/Scripts/GUI/Database/Database.cs" Line="287" Column="15" />
+      <File FileName="Assets/MiniClientAssets/MiniGame.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/World/Map.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Login.cs" Line="203" Column="5" />
+      <File FileName="Assets/Game.cs" Line="78" Column="34" />
+      <File FileName="Assets/Scripts/Shop/Shop.cs" Line="154" Column="1" />
+      <File FileName="Assets/Scripts/Network/Protocol/LoginProtocol.cs" Line="28" Column="13" />
+      <File FileName="Assets/Scripts/Shop/ShopPanel.cs" Line="144" Column="1" />
+      <File FileName="Assets/Scripts/Shop/ShopInfoPanel.cs" Line="83" Column="1" />
+      <File FileName="Assets/Scripts/Shop/ShopCartPanel.cs" Line="232" Column="3" />
+      <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="48" Column="1" />
+      <File FileName="Assets/Scripts/World/WorldController.cs" Line="54" Column="55" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="GUI" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Protocol" expanded="True" />
+              </Node>
+              <Node name="Shop" expanded="True">
+                <Node name="ShopCartPanel.cs" selected="True" />
+              </Node>
+              <Node name="World" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+>>>>>>> 50c85150b18ca83e0a1a44059cb6faf951c4484d
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

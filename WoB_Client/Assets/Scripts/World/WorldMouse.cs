@@ -73,7 +73,7 @@ public class WorldMouse : MonoBehaviour {
 //				}
 				break;
 			case 2: // Double Click
-				if (currentTile.player_id == GameState.player.GetID()) {
+				if (currentTile.player_id == GameState.player.GetID() && !Shop.gInshop) {
 					mapCamera.Move(currentTile.transform.position);
 				}
 				break;
