@@ -74,6 +74,7 @@ public class TileSelectGUI : MonoBehaviour {
 	}
 	
 	public void Submit() {
+		print ("submit!!!");
 //		int tile_id = mapCamera.FirstTile.GetID();
 //		mapCamera.FirstTileProcess(false);
 		mapCamera.mode = 0;

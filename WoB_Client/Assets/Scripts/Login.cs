@@ -198,9 +198,9 @@ public class Login : MonoBehaviour {
 
 	IEnumerator wait()
 	{
-		Debug.Log ("Waiting");
-		yield return new WaitForSeconds(3f);
-		Debug.Log ("Done waiting");
+		//Debug.Log ("Waiting");
+		yield return new WaitForSeconds(1f);
+		//Debug.Log ("Done waiting");
 		Game.SwitchScene("World"); //"World");
 	}
 

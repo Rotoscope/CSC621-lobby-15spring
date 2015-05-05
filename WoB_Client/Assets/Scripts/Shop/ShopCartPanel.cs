@@ -4,64 +4,59 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ShopCartPanel : MonoBehaviour {
-
+	
 	private GameObject shopObject;
 	private GameObject mainObject;
-
+	
 	private Vector2 scrollPosition = Vector2.zero;
 	private Shop shop;
 	public Dictionary<int, int> cartList { get; set; }
 	public ProgressBar biomassMeter;
 	public int totalBiomass;
 	private bool isAnHidden { get; set; }
+	
 	// Use this for initialization
 	void Start () {
 		shopObject = GameObject.Find("Cube");
 		shop = shopObject.GetComponent<Shop>();
 		cartList = new Dictionary<int, int>();
-
 		Hide();
-		mainObject = GameObject.Find("MainObject");
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
-
+	
 	void OnGUI() {
 		if (!isAnHidden) {
 			GUI.Label(new Rect(620, 30, 200, 200), "Biomass Capacity");
 			int height = 20 + cartList.Count * 90;
 			
 			totalBiomass = 0;
-
-
+			
 			scrollPosition = GUI.BeginScrollView(new Rect(580, 80, 200, 460), scrollPosition, new Rect(0, 0, 100, height));
 			GUI.Box(new Rect(0, 0, 555, Mathf.Max(500, height)), "");
 			
 			List<int> items = new List<int>(cartList.Keys);
-
+			//Debug.Log(cartList.Count);
 			
 			for (int i = 0; i < cartList.Count; i++) {
 				int species_id = items[i];
-
-				SpeciesData species = mainObject.GetComponent<Shop>().itemList[species_id];
-				//Debug.Log("Species Biomass: " + species.biomass);
+				SpeciesData species = shopObject.GetComponent<Shop>().itemList[species_id];
 				
 				totalBiomass += cartList[species_id];
-				//Debug.Log("Biomass: " + totalBiomass);
 				
 				GUI.BeginGroup (new Rect(10, 20 + i * 90, 160, 160));
-				if (mainObject.GetComponent<Shop>().selectedSpecies != null) {
-					if (mainObject.GetComponent<Shop>().selectedSpecies.species_id == species.species_id) {
+				if (shopObject.GetComponent<Shop>().selectedSpecies != null) {
+					if (shopObject.GetComponent<Shop>().selectedSpecies.species_id == species.species_id) {
 						GUI.backgroundColor = Color.black;
 						GUI.color = Color.yellow;
-					} else if (mainObject.GetComponent<Shop>().selectedSpecies.predatorList.ContainsKey(species.species_id)) {
+					} else if (shopObject.GetComponent<Shop>().selectedSpecies.predatorList.ContainsKey(species.species_id)) {
 						GUI.backgroundColor = Color.red;
 						GUI.color = Color.red;
-					} else if (mainObject.GetComponent<Shop>().selectedSpecies.preyList.ContainsKey(species.species_id)) {
+					} else if (shopObject.GetComponent<Shop>().selectedSpecies.preyList.ContainsKey(species.species_id)) {
 						GUI.backgroundColor = Color.green;
 						GUI.color = Color.green;
 					}
@@ -88,20 +83,19 @@ public class ShopCartPanel : MonoBehaviour {
 					style.alignment = TextAnchor.UpperLeft;
 					
 					GUI.Label(new Rect(75, 40, 100, 30), "Total B: " + cartList[species_id].ToString(), style);
-
 				}
 				GUI.EndGroup();
-
+				
 			}
 			GUI.EndScrollView();
-
+			
 			GUI.Label(new Rect(620, 50, 200, 200), totalBiomass.ToString());
-
+			
 			{
 				GUIStyle style = new GUIStyle(GUI.skin.label);
 				style.alignment = TextAnchor.UpperCenter;
 				
-				GUI.Label(new Rect(550, 555, 100, 100), cartList.Count.ToString() + " / 10", style);
+				GUI.Label(new Rect(625, 555, 100, 100), cartList.Count.ToString() + " / 10", style);
 			}
 			
 			{
@@ -113,45 +107,27 @@ public class ShopCartPanel : MonoBehaviour {
 					NetworkManager.Send(
 						ShopActionProtocol.Prepare(0, cartList),
 						ResponseShopAction
-					);
-
-					cartList.Clear();
-
-					shopObject.GetComponent<Shop>().selectedSpecies = null;
+						);
+					
 					shopObject.GetComponent<Shop>().Show();
-					shopObject.GetComponent<Shop>().enabled = true;
 					GameObject.Find("Cube").GetComponent<ShopPanel>().Hide();
 					GameObject.Find("Cube").GetComponent<ShopCartPanel>().Hide();
 					GameObject.Find("Cube").GetComponent<ShopInfoPanel>().Hide();
-//					GameObject.Find("MapCamera").GetComponent<MapCamera>().enabled = true;
-//					GameObject.Find("MapCamera").GetComponent<MapCamera>().RoamingCursor.SetActive(true);
-//					mainObject.GetComponent<TileInfoGUI>().Show();
-
+					//GameObject.Find("MapCamera").GetComponent<MapCamera>().enabled = true;
+					//GameObject.Find("MapCamera").GetComponent<MapCamera>().RoamingCursor.SetActive(true);
+					
+					/*
 					foreach (int species_id in cartList.Keys) {
-						SpeciesData sdata = SpeciesTable.speciesList[species_id];
-						shopObject.GetComponent<GameState>().CreateSpecies(species_id, cartList[species_id], sdata.name, sdata);
-
+						var state_obj = shopObject.GetComponent<GameState>();
+						state_obj.CreateSpecies(
+								species_id,
+						    	SpeciesTable.speciesList[species_id].name, 
+						        "Animal", 
+						        cartList[species_id]);
 					}
-
-
+					*/
 					cartList = new Dictionary<int, int>();
-
-
 				}
-				if (GUI.Button(new Rect(630, 550, 70, 30), "Clear", style)) {
-
-						shopObject.GetComponent<Shop>().selectedSpecies = null;
-						cartList.Clear();
-						shopObject.GetComponent<Shop>().Show();
-						shopObject.GetComponent<Shop>().enabled = true;
-						GameObject.Find("Cube").GetComponent<ShopPanel>().Hide();
-						GameObject.Find("Cube").GetComponent<ShopCartPanel>().Hide();
-						GameObject.Find("Cube").GetComponent<ShopInfoPanel>().Hide();
-//						GameObject.Find("MapCamera").GetComponent<MapCamera>().enabled = true;
-//						GameObject.Find("MapCamera").GetComponent<MapCamera>().RoamingCursor.SetActive(true);
-//						mainObject.GetComponent<TileInfoGUI>().Show();
-					}
-
 			}
 		}
 		
@@ -249,16 +225,14 @@ public class ShopCartPanel : MonoBehaviour {
 		if (!cartList.ContainsKey(species.species_id)) {
 			cartList.Add(species.species_id, 0);
 		}
-
-		//cartList[species.species_id] = cartList[species.species_id] + species.biomass;
-		cartList [species.species_id] = cartList [species.species_id] + 10;//hard coded
+		
+		cartList[species.species_id] = cartList[species.species_id] + species.biomass;
 	}
-	
+
 	public void ResponseShopAction(NetworkResponse response) {
 		ResponseShopAction args = response as ResponseShopAction;
 	}
 
-	
 	public void Show() {
 		isAnHidden = false;
 	}
