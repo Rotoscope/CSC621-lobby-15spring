@@ -232,4 +232,79 @@ public final class WorldZoneDAO {
 
         return player_id;
     }
+
+    /**
+     * Methods below are simple getters and setters for the carrying capacity of
+     * a given zone
+     */
+    public static float sumVegatationCapacity(int zone_id) throws SQLException {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        float sum = -1.f;
+
+        try {
+            String query = "SELECT SUM(vegetation_capacity) AS sum FROM tile WHERE zone_id = ?";
+            connection = GameDB.getConnection();
+            pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, zone_id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+            }
+            sum = rs.getFloat("sum");
+            rs.close();
+            pstmt.close();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return sum;
+    }
+
+    public static float getCarryingCapacity(int zone_id) throws SQLException {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        float carrying_capacity = -1.f;
+
+        try {
+            String query = "SELECT carrying_capacity FROM zone WHERE zone_id = ?";
+
+            connection = GameDB.getConnection();
+            pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, zone_id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                carrying_capacity = rs.getFloat("carrying_capacity");
+            }
+            rs.close();
+            pstmt.close();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return carrying_capacity;
+    }
+
+    public static void setCarryingCapacity(float carrying_capacity, int zone_id) throws SQLException {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            String query = "UPDATE zone SET vegetation_capacity = ? WHERE zone_id = ?";
+
+            connection = GameDB.getConnection();
+            pstmt = connection.prepareStatement(query);
+            pstmt.setFloat(1, carrying_capacity);
+            pstmt.setInt(2, zone_id);
+            pstmt.execute();
+            pstmt.close();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }

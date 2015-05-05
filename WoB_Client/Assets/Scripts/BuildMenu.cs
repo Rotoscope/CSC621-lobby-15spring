@@ -23,6 +23,10 @@ public class BuildMenu : MonoBehaviour {
 
 	void OnGUI() {
 
+		if (GUI.Button (new Rect (10, 50, 100, 30), "Quit")) {
+			Game.SwitchScene("World");
+		}
+
 		// draw resource menu
 		GUILayout.BeginArea (new Rect (150, 90, 155, 200));
 		GUILayout.BeginHorizontal ("box");
