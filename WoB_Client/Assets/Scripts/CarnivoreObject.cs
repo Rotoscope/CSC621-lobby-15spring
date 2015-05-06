@@ -7,7 +7,6 @@ public class CarnivoreObject : MoveObject
 	// Use this for initialization
 	public override void Start ()
 	{
-		//Game.StartEnterTransition ();
 		this.SetObjectType ((int)GAME_TYPE.Carnivore);
 		base.Start();
 	}

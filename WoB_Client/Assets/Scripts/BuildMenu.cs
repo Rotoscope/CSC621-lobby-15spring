@@ -23,10 +23,6 @@ public class BuildMenu : MonoBehaviour {
 
 	void OnGUI() {
 
-		if (GUI.Button (new Rect (10, 50, 100, 30), "Quit")) {
-			Game.SwitchScene("World");
-		}
-
 		// draw resource menu
 		GUILayout.BeginArea (new Rect (150, 90, 155, 200));
 		GUILayout.BeginHorizontal ("box");
@@ -50,7 +46,7 @@ public class BuildMenu : MonoBehaviour {
 		GUILayout.EndArea ();
 
 		// draw the plant menu
-		GUILayout.BeginArea (new Rect (40, 165, 100, 400));
+		GUILayout.BeginArea (new Rect (90, 200, 100, 400));
 		GUILayout.BeginVertical ("box");
 
 		// Draw each plant's build info
@@ -87,7 +83,6 @@ public class BuildMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// set resources to grow over time
-		Game.StartEnterTransition ();
 		InvokeRepeating ("increaseResources", 2, 3.0F);
 
 	}

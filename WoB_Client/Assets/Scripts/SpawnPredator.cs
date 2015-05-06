@@ -43,6 +43,7 @@ public class SpawnPredator : MonoBehaviour
 
 	void Start ()
 	{
+
 		StartCoroutine("MyEvent");
 	}
 

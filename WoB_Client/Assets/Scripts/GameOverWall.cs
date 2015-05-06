@@ -29,6 +29,7 @@ public class GameOverWall : MonoBehaviour
 
 	void Start () 
 	{
+
 		largeFont = new GUIStyle();
 	
 		largeFont.fontSize = 32;
