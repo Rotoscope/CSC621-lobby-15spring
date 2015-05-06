@@ -55,7 +55,7 @@ public final class SessionDAO {
     public static Session getSession(int id) {
         Session session = null;
 
-        String query = "SELECT * FROM `session` WHERE `session_id` = ?";
+        String query = "SELECT * FROM `session` WHERE `id` = ?";
 
         Connection con = null;
         PreparedStatement pstmt = null;
