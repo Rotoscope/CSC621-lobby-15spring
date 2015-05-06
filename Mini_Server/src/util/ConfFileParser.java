@@ -48,7 +48,7 @@ public class ConfFileParser {
      * @return the hash map containing the parsed variables
      */
     public Map<String, String> parse() {
-        Map<String, String> records = new HashMap<>();
+        Map<String, String> records = new HashMap<String, String>();
         String str; // Store one line of string, like "Port 9090"
         String key = null; // Store key, like "Port"
         String value = null; // Store value, like "9090"

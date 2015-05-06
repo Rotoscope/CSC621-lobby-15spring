@@ -74,10 +74,10 @@ public class SimulationEngine {
         Properties propertiesLogin = new Properties();
         propertiesConfig = new Properties();
         try {
-            propertiesLogin.load(new FileInputStream("src/simulation/config/webserviceLogin.properties"));
+            propertiesLogin.load(new FileInputStream("conf/simulation/webserviceLogin.properties"));
             user = new User();
             user.setUsername(propertiesLogin.getProperty("username"));
-            propertiesConfig.load(new FileInputStream("src/simulation/config/SimulationEngineConfig.properties"));
+            propertiesConfig.load(new FileInputStream("conf/simulation/SimulationEngineConfig.properties"));
             proxy.setEndpoint(propertiesConfig.getProperty("wsdlurl"));
 //            proxy.setEndpoint(propertiesConfig.getProperty("stagingurl"));            
 //            proxy.setEndpoint(propertiesConfig.getProperty("devurl"));                        

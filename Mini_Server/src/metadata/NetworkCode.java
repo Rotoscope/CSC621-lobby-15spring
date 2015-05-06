@@ -23,7 +23,7 @@ public class NetworkCode {
      */
     public static void check() {
         NetworkCode nCodes = new NetworkCode();
-        Map<Short, String> nCodeMap = new HashMap<>();
+        Map<Short, String> nCodeMap = new HashMap<Short, String>();
 
         for (Field field : NetworkCode.class.getDeclaredFields()) {
             try {
@@ -34,7 +34,9 @@ public class NetworkCode {
                 } else {
                     nCodeMap.put(value, field.getName());
                 }
-            } catch (IllegalArgumentException | IllegalAccessException ex) {
+            } catch (IllegalArgumentException ex) {
+                Log.println_e(ex.getMessage());
+            } catch (IllegalAccessException ex) {
                 Log.println_e(ex.getMessage());
             }
         }
@@ -47,7 +49,9 @@ public class NetworkCode {
         for (Field field : getClass().getDeclaredFields()) {
             try {
                 str += field.getName() + " - " + field.get(this) + "\n";
-            } catch (IllegalArgumentException | IllegalAccessException ex) {
+            } catch (IllegalArgumentException ex) {
+                Log.println_e(ex.getMessage());
+            } catch (IllegalAccessException ex) {
                 Log.println_e(ex.getMessage());
             }
         }

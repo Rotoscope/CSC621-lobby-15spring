@@ -39,7 +39,7 @@ public class GameServer {
     private final ServerSocket serverSocket;
     private final List<ClientHandler> clientHandlerThreads = Collections.synchronizedList(new ArrayList<ClientHandler>());
     // Lookup Tables
-    private final Map<String, GameClient> activeClients = new HashMap<>(); // Session ID -> Client
+    private final Map<String, GameClient> activeClients = new HashMap<String, GameClient>(); // Session ID -> Client
     // Other
     private boolean isActive = true; // Server Loop Flag
 
@@ -111,10 +111,10 @@ public class GameServer {
     public void shutdown() {
         synchronized (this) {
             isActive = false;
-
-            activeClients.values().stream().forEach((client) -> {
+            
+            for (GameClient client : activeClients.values()) {
                 client.end();
-            });
+            }
         }
     }
 
@@ -141,7 +141,7 @@ public class GameServer {
     }
 
     public List<GameClient> getActiveClients() {
-        return new ArrayList<>(activeClients.values());
+        return new ArrayList<GameClient>(activeClients.values());
     }
 
     public void removeActiveClient(String session_id) {

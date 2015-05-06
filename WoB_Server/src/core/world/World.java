@@ -19,6 +19,7 @@ import util.Clock;
 import util.EventListener;
 import util.EventType;
 import util.GameTimer;
+import util.Log;
 import util.NetworkFunctions;
 
 public class World {
@@ -146,6 +147,7 @@ public class World {
      * @return
      */
     public int createShopOrder(Map<Integer, Integer> itemList, Player player) {
+        Log.println("Player [" + player.getName() + "] is requesting for a shop order.");
         int totalCost = 0;
 
         // Determine the total cost of purchase
@@ -161,7 +163,7 @@ public class World {
         }
 
         if (GameResources.useCredits(player, totalCost)) {
-//            LobbyController.getInstance().getLobby(this).getEventHandler().execute(EventTypes.SPECIES_BOUGHT, itemList.size());
+            // LobbyController.getInstance().getLobby(this).getEventHandler().execute(EventTypes.SPECIES_BOUGHT, itemList.size());
 
             int totalBiomass = 0;
             for (int item_id : itemList.keySet()) {
@@ -171,7 +173,7 @@ public class World {
                     totalBiomass += itemList.get(item_id);
                 }
             }
-//            LobbyController.getInstance().getLobby(this).getEventHandler().execute(EventTypes.BIOMASS_BOUGHT, totalBiomass);
+            //LobbyController.getInstance().getLobby(this).getEventHandler().execute(EventTypes.BIOMASS_BOUGHT, totalBiomass);
 
             // Create a new timer, if none exist.
             if (shopTimer.getTask() == null || shopTimer.getTimeRemaining() <= 0) {
@@ -193,13 +195,13 @@ public class World {
                 if (shopList.containsKey(item_id)) {
                     amount += shopList.get(item_id);
                 }
-
                 shopList.put(item_id, amount);
             }
         } else {
             totalCost = -1;
         }
 
+        Log.println("Order has been placed! Total cost = " + Integer.toString(totalCost));
         return totalCost;
     }
 

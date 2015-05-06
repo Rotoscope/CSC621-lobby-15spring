@@ -17,10 +17,10 @@ public class GameRoomManager {
     
     private static GameRoomManager sInstance = null;
     
-    private final Map<Integer, GameRoom> mRooms = new HashMap<>();
+    private final Map<Integer, GameRoom> mRooms = new HashMap<Integer, GameRoom>();
     
     // key is session_id
-    private final Map<String, GameRoom> mRoomTable = new HashMap<>();
+    private final Map<String, GameRoom> mRoomTable = new HashMap<String, GameRoom>();
     
     public GameRoomManager() {
         

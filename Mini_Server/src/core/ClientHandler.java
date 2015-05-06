@@ -16,13 +16,18 @@ import util.Log;
 public class ClientHandler implements Runnable {
 
     // Variables
-    private final List<GameClient> activeClients = new ArrayList<>();
+    private final List<GameClient> activeClients = new ArrayList<GameClient>();
     private final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
     private long lastTime;
     private float deltaTime;
+    
     // Comparators
-    public static final Comparator<ClientHandler> SizeComparator = 
-            (ClientHandler o1, ClientHandler o2) -> o1.size() - o2.size();
+    public static final Comparator<ClientHandler> SizeComparator = new Comparator<ClientHandler>() {
+        @Override
+        public int compare(ClientHandler o1, ClientHandler o2) {
+            return o1.size() - o2.size();
+        }
+    };
 
     public ClientHandler(GameClient client) {
         add(client);

@@ -57,7 +57,9 @@ public abstract class GameRequest {
         for (Field field : getClass().getDeclaredFields()) {
             try {
                 str += field.getName() + " - " + field.get(this) + "\n";
-            } catch (IllegalArgumentException | IllegalAccessException ex) {
+            } catch (IllegalArgumentException ex) {
+                Log.println_e(ex.getMessage());
+            } catch (IllegalAccessException ex) {
                 Log.println_e(ex.getMessage());
             }
         }
