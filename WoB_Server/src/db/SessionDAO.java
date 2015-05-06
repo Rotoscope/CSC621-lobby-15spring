@@ -52,7 +52,7 @@ public final class SessionDAO {
         return session;
     }
 
-    public static Session getSession(int session_id) {
+    public static Session getSession(int id) {
         Session session = null;
 
         String query = "SELECT * FROM `session` WHERE `session_id` = ?";
@@ -64,7 +64,7 @@ public final class SessionDAO {
         try {
             con = GameDB.getConnection();
             pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, session_id);
+            pstmt.setInt(1, id);
 
             rs = pstmt.executeQuery();
 
