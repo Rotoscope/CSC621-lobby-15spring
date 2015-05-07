@@ -19,6 +19,7 @@ public class ClashOfSpecies : MonoBehaviour {
 	private bool enableCWButton = true;
 
 	private bool quiting = false;
+	private bool waiting = false;
 
 	void Awake() {
 		mainObject = GameObject.Find("MainObject");
@@ -76,9 +77,11 @@ public class ClashOfSpecies : MonoBehaviour {
 					NetworkManager.Send (QuitRoomProtocol.Prepare ());
 				}
 			} else {
+				GUI.enabled = !this.waiting;
 				if(GUILayout.Button(new GUIContent("Join"), GUILayout.Width(100))) {
 
 				}
+				GUI.enabled = true;
 			}
 			GUILayout.EndHorizontal();
 		}
@@ -154,6 +157,7 @@ public class ClashOfSpecies : MonoBehaviour {
 
 			this.enableRRButton = false;
 			this.enableCWButton = false;
+			this.waiting = true;
 		}
 	}
 

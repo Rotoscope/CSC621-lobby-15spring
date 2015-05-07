@@ -77,7 +77,7 @@ public class GameRoomManager {
             mRoomTable.remove(client.getID());
             
             if (room.isEmpty()) {
-                mRooms.remove(room);
+                mRooms.remove(room.getID());
                 Log.println("This room is now empty, remove it!");
             }
         }
