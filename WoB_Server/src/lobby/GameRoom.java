@@ -21,6 +21,14 @@ public class GameRoom {
         mClients = new GameClient[CAPACITY];
     }
     
+    public int getNumClients() {
+        return mNumClients;
+    }
+    
+    public GameClient getClient(int id) {
+        return mClients[id];
+    }
+    
     public boolean addClient(GameClient player) {
         if(mNumClients == CAPACITY) {
             return false;

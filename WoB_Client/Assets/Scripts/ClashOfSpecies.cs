@@ -37,6 +37,8 @@ public class ClashOfSpecies : MonoBehaviour {
 	void Start() {
 		Game.StartEnterTransition ();
 		windowRect = new Rect ((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
+
+		StartCoroutine(RequestGetRooms(1f));
 	}
 	
 	void OnGUI() {
@@ -153,5 +155,13 @@ public class ClashOfSpecies : MonoBehaviour {
 			this.enableRRButton = false;
 			this.enableCWButton = false;
 		}
+	}
+
+	public IEnumerator RequestGetRooms(float time) {
+		yield return new WaitForSeconds(time);
+		
+		NetworkManager.Send (GetRoomsProtocol.Prepare ());
+		
+		StartCoroutine(RequestGetRooms(1f));
 	}
 }

@@ -71,4 +71,5 @@
 
 	public static readonly short PAIR = 159;
 	public static readonly short QUIT_ROOM = 160;
+	public static readonly short GET_ROOMS = 161;
 }

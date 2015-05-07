@@ -75,6 +75,7 @@ public class GameRequestTable {
         
         add(NetworkCode.PAIR, "RequestPair");
         add(NetworkCode.QUIT_ROOM, "RequestQuitRoom");
+        add(NetworkCode.GET_ROOMS, "RequestGetRooms");
 
         Log.println("Done!");
     }

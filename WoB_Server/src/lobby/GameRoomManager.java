@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import core.GameClient;
+import java.util.Iterator;
 import util.Log;
 
 /**
@@ -32,6 +33,14 @@ public class GameRoomManager {
             sInstance = new GameRoomManager();
         } 
         return sInstance;
+    }
+    
+    public Iterator<GameRoom> getRoomsIter() {
+        return mRooms.iterator();
+    }
+    
+    public int getNumRooms() {
+        return mRooms.size();
     }
     
     public GameRoom pairClient(GameClient client) {

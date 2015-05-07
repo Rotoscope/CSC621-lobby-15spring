@@ -42,6 +42,7 @@ public class NetworkProtocolTable {
 		Add(NetworkCode.TOPLIST, "TopList");
 		Add(NetworkCode.PAIR, "Pair");
 		Add(NetworkCode.QUIT_ROOM, "QuitRoom");
+		Add(NetworkCode.GET_ROOMS, "GetRooms");
 	}
 	
 	public static void Add(short protocol_id, string name) {

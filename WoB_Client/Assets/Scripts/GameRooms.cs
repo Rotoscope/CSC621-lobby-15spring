@@ -83,4 +83,8 @@ public class RoomManager {
 		}
 		Debug.Log("Can't find the player [player id=" + player + "]");
 	}
+
+	public void clear() {
+		rooms.Clear ();
+	}
 }

@@ -81,6 +81,7 @@ public class NetworkCode {
     
     public final static short PAIR = 159;
     public final static short QUIT_ROOM = 160;
+    public final static short GET_ROOMS = 161;
 
     /**
      * Check for duplicate values, if any.
