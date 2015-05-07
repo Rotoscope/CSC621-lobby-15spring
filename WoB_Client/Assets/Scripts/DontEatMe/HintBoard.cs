@@ -44,7 +44,7 @@ public class HintBoard : MonoBehaviour
 	void OnGUI() {
 		
 		// draw the plant menu
-		GUILayout.BeginArea (new Rect (750, 725, 1000, 540));
+		GUILayout.BeginArea (new Rect (150, 510, 1000, 540));
 		GUILayout.BeginHorizontal ("box");
 
 		GUI.enabled = false;

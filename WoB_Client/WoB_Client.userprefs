@@ -1,40 +1,43 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/World/WorldMouse.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DontEatMe/GameOverWall.cs">
     <Files>
+      <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
       <File FileName="Assets/MiniClientAssets/MiniGame.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/World/Map.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Login.cs" Line="203" Column="5" />
-      <File FileName="Assets/Scripts/Network/Protocol/LoginProtocol.cs" Line="28" Column="13" />
-      <File FileName="Assets/Scripts/Shop/ShopPanel.cs" Line="25" Column="36" />
+      <File FileName="Assets/Scripts/Login.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Protocol/LoginProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Shop/ShopPanel.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Shop/ShopInfoPanel.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Shop/ShopCartPanel.cs" Line="103" Column="47" />
-      <File FileName="Assets/Scripts/GUI/Database/Database.cs" Line="55" Column="36" />
-      <File FileName="Assets/Scripts/ConvergeGame/ConvergeGame.cs" Line="26" Column="35" />
-      <File FileName="Assets/Scripts/HUD/EcosystemScore.cs" Line="57" Column="52" />
-      <File FileName="Assets/Scripts/GUI/Chat/Chat.cs" Line="37" Column="51" />
-      <File FileName="Assets/Scripts/RunningRhinoGUI.cs" Line="5" Column="29" />
-      <File FileName="Assets/Scripts/World/WorldController.cs" Line="46" Column="41" />
-      <File FileName="Assets/Scripts/GUI/TileInfoGUI.cs" Line="6" Column="25" />
-      <File FileName="Assets/Scripts/TileSelectGUI.cs" Line="77" Column="20" />
+      <File FileName="Assets/Scripts/Shop/ShopCartPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/Database/Database.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ConvergeGame/ConvergeGame.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HUD/EcosystemScore.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/Chat/Chat.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/RunningRhinoGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/World/WorldController.cs" Line="36" Column="1" />
+      <File FileName="Assets/Scripts/GUI/TileInfoGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TileSelectGUI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/World/WorldMouse.cs" Line="66" Column="47" />
+      <File FileName="Assets/Scripts/DontEatMe/BuildInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMe/BuildMenu.cs" Line="27" Column="7" />
+      <File FileName="Assets/Scripts/DontEatMe/CarnivoreObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMe/DefaultVelocity.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMe/GameOverWall.cs" Line="42" Column="11" />
+      <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="69" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="ConvergeGame" expanded="True" />
-              <Node name="GUI" expanded="True">
-                <Node name="Chat" expanded="True" />
-                <Node name="Database" expanded="True" />
+              <Node name="DontEatMe" expanded="True">
+                <Node name="GameOverWall.cs" selected="True" />
               </Node>
               <Node name="HUD" expanded="True" />
               <Node name="PlayerList" expanded="True" />
               <Node name="Shop" expanded="True" />
-              <Node name="World" expanded="True">
-                <Node name="WorldMouse.cs" selected="True" />
-              </Node>
+              <Node name="World" expanded="True" />
             </Node>
           </Node>
         </State>
