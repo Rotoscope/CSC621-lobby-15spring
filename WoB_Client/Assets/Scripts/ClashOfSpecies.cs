@@ -1,0 +1,157 @@
+using UnityEngine;
+using System;
+using System.Collections;
+
+public class ClashOfSpecies : MonoBehaviour {
+	
+	private GameObject mainObject;
+
+	// Window Properties
+	private float width = 500;
+	private float height = 300;
+
+	// Other
+	private int window_id;
+	private string message = "Single Player Game. Click start to play.";
+	private Rect windowRect;
+
+	private bool enableRRButton = true;
+	private bool enableCWButton = true;
+
+	private bool quiting = false;
+
+	void Awake() {
+		mainObject = GameObject.Find("MainObject");
+		window_id = Constants.GetUniqueID();
+
+		NetworkManager.Listen (NetworkCode.PAIR, OnPairResult);
+		NetworkManager.Listen (NetworkCode.QUIT_ROOM, OnQuitRoomResult);
+	}
+
+	void OnDestroy () {
+		NetworkManager.Ignore (NetworkCode.PAIR, OnPairResult);
+		NetworkManager.Ignore (NetworkCode.QUIT_ROOM, OnQuitRoomResult);
+	}
+
+	// Use this for initialization
+	void Start() {
+		Game.StartEnterTransition ();
+		windowRect = new Rect ((Screen.width - width) / 2, (Screen.height - height) / 2, width, height);
+	}
+	
+	void OnGUI() {
+		Color newColor = new Color(1,1,1,1.0f);
+		GUI.color = newColor;
+
+		windowRect = GUILayout.Window(window_id, windowRect, MakeWindow, "Game Rooms");
+	}
+	
+	void MakeWindow(int id) {
+		Color newColor = new Color(1,1,1,1.0f);
+		GUI.color = newColor;
+
+		GUILayout.Space(10);
+
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+
+		GUILayout.BeginHorizontal();
+		GUILayout.Label(new GUIContent("#"));
+		GUILayout.Label(new GUIContent("Game"));
+		GUILayout.Label(new GUIContent("         Status"));
+		GUILayout.Label(new GUIContent(""), GUILayout.Width(100));
+		GUILayout.EndHorizontal();
+
+		foreach(var item in RoomManager.getInstance().getRooms()) {
+			GUILayout.BeginHorizontal();
+			GUILayout.Label(new GUIContent("" + item.Key));
+			GUILayout.Label(new GUIContent(Room.getGameName(item.Value.game_id)));
+			GUILayout.Label(new GUIContent(item.Value.status()));
+
+			if (item.Value.containsPlayer(GameState.account.account_id)) {
+				if(GUILayout.Button(new GUIContent("Quit"), GUILayout.Width(100))) {
+					NetworkManager.Send (QuitRoomProtocol.Prepare ());
+				}
+			} else {
+				if(GUILayout.Button(new GUIContent("Join"), GUILayout.Width(100))) {
+
+				}
+			}
+			GUILayout.EndHorizontal();
+		}
+
+		GUILayout.Space(30);
+
+		GUI.enabled = enableRRButton;
+		if (GUI.Button(new Rect(10, windowRect.height - 40, 140, 30), "Play Running Rhino")) {
+			NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_RUNNING_RHINO));
+		}
+
+		GUI.enabled = enableCWButton;
+		if (GUI.Button(new Rect(160, windowRect.height - 40, 125, 30), "Play Cards of Wild")) {
+			NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_CARDS_OF_WILD));
+		}
+
+		GUI.enabled = true;
+		if (GUI.Button(new Rect(windowRect.width - 110, windowRect.height - 40, 100, 30), "Quit")) {
+			Quit();
+		}
+
+		GUI.BringWindowToFront(window_id);
+		GUI.DragWindow();
+	}
+	
+	public void setMessage(string message) {
+		this.message = message;
+	}
+
+	public void Quit() {
+		if (!this.enableRRButton || !this.enableCWButton) {
+			NetworkManager.Send (QuitRoomProtocol.Prepare ());
+			quiting = true;
+		} else {
+			Destroy (this);
+		}
+	}
+
+	public void OnQuitRoomResult (NetworkResponse response) {
+		this.enableRRButton = true;
+		this.enableCWButton = true;
+
+		RoomManager.getInstance().removePlayer(GameState.account.account_id);
+		if (quiting) {
+			Destroy (this);
+		}
+	}
+
+	public void OnPairResult (NetworkResponse response) {
+		ResponsePair args = response as ResponsePair;
+		int userID = GameState.account.account_id;
+		
+		if (args.status == 0) {
+			Debug.Log("All players are ready to play [room id=" + args.id + "]");
+
+			this.enableRRButton = true;
+			this.enableCWButton = true;
+
+			var room = RoomManager.getInstance().getRoom(args.id);
+			if (!room.containsPlayer(userID)) {
+				room.addPlayer(userID);
+			}
+
+			// switch scene
+			if (args.gameID == Constants.MINIGAME_RUNNING_RHINO) {
+				//Game.SwitchScene ("RRGame");
+			} else if (args.gameID == Constants.MINIGAME_CARDS_OF_WILD) {
+			}
+		} else {
+			Debug.Log("New room allocated [room id=" + args.id + "]");
+			var room = RoomManager.getInstance().addRoom(args.id, args.gameID);
+			room.addPlayer(userID);
+
+			this.enableRRButton = false;
+			this.enableCWButton = false;
+		}
+	}
+}

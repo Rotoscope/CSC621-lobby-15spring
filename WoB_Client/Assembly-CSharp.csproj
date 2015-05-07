@@ -121,6 +121,7 @@
      <Compile Include="Assets\Scripts\Camera\BasicCamera.cs" />
      <Compile Include="Assets\Scripts\CardsOfWildGUI.cs" />
      <Compile Include="Assets\Scripts\CarnivoreObject.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies.cs" />
      <Compile Include="Assets\Scripts\Clock.cs" />
      <Compile Include="Assets\Scripts\Constants.cs" />
      <Compile Include="Assets\Scripts\Containers\Account.cs" />
@@ -161,6 +162,7 @@
      <Compile Include="Assets\Scripts\GUI\TileInfoGUI.cs" />
      <Compile Include="Assets\Scripts\GameLoop.cs" />
      <Compile Include="Assets\Scripts\GameOverWall.cs" />
+     <Compile Include="Assets\Scripts\GameRooms.cs" />
      <Compile Include="Assets\Scripts\GameState.cs" />
      <Compile Include="Assets\Scripts\Grass.cs" />
      <Compile Include="Assets\Scripts\HUD\EcosystemScore.cs" />
@@ -203,6 +205,7 @@
      <Compile Include="Assets\Scripts\Network\Protocol\PlayerSelectProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PlayersProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PredictionProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\QuitRoomProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\RegisterProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ShopActionProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ShopProtocol.cs" />
@@ -235,6 +238,9 @@
      <Compile Include="Assets\Scripts\Register.cs" />
      <Compile Include="Assets\Scripts\RegisterColorPanel.cs" />
      <Compile Include="Assets\Scripts\RunningRhinoGUI.cs" />
+     <Compile Include="Assets\Scripts\Scrolly\ScrollCellTest.cs" />
+     <Compile Include="Assets\Scripts\Scrolly\ScrollListTest.cs" />
+     <Compile Include="Assets\Scripts\Scrolly\UList.cs" />
      <Compile Include="Assets\Scripts\Shop\Shop.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopCartPanel.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopInfoPanel.cs" />

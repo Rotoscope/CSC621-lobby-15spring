@@ -9,33 +9,26 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import lobby.GameRoom;
 import lobby.GameRoomManager;
-import net.response.ResponsePair;
-import util.DataReader;
+import net.response.ResponseQuitRoom;
 
 /**
  *
  * @author yanxing wang
  */
-public class RequestPair extends GameRequest {
-    
-    int gameID = 0;
+public class RequestQuitRoom extends GameRequest {
     
     @Override
     public void parse(DataInputStream dataInput) throws IOException {
-        gameID = DataReader.readInt(dataInput);
     }
 
     @Override
     public void process() throws Exception {
-        // Start pair
-        GameRoom room = GameRoomManager.getInstance().pairClient(client);        
-        room.setGameID(gameID);
+        GameRoom room = GameRoomManager.getInstance().getRoom(client.getID());
         
-        ResponsePair response = new ResponsePair();     
-        response.setStatus(room.isFull() ? (short)0 : (short)1);
-        response.setID(room.getID());
-        response.setGameID(gameID);
-        
+        ResponseQuitRoom response = new ResponseQuitRoom();     
+        response.setStatus((short)1);
         room.sendResponse(response);
+        
+        GameRoomManager.getInstance().clientQuit(client);        
     }
 }

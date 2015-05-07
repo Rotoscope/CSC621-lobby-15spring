@@ -70,4 +70,5 @@
 	public static readonly short STARTGAME = 158;
 
 	public static readonly short PAIR = 159;
+	public static readonly short QUIT_ROOM = 160;
 }

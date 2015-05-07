@@ -31,7 +31,9 @@ public class WorldController : MonoBehaviour {
 			gameObject.AddComponent ("CardsOfWildGUI"); //Multiplayer
 		}
 
-		GUI.Button (new Rect (210, 10, 120, 30), "Class of Species"); // Single Player
+		if (GUI.Button (new Rect (210, 10, 120, 30), "Clash of Species")) {
+			gameObject.AddComponent ("ClashOfSpecies"); //Single Player
+		}
 
 		if (GUI.Button (new Rect (340, 10, 100, 30), "Don't Eat Me")) {
 			gameObject.AddComponent ("DontEatMeGUI"); // Single Player

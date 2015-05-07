@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-
 import core.GameClient;
+import util.Log;
 
 /**
  *
@@ -25,7 +25,6 @@ public class GameRoomManager {
     private int mRoomIDCount = 0;
     
     public GameRoomManager() {
-        
     }
     
     public static GameRoomManager getInstance() {
@@ -38,6 +37,7 @@ public class GameRoomManager {
     public GameRoom pairClient(GameClient client) {
         for (GameRoom r : this.mRooms) {
             if (!r.isFull()) {
+                Log.println("Paired the client to room: " + Integer.toString(r.getID()));
                 r.addClient(client);
                 mRoomTable.put(client.getID(), r);
                 return r;
@@ -49,7 +49,25 @@ public class GameRoomManager {
         room.addClient(client);
         mRooms.add(room);
         mRoomTable.put(client.getID(), room);
+        
+        Log.println("New room created with ID: " + Integer.toString(room.getID()));
+        Log.println("Number of rooms: " + Integer.toString(mRooms.size()));
         return room;
+    }
+    
+    public void clientQuit(GameClient client) {
+        if (mRoomTable.containsKey(client.getID())) {
+            GameRoom room = mRoomTable.get(client.getID());
+            room.removeClient(client);
+            Log.println("Removed a client in room " + Integer.toString(room.getID()));
+            mRoomTable.remove(client.getID());
+            
+            if (room.isEmpty()) {
+                mRooms.remove(room);
+                Log.println("This room is now empty, remove it!");
+            }
+        }
+        Log.println("Number of rooms: " + Integer.toString(mRooms.size()));
     }
     
     public GameRoom getRoom(String id) {

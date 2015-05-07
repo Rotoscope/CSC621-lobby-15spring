@@ -80,6 +80,7 @@ public class NetworkCode {
     public final static short STARTGAME = 158;
     
     public final static short PAIR = 159;
+    public final static short QUIT_ROOM = 160;
 
     /**
      * Check for duplicate values, if any.

@@ -53,9 +53,8 @@ public class MiniGameServers {
     private void initMiniGames() {
         MiniGame game;
 
-        // test
-        game = new MiniGame("Cards of Wild");
-        game.setAsMultiPlayerGame("../Mini_Server/dist/Mini_Server.jar", 9245);
+        game = new MiniGame("Running Rhino");
+        game.setAsMultiPlayerGame("../Speed_Server/dist/Speed_Server.jar", 9245);
         miniGames.put(game.getName(), game);
     }
 }
