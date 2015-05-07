@@ -46,7 +46,7 @@ public class BuildMenu : MonoBehaviour {
 		GUILayout.EndArea ();
 
 		// draw the plant menu
-		GUILayout.BeginArea (new Rect (90, 200, 100, 400));
+		GUILayout.BeginArea (new Rect (40, 165, 100, 400));
 		GUILayout.BeginVertical ("box");
 
 		// Draw each plant's build info

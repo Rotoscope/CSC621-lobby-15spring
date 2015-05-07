@@ -56,6 +56,10 @@ public class GameOverWall : MonoBehaviour
 			GUILayout.EndHorizontal ();
 			GUILayout.EndArea ();
 		
+			if (GUI.Button (new Rect (360, 420, 140, 30), "Return to Lobby")) {
+				Destroy (this);
+				Game.SwitchScene("World");
+			}
 		}
 	}
 
