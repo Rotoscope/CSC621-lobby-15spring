@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -124,11 +125,14 @@ public class GameClient {
                     try {
                         // Parse the input stream
                         request.parse(dataInput);
+                        
                         // Interpret the data
                         request.process();
+                        
                         // Send responses to client, if any
                         send();
                     } catch (Exception ex) {
+                        ex.printStackTrace(new PrintStream(System.out));
                         Log.printf_e("Request [%d] Error:\n%s", request_id, ex.getMessage());
                     }
                 }

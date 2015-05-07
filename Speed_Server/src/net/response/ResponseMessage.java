@@ -1,6 +1,7 @@
 package net.response;
 
 // Other Imports
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -15,7 +16,7 @@ public class ResponseMessage extends GameResponse {
     private short type;
 
     public ResponseMessage() {
-        response_id = NetworkCode.MESSAGE;
+        response_id = NetworkCode.MESSAGE + Constants.SMSG_AUTH_BIAS;
     }
 
     @Override

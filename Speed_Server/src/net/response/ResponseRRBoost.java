@@ -5,6 +5,7 @@
  */
 package net.response;
 
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -17,7 +18,7 @@ public class ResponseRRBoost extends GameResponse {
     private int boostItemID;
 
     public ResponseRRBoost() {
-        response_id = NetworkCode.RRBOOST;
+        response_id = NetworkCode.RRBOOST + Constants.SMSG_AUTH_BIAS;
         this.boostItemID = 0;
     }
 

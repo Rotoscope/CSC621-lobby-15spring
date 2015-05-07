@@ -7,6 +7,7 @@
 package net.response;
 
 import core.GameClient;
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -20,7 +21,7 @@ public class ResponseRaceInit extends GameResponse {
     private GameClient player;
     
     public ResponseRaceInit(){
-        response_id = NetworkCode.RACE_INIT;
+        response_id = NetworkCode.RACE_INIT + Constants.SMSG_AUTH_BIAS;
         status = 0;
     }
     @Override

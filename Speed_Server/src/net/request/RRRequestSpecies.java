@@ -9,8 +9,11 @@ import core.GameClient;
 import java.io.DataInputStream;
 import java.io.IOException;
 import net.response.RRResponseSpecies;
+import race.Race;
 import race.RaceManager;
+import race.RacePlayer;
 import util.DataReader;
+import util.Log;
 
 /**
  *
@@ -32,11 +35,19 @@ public class RRRequestSpecies extends GameRequest {
         rrResponseSpecies = new RRResponseSpecies();
         rrResponseSpecies.setId(id);
         
-        System.out.println("speciec: " + id);
+        System.out.println("Speciec: " + id);
 
         //The playerID of the oppenet of the player who sent the request
-        GameClient opClient = RaceManager.manager.getRaceByClient(client)
-                .getOpponent(client).getClient();
-        opClient.add(rrResponseSpecies);
+        Race r = RaceManager.manager.getRaceByClient(client);
+        if (r == null) {
+            Log.printf_e("Null Race!");
+            return;
+        }
+        RacePlayer opponent = r.getOpponent(client);
+        if (opponent == null) {
+            Log.printf_e("No opponent!");
+        } else {
+            opponent.getClient().add(rrResponseSpecies);
+        }
     }
 }

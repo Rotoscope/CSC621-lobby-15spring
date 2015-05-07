@@ -5,6 +5,7 @@
  */
 package net.response;
 
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -16,7 +17,7 @@ public class RRResponseSpecies extends GameResponse {
     private int id;
 
     public RRResponseSpecies() {
-         response_id = NetworkCode.RRSPECIES;
+         response_id = NetworkCode.RRSPECIES + Constants.SMSG_AUTH_BIAS;
     }
 
     @Override

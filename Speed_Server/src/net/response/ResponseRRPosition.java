@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package net.response;
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -17,7 +18,7 @@ public class ResponseRRPosition extends GameResponse {
     private float x, y;
     
     public ResponseRRPosition(){
-        response_id = NetworkCode.RRPOSITION;
+        response_id = NetworkCode.RRPOSITION + Constants.SMSG_AUTH_BIAS;
     }
 
     @Override

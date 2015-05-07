@@ -5,14 +5,10 @@
  */
 package net.request;
 
-import core.GameServer;
 import java.io.DataInputStream;
 import java.io.IOException;
-import net.response.ResponseRRStartGame;
 import race.Race;
 import race.RaceManager;
-import race.RaceManager;
-import util.DataReader;
 import util.Log;
 
 /**
@@ -28,8 +24,8 @@ public class RequestRRStartGame extends GameRequest {
     @Override
     public void process() throws Exception {
         Log.println("request start game from user: '" + client.getID() + "' recieved");
-        Log.println("The race the user belongs to is '" +  RaceManager.manager.getRaceByClient(client).getID() + "'");
-        
-        RaceManager.manager.getRaceByClient(client).startRace(client);
+        Race r = RaceManager.getInstance().getRaceByClient(client);        
+        Log.println("The race the user belongs to is '" +  r.getID() + "'");
+        r.startRace(client);
     }
 }

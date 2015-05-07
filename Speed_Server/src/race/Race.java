@@ -1,9 +1,6 @@
 package race;
 
 import core.GameClient;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
 import net.response.ResponseRRStartGame;
 import metadata.Constants;
 import net.response.GameResponse;
@@ -22,7 +19,6 @@ public class Race {
 
     private final int raceID;
     private final RacePlayer[] players = new RacePlayer[Constants.MAX_NUMBER_OF_PLAYERS];
-
     private short playersReadyToStart;
 
     public Race(int raceID) {
@@ -49,6 +45,7 @@ public class Race {
 
     public RacePlayer getOpponent(GameClient client) {
         for (int i = 0; i < Constants.MAX_NUMBER_OF_PLAYERS; ++i) {
+            if (this.players[i] == null) continue;
             if (!this.players[i].getClient().getID().equals(
                     client.getID()
             )) {
@@ -62,9 +59,9 @@ public class Race {
     // Sends an output to the clients of this race to start the countdown 
     // sequence to the start of a race.
     public void startRace(GameClient client) {
-
         for (int i = 0; i < Constants.MAX_NUMBER_OF_PLAYERS; ++i) {
-            if (this.players[i].getClient().getID().equals(client.getID())) {
+            if (this.players[i] != null && 
+                    this.players[i].getClient().getID().equals(client.getID())) {
                 playersReadyToStart++;
             }
         }
@@ -77,7 +74,11 @@ public class Race {
     
     public void sendToAllPlayers(GameResponse resp) {
         for (int i = 0; i < Constants.MAX_NUMBER_OF_PLAYERS; ++i) {
-            this.players[i].getClient().add(resp);
+            if (this.players[i] != null) {
+                this.players[i].getClient().add(resp);
+            } else {
+                Log.printf_e("Sending to a NULL player..");
+            }
         }
     }
 }

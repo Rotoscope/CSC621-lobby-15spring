@@ -11,7 +11,6 @@ import race.Race;
 import race.RaceManager;
 import java.io.IOException;
 import net.response.ResponseRaceInit;
-import race.RacePlayer;
 import util.DataReader;
 import util.Log;
 
@@ -30,7 +29,7 @@ public class RequestRaceInit extends GameRequest {
     @Override
     public void process() throws Exception {
         Race race = RaceManager.getInstance().getRace(race_id);
-        race.addPlayer(new RacePlayer(client , race_id));
+        RaceManager.getInstance().addPlayer(race, client);
         
         Log.println("Trying to start Race with race ID: " + race_id);
         

@@ -5,6 +5,7 @@
  */
 package net.response;
 
+import metadata.Constants;
 import util.GamePacket;
 import util.Log;
 import metadata.NetworkCode;
@@ -26,7 +27,7 @@ public class ResponseRRStartGame extends GameResponse {
     */
     
     public ResponseRRStartGame(){
-        response_id = NetworkCode.RRSTARTGAME;
+        response_id = NetworkCode.RRSTARTGAME + Constants.SMSG_AUTH_BIAS;
         status = 0;
         Log.println("A ResponseRRStartGame has been sent out.");
     }

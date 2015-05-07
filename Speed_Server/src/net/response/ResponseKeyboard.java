@@ -5,6 +5,7 @@
  */
 package net.response;
 
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -18,7 +19,7 @@ public class ResponseKeyboard extends GameResponse{
     
     
     public ResponseKeyboard(){
-        response_id = NetworkCode.KEYBOARD;
+        response_id = NetworkCode.KEYBOARD + Constants.SMSG_AUTH_BIAS;
     }
     
     @Override

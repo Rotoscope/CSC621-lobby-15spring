@@ -7,8 +7,6 @@ package race;
 
 import core.GameClient;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,19 +19,15 @@ public class RaceManager {
     public static RaceManager manager;
 
     // Regerence Tables
-    private Map<Integer, Race> raceList = new HashMap<Integer, Race>(); //RaceID -> race
-    private Map<Integer, Race> playerRaceList = new HashMap<Integer, Race>(); //PlayerID -> race
-    public Map<Integer, Integer> readyToRace = new HashMap<Integer, Integer>(); //GameID -> number of request
-
-    private List<GameClient> players = new ArrayList<GameClient>(); //used to create a race
-
-    protected short numberOfGamesBeingPlayed;
+    
+    // RaceID -> race
+    private final Map<Integer, Race> raceList = new HashMap<Integer, Race>(); 
+    private final Map<String, Race> raceClientMap = new HashMap<String, Race>(); 
 
     public static RaceManager getInstance() {
         if (manager == null) {
             manager = new RaceManager();
         }
-
         return manager;
     }
 
@@ -43,19 +37,17 @@ public class RaceManager {
             race = raceList.get(race_id);
         } else {
             race = new Race(race_id);
+            raceList.put(race_id, race);
         }
         return race;
-    }
-    
-    public Race add(Race race) {
-        return raceList.put(race.getID(), race);
-    }
-
-    public Race getRaceByPlayerID(int playerID) {
-        return playerRaceList.get(playerID);
-    }
+    }    
     
     public Race getRaceByClient(GameClient client) {
-        return null;
+        return raceClientMap.get(client.getID());
+    }
+
+    public void addPlayer(Race race, GameClient client) {
+        race.addPlayer(new RacePlayer(client , race.getID()));
+        raceClientMap.put(client.getID(), race);
     }
 }

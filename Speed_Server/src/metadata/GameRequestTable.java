@@ -30,6 +30,14 @@ public class GameRequestTable {
         add(NetworkCode.MESSAGE, "RequestMessage");
         add(NetworkCode.CHANGE_NAME, "RequestChangeName");
         add(NetworkCode.REQUEST_START, "RequestStart");
+        
+        add(NetworkCode.KEYBOARD, "RequestKeyboard");
+        add(NetworkCode.RACE_INIT, "RequestRaceInit");
+        add(NetworkCode.RRPOSITION, "RequestRRPosition");
+        add(NetworkCode.RRSPECIES, "RRRequestSpecies");
+        add(NetworkCode.RRENDGAME, "RequestRREndGame");
+        add(NetworkCode.RRSTARTGAME, "RequestRRStartGame");
+        add(NetworkCode.RRBOOST, "RequestRRBoost");
 
         Log.println("Done!");
     }

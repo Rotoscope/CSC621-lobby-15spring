@@ -1,6 +1,7 @@
 package net.response;
 
 // Other Imports
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -14,7 +15,7 @@ public class ResponseClient extends GameResponse {
     private String session_id;
 
     public ResponseClient() {
-        response_id = NetworkCode.CLIENT;
+        response_id = NetworkCode.CLIENT + Constants.SMSG_AUTH_BIAS;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.response;
 
 // Other Imports
+import metadata.Constants;
 import metadata.NetworkCode;
 import util.GamePacket;
 
@@ -12,7 +13,7 @@ public class ResponseStart extends GameResponse {
     private short status = 0;
 
     public ResponseStart() {
-        response_id = NetworkCode.REQUEST_START;
+        response_id = NetworkCode.REQUEST_START + Constants.SMSG_AUTH_BIAS;
     }
 
     @Override

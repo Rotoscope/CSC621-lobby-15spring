@@ -21,7 +21,7 @@ public class ResponseRREndGame extends GameResponse {
     private String highestPoint;
 
     public ResponseRREndGame() {
-        response_id = NetworkCode.RRENDGAME;
+        response_id = NetworkCode.RRENDGAME + Constants.SMSG_AUTH_BIAS;
     }
 
     @Override
