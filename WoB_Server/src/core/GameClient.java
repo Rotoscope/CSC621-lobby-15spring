@@ -150,9 +150,12 @@ public class GameClient {
         // If there was no activity for the last moments
         if (isAlive) {
             isAlive = System.currentTimeMillis() - lastActivity < Constants.TIMEOUT_MILLISECONDS;
+            if (!isAlive) {
+                Log.println("Client is not alive, kick him out.");
+            }
         }
 
-        if (!isAlive) {
+        if (!isAlive) {            
             ResponseHeartbeat lostConnection = new ResponseHeartbeat();
             lostConnection.setStatus(ResponseHeartbeat.LOST_CONNECTION);
             try {
