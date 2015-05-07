@@ -63,7 +63,7 @@ public class Constants {
     public final static int SHOP_PROCESS_DELAY = 0;//20000;
     public final static float BIOMASS_SCALE = 1000;
     public final static String CLIENT_VERSION = "1.00";
-    public final static int TIMEOUT_MILLISECONDS = 5000;  //90000; - jtc, using breakpoints, need more time
+    public final static int TIMEOUT_MILLISECONDS = 5000000;  //90000; - jtc, using breakpoints, need more time
     public final static int DAY_DURATION = 6;
     public final static int MONTH_DURATION = 180;
     public final static int MAX_SPECIES_SIZE = 10;
