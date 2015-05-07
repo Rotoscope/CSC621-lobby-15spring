@@ -12,6 +12,7 @@ public class NetworkProtocolTable {
 
 	public static void Init() {
 		Add(NetworkCode.CLIENT, "Client");
+		Add(NetworkCode.HEARTBEAT, "Heartbeat");
 		Add(NetworkCode.LOGIN, "Login");
 		Add(NetworkCode.LOGOUT, "Logout");
 		Add(NetworkCode.REGISTER, "Register");

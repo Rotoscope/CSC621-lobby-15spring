@@ -95,9 +95,9 @@ public class GameResources : MonoBehaviour {
 		topPlayerScores [0] = args.score1;
 		topPlayerScores [1] = args.score2;
 		topPlayerScores [2] = args.score3;
-		Debug.Log ("rank 1 player: " + args.name1 + " with " + args.score1 + " points.");
-		Debug.Log ("rank 2 player: " + args.name2 + " with " + args.score2 + " points.");
-		Debug.Log ("rank 3 player: " + args.name3 + " with " + args.score3 + " points.");
+		//Debug.Log ("rank 1 player: " + args.name1 + " with " + args.score1 + " points.");
+		//Debug.Log ("rank 2 player: " + args.name2 + " with " + args.score2 + " points.");
+		//Debug.Log ("rank 3 player: " + args.name3 + " with " + args.score3 + " points.");
 	}
 
 	public void SetCredits(int credits) {

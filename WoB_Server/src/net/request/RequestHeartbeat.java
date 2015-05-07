@@ -7,12 +7,15 @@ import java.io.IOException;
 // Other Imports
 import core.GameEngine;
 import core.lobby.EcosystemLobby;
+import util.Log;
 
 /**
  * The RequestHeartbeat class is mainly used to release all pending responses to
  * the client. Also used to keep the connection alive.
  */
 public class RequestHeartbeat extends GameRequest {
+    static int count = 0;
+    
     @Override
     public void parse(DataInputStream dataInput) throws IOException {
     }

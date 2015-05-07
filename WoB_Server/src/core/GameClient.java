@@ -16,6 +16,8 @@ import core.world.WorldController;
 import db.AccountDAO;
 import db.PlayerDAO;
 import db.UserLogDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lobby.GameRoomManager;
 import metadata.Constants;
 import metadata.GameRequestTable;
@@ -23,6 +25,7 @@ import model.Account;
 import model.Player;
 import net.request.GameRequest;
 import net.response.GameResponse;
+import net.response.ResponseHeartbeat;
 import net.response.ResponseLogout;
 import net.response.ResponsePlayerSelect;
 import util.DataReader;
@@ -150,6 +153,14 @@ public class GameClient {
         }
 
         if (!isAlive) {
+            ResponseHeartbeat lostConnection = new ResponseHeartbeat();
+            lostConnection.setStatus(ResponseHeartbeat.LOST_CONNECTION);
+            try {
+                outputStream.write(lostConnection.getBytes());
+            } catch (IOException ex) {
+                Logger.getLogger(GameClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             shutdown();
         }
     }

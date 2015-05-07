@@ -117,9 +117,9 @@
      <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\AnimalAI.cs" />
      <Compile Include="Assets\Scripts\Camera\BasicCamera.cs" />
-     <Compile Include="Assets\Scripts\CardsOfWildGUI.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies.cs" />
      <Compile Include="Assets\Scripts\Clock.cs" />
+     <Compile Include="Assets\Scripts\ConnectionLostGUI.cs" />
      <Compile Include="Assets\Scripts\Constants.cs" />
      <Compile Include="Assets\Scripts\Containers\Account.cs" />
      <Compile Include="Assets\Scripts\Containers\Ecosystem.cs" />
@@ -240,7 +240,6 @@
      <Compile Include="Assets\Scripts\ProgressBar.cs" />
      <Compile Include="Assets\Scripts\Register.cs" />
      <Compile Include="Assets\Scripts\RegisterColorPanel.cs" />
-     <Compile Include="Assets\Scripts\RunningRhinoGUI.cs" />
      <Compile Include="Assets\Scripts\Scrolly\ScrollCellTest.cs" />
      <Compile Include="Assets\Scripts\Scrolly\ScrollListTest.cs" />
      <Compile Include="Assets\Scripts\Scrolly\UList.cs" />

@@ -11,14 +11,19 @@ public class NetworkManager : MonoBehaviour {
 	public delegate void Callback(NetworkResponse response);
 	private static Dictionary<int, Queue<Callback>> callbackList = new Dictionary<int, Queue<Callback>>();
 	private static Dictionary<int, List<Callback>> listenList = new Dictionary<int, List<Callback>>();
+
 	// Connection
 	private ConnectionManager cManager = new ConnectionManager();
 	private static Queue<NetworkRequest> requests = new Queue<NetworkRequest>();
 	private static int counter = 0;
 	private static int interval = 50;
 
+	private static bool lostConnection = false;
+
 	void Awake() {
 		NetworkProtocolTable.Init();
+
+		NetworkManager.Listen (NetworkCode.HEARTBEAT, ProcessHeartbeat);
 	}
 	
 	// Use this for initialization
@@ -29,7 +34,6 @@ public class NetworkManager : MonoBehaviour {
 				ProcessClient
 			);
 		}
-		
 		StartCoroutine(Poll(Constants.HEARTBEAT_RATE));
 	}
 	
@@ -45,15 +49,16 @@ public class NetworkManager : MonoBehaviour {
 			if (cManager.Send(packet.GetBytes())) {
 				requests.Dequeue();
 
-				Debug.Log("Sent Request No. " + packet.GetID() + " [" +  NetworkProtocolTable.Get(packet.GetID()).ToString() + "]");
+				Debug.Log("Sent Request No. " + packet.GetID() + " [" +  
+				          NetworkProtocolTable.Get(packet.GetID()).ToString() + "]");
 			}
 		}
 
 		counter++;
 		if (counter == interval) {
-//			Debug.Log ("checking response buffer... (+50)");
 			counter = 0;
 		}
+
 		foreach (NetworkResponse args in cManager.Read()) {
 			bool status = false;
 
@@ -78,7 +83,8 @@ public class NetworkManager : MonoBehaviour {
 				}
 			}
 
-			Debug.Log((status ? "Processed" : "Ignored") + " Response No. " + args.GetID() + " [" + NetworkProtocolTable.Get(args.GetID()).ToString() + "]");
+			Debug.Log((status ? "Processed" : "Ignored") + " Response No. " + 
+			          args.GetID() + " [" + NetworkProtocolTable.Get(args.GetID()).ToString() + "]");
 		}
 	}
 
@@ -136,5 +142,15 @@ public class NetworkManager : MonoBehaviour {
 	public void ProcessClient(NetworkResponse response) {
 		ResponseClient args = response as ResponseClient;
 		Constants.SESSION_ID = args.session_id;
+	}
+
+	public void ProcessHeartbeat(NetworkResponse response) {
+		if (!lostConnection) {
+			Debug.LogWarning ("Lost connection!");
+
+			gameObject.AddComponent ("ConnectionLostGUI");
+
+			lostConnection = true;
+		}
 	}
 }
