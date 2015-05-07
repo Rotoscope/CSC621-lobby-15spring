@@ -53,8 +53,6 @@ WoB_Server/.idea/workspace.xml
 WoB_Server/.idea/workspace.xml
 *.sln
 *.iml
-*.meta
-*.cs.meta
 *.TXT
 *.jar
 /Mini_Server/dist/
