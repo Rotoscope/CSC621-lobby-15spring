@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_5;UNITY_4_6;UNITY_64;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +118,33 @@
      <Compile Include="Assets\Scripts\AnimalAI.cs" />
      <Compile Include="Assets\Scripts\Camera\BasicCamera.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleController.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleToggle.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleUnit.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\GameOverManager.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\animController.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Camera\ClashBattleCamera.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Camera\ClashBattleSpawner.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Camera\ClashCameraControl.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Camera\ClashDefenseSpawner.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\ClashGameManager.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\ClashGetActiveToggle.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\ClashSplash.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\ClashStatusText.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Defense\ClashDefenseSetup.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Main\ClashMainMenu.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Main\ClashPreviewController.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\ResultMenu.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Shop\ClashAttackShop.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Shop\ClashDefenseShop.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Shop\ClashSelectedUnit.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Shop\ClashShopItem.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Shop\ClashTabControl.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Unit\ClashNavMeshAI.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Unit\ClashUnitAI.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Unit\ClashUnitAttributes.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\pauseMenu.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpeciesGUI.cs" />
      <Compile Include="Assets\Scripts\Clock.cs" />
      <Compile Include="Assets\Scripts\ConnectionLostGUI.cs" />
      <Compile Include="Assets\Scripts\Constants.cs" />
@@ -190,6 +217,13 @@
      <Compile Include="Assets\Scripts\Network\NetworkRequest.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ChartProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\ClashOfSpecies\ClashDefenseSetupProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\ClashOfSpecies\ClashEndBattleProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\ClashOfSpecies\ClashEntryProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\ClashOfSpecies\ClashInitiateBattleProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\ClashOfSpecies\ClashPlayerListProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\ClashOfSpecies\ClashPlayerViewProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\ClashOfSpecies\ClashSpeciesListProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ClientProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ConvergeEcosystemsProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ConvergeHintCountProtocol.cs" />
@@ -259,13 +293,11 @@
      <Compile Include="Assets\Scripts\World\WorldMouse.cs" />
      <Compile Include="Assets\Scripts\World\Zone.cs" />
      <Compile Include="Assets\Scripts\WorldMenu.cs" />
-     <None Include="Assets\RRAssets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\RRAssets\SpritePack1\!Readme.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.5/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.Sqlite">
- <HintPath>/Users/yanxingwang/Projects/SFSU/CSC631/current_lob/CSC621-lobby-15spring/WoB_Client/Assets/RRAssets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ <HintPath>C:/Users/Sammy/Documents/GitHub/CSC621-lobby-15spring/WoB_Client/Assets/RRAssets/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
