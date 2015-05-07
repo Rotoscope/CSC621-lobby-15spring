@@ -10,13 +10,8 @@ namespace MiniClient
 		// Constants
 		public static readonly string CLIENT_VERSION = "1.00";
 
-		/*
 		public static readonly string REMOTE_HOST = "localhost"; //"localhost";  "smurf.sfsu.edu";
-		public static readonly int REMOTE_PORT = 9245; //game server
-		public static readonly int REMOTE_PORT_LOBBY = 9254; // lobby server
-		*/
-
-		public static readonly string REMOTE_HOST = "thecity.sfsu.edu";
+		//public static readonly string REMOTE_HOST = "thecity.sfsu.edu";
 		public static readonly int REMOTE_PORT = 20040; //game server
 		public static readonly int REMOTE_PORT_LOBBY = 20041; // lobby server
 
