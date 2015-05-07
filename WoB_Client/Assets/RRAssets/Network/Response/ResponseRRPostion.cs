@@ -38,6 +38,10 @@ namespace RR
 
 			ResponseRRPositionEventArgs args = new ResponseRRPositionEventArgs ();
 			g = GameObject.Find ("GameLogic");
+			if (!g) {
+				return args;
+			}
+
 			p2 = g.GetComponents<Running> ();
 
 			Debug.Log ("x = " + x + "\ny = " + y);

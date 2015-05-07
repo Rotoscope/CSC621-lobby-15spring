@@ -87,7 +87,7 @@ public class CardsOfWildGUI : MonoBehaviour
 		} else {
 			logText += "Game room allocated: " + args.id + "\n";
 			logText += "Waiting for another player...\n";
-			//Game.SwitchScene ("MiniClient"); // test
+			Game.SwitchScene ("MiniClient"); // test
 		}
 	}
 	

@@ -13,6 +13,10 @@ namespace RR
 			mainObject.GetComponent<MessageQueue>().AddCallback(Constants.SMSG_RACE_INIT, ResponseRaceInit);
 		}
 
+		void OnDestroy() {
+			mainObject.GetComponent<MessageQueue>().RemoveCallback(Constants.SMSG_RACE_INIT);
+		}
+
 		void Start() {
 			Join ();
 		}

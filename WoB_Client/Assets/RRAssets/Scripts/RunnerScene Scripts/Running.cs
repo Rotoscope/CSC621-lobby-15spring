@@ -23,7 +23,10 @@ namespace RR
 			myStyle.normal.textColor = Color.blue;
 	
 			GUI.Label (new Rect (Screen.width - 150, 0, 200, 100), "Running Time:  " + time, myStyle);
-	
+
+			if (GUI.Button(new Rect(10, 10, 140, 30), "Back To Lobby")) {
+				Game.SwitchScene("World");
+			}
 		}
 
 		void Start ()
@@ -33,7 +36,11 @@ namespace RR
 
 			cManager = mainObject.GetComponent<ConnectionManager> ();
 			gameObject.GetComponent<MessageQueue> ().AddCallback (Constants.SMSG_AUTH, ResponseLogin);
+		}
 
+		void OnDestroy() 
+		{
+			gameObject.GetComponent<MessageQueue> ().RemoveCallback (Constants.SMSG_AUTH);
 		}
 
 		public void RunOnce ()

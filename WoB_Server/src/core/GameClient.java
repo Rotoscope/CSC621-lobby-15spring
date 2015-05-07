@@ -16,6 +16,7 @@ import core.world.WorldController;
 import db.AccountDAO;
 import db.PlayerDAO;
 import db.UserLogDAO;
+import lobby.GameRoomManager;
 import metadata.Constants;
 import metadata.GameRequestTable;
 import model.Account;
@@ -210,13 +211,6 @@ public class GameClient {
                 response.setPlayerID(player.getID());
                 NetworkFunctions.sendToGlobal(response, player.getID());
             }
-
-            {
-//                ResponseMessage response = new ResponseMessage();
-//                response.setMessage("[" + player.getName() + "] has logged off.");
-//                NetworkFunctions.sendToGlobal(response, player.getID());
-            }
-
             if (player.getWorld() != null) {
                 player.getWorld().remove(player.getID());
             }
@@ -225,6 +219,10 @@ public class GameClient {
             PlayerDAO.updateLastPlayed(player.getID());
             player = null;
         }
+        
+        // Close session with mini games
+        GameRoomManager.getInstance().clientQuit(this);
+        
         // Remove Account
         GameServer.getInstance().removeActiveAccount(account.getID());
         AccountDAO.updateLogout(account.getID());

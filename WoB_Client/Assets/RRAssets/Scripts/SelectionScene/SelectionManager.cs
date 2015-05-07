@@ -37,10 +37,12 @@ namespace RR {
 			
 			cManager = mainObject.GetComponent<ConnectionManager>();
 			
-			//		NetworkRequestTable.init();
-			//		NetworkResponseTable.init();
-			
+
 			mainObject.GetComponent<MessageQueue>().AddCallback(Constants.SMSG_RRSTARTGAME, ResponseRRStartGame);
+		}
+
+		void OnDestroy() {
+			mainObject.GetComponent<MessageQueue>().RemoveCallback(Constants.SMSG_RRSTARTGAME);
 		}
 		
 		private void initButtons(){

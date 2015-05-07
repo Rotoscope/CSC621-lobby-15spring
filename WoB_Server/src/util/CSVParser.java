@@ -110,12 +110,13 @@ public class CSVParser {
     public static List<List<String>> convertCSVtoArrayList(String csv) {
         List<List<String>> csvList = new ArrayList<List<String>>();
         
-        String[] tempList = csv.split(("\n"));
-        
-        for (String row : tempList) {
-            csvList.add(new ArrayList<String>(Arrays.asList(row.split(","))));
-        }
+        if (csv != null) {
+            String[] tempList = csv.split(("\n"));
 
+            for (String row : tempList) {
+                csvList.add(new ArrayList<String>(Arrays.asList(row.split(","))));
+            }
+        }
         return csvList;
     }
 }

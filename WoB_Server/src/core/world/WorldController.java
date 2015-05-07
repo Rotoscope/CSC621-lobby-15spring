@@ -58,22 +58,29 @@ public class WorldController {
 
     public static boolean enterWorld(Player player, int world_id) {
         World world = WorldController.getInstance().get(world_id);
+        
         // Verify World ID
         if (world == null) {
+            Log.println("Invalid world id.");
             return false;
         }
+        
         // Enter World
         if (!world.hasPlayer(player.getID())) {
             world.add(player);
-            player.setWorld(world);
-            // Send World Information to User
-            ResponseWorld response = new ResponseWorld();
-            response.setStatus(ResponseWorld.SUCCESS);
-            response.setWorld(world.getID(), world.getName(), world.getType(), world.getTimeRate(), world.getDay());
-            NetworkFunctions.sendToPlayer(response, player.getID());
-            // Send Server Announcement, if any
-            getServerAnnouncement(player.getID());
         }
+        player.setWorld(world);
+        
+        // Send World Information to User
+        ResponseWorld response = new ResponseWorld();
+        response.setStatus(ResponseWorld.SUCCESS);
+        response.setWorld(world.getID(), world.getName(), world.getType(), 
+                world.getTimeRate(), world.getDay());
+        NetworkFunctions.sendToPlayer(response, player.getID());
+        
+        // Send Server Announcement, if any
+        getServerAnnouncement(player.getID());
+
         // Retrieve Ecosystem, if haven't already
         if (player.getEcosystem() == null) {
             EcosystemController.startEcosystem(player);
@@ -137,7 +144,7 @@ public class WorldController {
                 int[] directions = new int[]{-1, 0, 1};
 
                 for (int j = 0; j < 30; j++) { // # of Spreads
-                    int x_next = x , y_next = y;
+                    int x_next = x, y_next = y;
 
                     for (int k = 0; k < 10 + random.nextInt(5); k++) { // Radius Till Hits
                         x_next += directions[random.nextInt(3)];
@@ -151,11 +158,11 @@ public class WorldController {
                 }
             }
         }
-        
+
         for (int i = 0; i < t; i++) {
             for (int j = 0; j < t; j++) {
                 WorldZoneDAO.updateTerrainType(i * t + j, (short) map[i][j]);
-                System.out.print("[" + map[i][j] +"]");
+                System.out.print("[" + map[i][j] + "]");
             }
             System.out.println("");
         }

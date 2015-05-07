@@ -13,7 +13,6 @@ import core.lobby.EcosystemLobby;
  * the client. Also used to keep the connection alive.
  */
 public class RequestHeartbeat extends GameRequest {
-
     @Override
     public void parse(DataInputStream dataInput) throws IOException {
     }

@@ -6,15 +6,16 @@ using System.Collections.Generic;
 public class WorldController : MonoBehaviour {
 
 	void Awake() {
-		NetworkManager.Send(
-			WorldProtocol.Prepare(),
-			ProcessWorld
-		);
+		NetworkManager.Send(WorldProtocol.Prepare(), ProcessWorld);
 	}
 	
 	// Use this for initialization
 	void Start() {
 		Game.StartEnterTransition ();
+
+		if (GameState.world != null) {
+			LoadComponents();
+		}
 	}
 
 	// Update is called once per frame
@@ -23,24 +24,20 @@ public class WorldController : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		if (GUI.Button(new Rect(10, 10, 80, 30), "Ecosystem")) {
+		if (GUI.Button(new Rect(10, 10, 120, 30), "Ecosystem")) {
 			Camera.main.GetComponent<MapCamera>().Move(GameState.player.GetID());
 		}
 
-		if (GUI.Button (new Rect (100, 10, 100, 30), "Cards of Wild")) {
-			gameObject.AddComponent ("CardsOfWildGUI"); //Multiplayer
-		}
-
-		if (GUI.Button (new Rect (210, 10, 120, 30), "Clash of Species")) {
+		if (GUI.Button (new Rect (140, 10, 130, 30), "Clash of Species")) {
 			gameObject.AddComponent ("ClashOfSpecies"); //Single Player
 		}
 
-		if (GUI.Button (new Rect (340, 10, 100, 30), "Don't Eat Me")) {
+		if (GUI.Button (new Rect (10, 50, 120, 30), "Don't Eat Me")) {
 			gameObject.AddComponent ("DontEatMeGUI"); // Single Player
 		}
 
-		if (GUI.Button (new Rect (450, 10, 100, 30), "Running Rhino")) {
-			gameObject.AddComponent ("RunningRhinoGUI"); // Multiplayer
+		if (GUI.Button (new Rect (140, 50, 130, 30), "Multiplayer Games")) {
+			gameObject.AddComponent ("ClashOfSpecies");
 		}
 	}
 	
@@ -52,28 +49,32 @@ public class WorldController : MonoBehaviour {
 
 			SwitchToTileSelect(1);
 
-			GameObject gObject = GameObject.Find("Global Object");
+			LoadComponents();
+		}
+	}
 
-			if (gObject != null) {
-				if (gObject.GetComponent<EcosystemScore>() == null) {
-					gObject.AddComponent<EcosystemScore>();
-				}
-				
-				if (gObject.GetComponent<GameResources>() == null) {
-					gObject.AddComponent<GameResources>();
-				}
-				
-				if (gObject.GetComponent<Clock>() == null) {
-					gObject.AddComponent<Clock>();
-				}
-				
-				if (gObject.GetComponent<Chat>() == null) {
-					gObject.AddComponent<Chat>();
-				}
-
-				if (GameObject.Find("Cube").GetComponent<Shop>() == null) {
-					GameObject.Find("Cube").AddComponent<Shop>();
-				}
+	void LoadComponents() {
+		GameObject gObject = GameObject.Find("Global Object");
+		
+		if (gObject != null) {
+			if (gObject.GetComponent<EcosystemScore>() == null) {
+				gObject.AddComponent<EcosystemScore>();
+			}
+			
+			if (gObject.GetComponent<GameResources>() == null) {
+				gObject.AddComponent<GameResources>();
+			}
+			
+			if (gObject.GetComponent<Clock>() == null) {
+				gObject.AddComponent<Clock>();
+			}
+			
+			if (gObject.GetComponent<Chat>() == null) {
+				gObject.AddComponent<Chat>();
+			}
+			
+			if (GameObject.Find("Cube").GetComponent<Shop>() == null) {
+				GameObject.Find("Cube").AddComponent<Shop>();
 			}
 		}
 	}
