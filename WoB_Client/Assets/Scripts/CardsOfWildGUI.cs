@@ -22,7 +22,7 @@ public class CardsOfWildGUI : MonoBehaviour
 		window_id = Constants.GetUniqueID ();
 
 		NetworkManager.Listen (NetworkCode.PAIR, OnPairResult);
-		NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_CARDS_OF_WILD));
+		NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_CARDS_OF_WILD, -1));
 	}
 	
 	// Use this for initialization

@@ -3,9 +3,10 @@ using System.IO;
 
 public class PairProtocol {
 	
-	public static NetworkRequest Prepare(int gameid) {
+	public static NetworkRequest Prepare(int gameid, int pairParam) {
 		NetworkRequest request = new NetworkRequest(NetworkCode.PAIR);
 		request.AddInt32 (gameid);
+		request.AddInt32 (pairParam);
 		return request;
 	}
 	

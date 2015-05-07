@@ -18,7 +18,7 @@ public class GameRoomManager {
     
     private static GameRoomManager sInstance = null;
     
-    private final List<GameRoom> mRooms = new ArrayList<GameRoom>();
+    private final Map<Integer, GameRoom> mRooms = new HashMap<Integer, GameRoom>();
     
     // key is session_id
     private final Map<String, GameRoom> mRoomTable = new HashMap<String, GameRoom>();
@@ -36,32 +36,37 @@ public class GameRoomManager {
     }
     
     public Iterator<GameRoom> getRoomsIter() {
-        return mRooms.iterator();
+        return mRooms.values().iterator();
     }
     
     public int getNumRooms() {
         return mRooms.size();
     }
     
-    public GameRoom pairClient(GameClient client) {
-        for (GameRoom r : this.mRooms) {
-            if (!r.isFull()) {
-                Log.println("Paired the client to room: " + Integer.toString(r.getID()));
-                r.addClient(client);
-                mRoomTable.put(client.getID(), r);
-                return r;
-            }
-        }
-        
+    public GameRoom createRoomWithClient(GameClient client) {
         GameRoom room = new GameRoom();
         room.setID(mRoomIDCount++);
         room.addClient(client);
-        mRooms.add(room);
+        mRooms.put(room.getID(), room);
         mRoomTable.put(client.getID(), room);
         
         Log.println("New room created with ID: " + Integer.toString(room.getID()));
         Log.println("Number of rooms: " + Integer.toString(mRooms.size()));
         return room;
+    }
+    
+    public GameRoom pairClient(GameClient client, int roomID) {
+        if (!mRooms.containsKey(roomID)) {
+            Log.println("Can't join room with ID: " + Integer.toString(roomID));
+            return null;
+        }
+        
+        GameRoom r = mRooms.get(roomID);
+        r.addClient(client);
+        mRoomTable.put(client.getID(), r);
+        
+        Log.println("Joined room: " + Integer.toString(r.getID()));
+        return r;
     }
     
     public void clientQuit(GameClient client) {

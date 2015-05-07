@@ -18,18 +18,28 @@ import util.Log;
  * @author yanxing wang
  */
 public class RequestPair extends GameRequest {
-    
     int gameID = 0;
+    int pairParam = 0;
     
     @Override
     public void parse(DataInputStream dataInput) throws IOException {
         gameID = DataReader.readInt(dataInput);
+        
+        // if pairParam is -1, just create a room
+        // otherwise join the room with id = pairParam
+        pairParam = DataReader.readInt(dataInput);
     }
 
     @Override
     public void process() throws Exception {
-        // Start pair
-        GameRoom room = GameRoomManager.getInstance().pairClient(client);        
+        GameRoom room;
+        if (pairParam == -1) {
+            room = GameRoomManager.getInstance().createRoomWithClient(client);
+        } else {
+            // Start pair
+            room = GameRoomManager.getInstance().pairClient(client, pairParam);        
+        }        
+        
         room.setGameID(gameID);
         
         ResponsePair response = new ResponsePair();     

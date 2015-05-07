@@ -87,12 +87,12 @@ public class ClashOfSpecies : MonoBehaviour {
 
 		GUI.enabled = enableRRButton;
 		if (GUI.Button(new Rect(10, windowRect.height - 40, 140, 30), "Play Running Rhino")) {
-			NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_RUNNING_RHINO));
+			NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_RUNNING_RHINO, -1));
 		}
 
 		GUI.enabled = enableCWButton;
 		if (GUI.Button(new Rect(160, windowRect.height - 40, 125, 30), "Play Cards of Wild")) {
-			NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_CARDS_OF_WILD));
+			NetworkManager.Send (PairProtocol.Prepare (Constants.MINIGAME_CARDS_OF_WILD, -1));
 		}
 
 		GUI.enabled = true;
