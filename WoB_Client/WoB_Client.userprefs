@@ -1,27 +1,48 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Network/Protocol/PairProtocol.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/World/WorldController.cs">
     <Files>
-      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="88" Column="33" />
-      <File FileName="Assets/Scripts/Login.cs" Line="163" Column="17" />
+      <File FileName="Assets/Scripts/Login.cs" Line="207" Column="3" />
       <File FileName="Assets/Scripts/Constants.cs" Line="80" Column="42" />
-      <File FileName="Assets/Scripts/Network/NetworkCode.cs" Line="74" Column="40" />
-      <File FileName="Assets/Scripts/Network/Protocol/QuitRoomProtocol.cs" Line="14" Column="3" />
       <File FileName="Assets/Scripts/Network/NetworkProtocolTable.cs" Line="47" Column="2" />
-      <File FileName="Assets/Scripts/Network/Protocol/GetRoomsProtocol.cs" Line="12" Column="41" />
-      <File FileName="Assets/Scripts/GameRooms.cs" Line="26" Column="28" />
-      <File FileName="Assets/Scripts/Network/Protocol/PairProtocol.cs" Line="9" Column="31" />
-      <File FileName="Assets/Scripts/CardsOfWildGUI.cs" Line="25" Column="78" />
+      <File FileName="Assets/Scripts/Network/Protocol/GetRoomsProtocol.cs" Line="18" Column="41" />
+      <File FileName="Assets/Scripts/Network/Protocol/PairProtocol.cs" Line="6" Column="64" />
+      <File FileName="Assets/Scripts/CardsOfWildGUI.cs" Line="92" Column="3" />
+      <File FileName="Assets/RRAssets/Scripts/EndScene/EndGameManager.cs" Line="11" Column="3" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/PlayerPhysics.cs" Line="151" Column="20" />
+      <File FileName="Assets/RRAssets/Network/ConnectionManager.cs" Line="105" Column="4" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/Running.cs" Line="38" Column="56" />
+      <File FileName="Assets/RRAssets/Network/Response/ResponseRRPostion.cs" Line="44" Column="4" />
+      <File FileName="Assets/RRAssets/Scripts/SelectionScene/SelectionManager.cs" Line="44" Column="3" />
+      <File FileName="Assets/RRAssets/Scripts/ReadyScene.cs" Line="19" Column="3" />
+      <File FileName="Assets/MiniClientAssets/MiniGame.cs" Line="124" Column="17" />
+      <File FileName="Assets/Game.cs" Line="78" Column="41" />
+      <File FileName="Assets/Scripts/World/WorldController.cs" Line="24" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="MiniClientAssets" expanded="True" />
+            <Node name="RRAssets" expanded="True">
+              <Node name="Network" expanded="True">
+                <Node name="Response" expanded="True" />
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="EndScene" expanded="True" />
+                <Node name="RunnerScene Scripts" expanded="True">
+                  <Node name="PlatformActions" expanded="True" />
+                  <Node name="ReadyScene" expanded="True" />
+                </Node>
+                <Node name="SelectionScene" expanded="True" />
+              </Node>
+            </Node>
             <Node name="Scripts" expanded="True">
               <Node name="Network" expanded="True">
-                <Node name="Protocol" expanded="True">
-                  <Node name="PairProtocol.cs" selected="True" />
-                </Node>
+                <Node name="Protocol" expanded="True" />
+              </Node>
+              <Node name="World" expanded="True">
+                <Node name="WorldController.cs" selected="True" />
               </Node>
             </Node>
           </Node>
