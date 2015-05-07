@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DontEatMe/GameOverWall.cs">
     <Files>
@@ -43,6 +44,35 @@
         </State>
       </Pad>
     </Pads>
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RRAssets/Scripts/ReadyScene.cs">
+    <Files>
+      <File FileName="Assets/Game.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets/MiniClientAssets/Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/RunningRhinoGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CardsOfWildGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Network/DataReader.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Network/NetworkRequestTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Network/NetworkResponseTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/SpeciesData.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Network/Response/ResponseRRStartGame.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/CountdownScene/CountdownManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/EndScene/EndGameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/PlayerPhysics.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/TestingPlayerPhysics.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/SelectionScene/SelectionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Network/GamePacket.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/Running.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Network/Response/ResponseGameState.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Network/Response/ResponseRRPostion.cs" Line="1" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/Main.cs" Line="26" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/MessageQueue.cs" Line="46" Column="29" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/ReadyScene/ButtonLogic.cs" Line="15" Column="2" />
+      <File FileName="Assets/RRAssets/Scripts/ReadyScene.cs" Line="17" Column="1" />
+    </Files>
+>>>>>>> 58e2778859cd7d013f64caa99ff87b0d1aec650d
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

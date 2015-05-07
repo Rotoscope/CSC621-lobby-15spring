@@ -22,7 +22,6 @@ public class CardsOfWildGUI : MonoBehaviour
 		window_id = Constants.GetUniqueID ();
 
 		NetworkManager.Listen (NetworkCode.PAIR, OnPairResult);
-
 		NetworkManager.Send (PairProtocol.Prepare ());	
 	}
 	

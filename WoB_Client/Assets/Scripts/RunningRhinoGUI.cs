@@ -60,7 +60,7 @@ public class RunningRhinoGUI : MonoBehaviour {
 	}
 	
 	public void Submit() {
-		Destroy(this);
+		//Destroy(this);
 	}
 	
 	// Update is called once per frame
