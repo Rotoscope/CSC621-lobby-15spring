@@ -79,7 +79,7 @@ public class ClashOfSpecies : MonoBehaviour {
 			} else {
 				GUI.enabled = !this.waiting;
 				if(GUILayout.Button(new GUIContent("Join"), GUILayout.Width(100))) {
-
+					NetworkManager.Send (PairProtocol.Prepare (item.Value.game_id, item.Value.id));
 				}
 				GUI.enabled = true;
 			}
@@ -123,6 +123,7 @@ public class ClashOfSpecies : MonoBehaviour {
 	public void OnQuitRoomResult (NetworkResponse response) {
 		this.enableRRButton = true;
 		this.enableCWButton = true;
+		this.waiting = false;
 
 		RoomManager.getInstance().removePlayer(GameState.account.account_id);
 		if (quiting) {
