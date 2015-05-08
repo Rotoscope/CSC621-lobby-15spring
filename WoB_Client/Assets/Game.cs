@@ -74,6 +74,7 @@ public class Game : MonoBehaviour {
 				case "DontEatMe" :
 				case "RRGame" :
 				case "ClashSplash" :
+				case "Converge" :
 					Destroy(gObject.GetComponent<EcosystemScore>());
 					Destroy(gObject.GetComponent<GameResources>());
 					Destroy(gObject.GetComponent<Clock>());
