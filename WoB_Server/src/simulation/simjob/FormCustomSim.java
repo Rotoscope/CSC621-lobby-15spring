@@ -601,6 +601,10 @@ public class FormCustomSim extends javax.swing.JFrame {
         try {
         //save data
         SimJob job = jobMgr.getSimJob();
+        if (job == null) {
+            job = new SimJob();
+            jobMgr.setSimJob(job);
+        }
         if (job != null) {
             updateJobFromFields(job);
             repaint();

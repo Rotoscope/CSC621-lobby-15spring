@@ -32,11 +32,21 @@ public class SimulationTest {
         mSpecies = new HashMap<Integer, SpeciesZoneType>();
     }
 
-    public Map<Integer, SpeciesZoneType> getPredictionTest(SpeciesZoneType species, String networkOrManipulationId, int currentTimestep) throws SimulationException {
+    public Map<Integer, SpeciesZoneType> getPredictionTest(
+            SpeciesZoneType species, 
+            String networkOrManipulationId, 
+            int currentTimestep
+    ) throws SimulationException {
         //Get previous timestep biomass for all species from web service
 
         if (species != null) {
-            String errMsg = simulationEngine.addSpeciesType(species, currentTimestep, false, networkOrManipulationId);
+            String errMsg = simulationEngine.addSpeciesType(
+                    species, 
+                    null, //jtc - hashmap, szt
+                    currentTimestep, 
+                    false, 
+                    networkOrManipulationId
+            );
             if (errMsg == null) {
                 mSpecies.put(species.getNodeIndex(), species);
             }
@@ -106,27 +116,28 @@ public class SimulationTest {
 
 
         SpeciesZoneType szt1 = new SpeciesZoneType("", 10, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        manpId = simulationEngine.addSpeciesType(szt1, 6, false, manpId);
+        //null, //jtc - hashmap, szt                 
+        manpId = simulationEngine.addSpeciesType(szt1, null, 6, false, manpId);
         if (manpId == null) {
             return null;
         }
         szt1 = new SpeciesZoneType("", 11, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        manpId = simulationEngine.addSpeciesType(szt1, 7, false, manpId);
+        manpId = simulationEngine.addSpeciesType(szt1, null, 7, false, manpId);
         if (manpId == null) {
             return null;
         }
         szt1 = new SpeciesZoneType("", 13, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        manpId = simulationEngine.addSpeciesType(szt1, 8, false, manpId);
+        manpId = simulationEngine.addSpeciesType(szt1, null, 8, false, manpId);
         if (manpId == null) {
             return null;
         }
         szt1 = new SpeciesZoneType("", 14, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        manpId = simulationEngine.addSpeciesType(szt1, 9, false, manpId);
+        manpId = simulationEngine.addSpeciesType(szt1, null, 9, false, manpId);
         if (manpId == null) {
             return null;
         }
         szt1 = new SpeciesZoneType("", 16, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        manpId = simulationEngine.addSpeciesType(szt1, 10, false, manpId);
+        manpId = simulationEngine.addSpeciesType(szt1, null, 10, false, manpId);
         if (manpId == null) {
             return null;
         }
@@ -139,16 +150,16 @@ public class SimulationTest {
         int nodeList[] = {7, 33};
         String manpId = simulationEngine.createAndRunSeregenttiSubFoodweb(nodeList, fwname, 0, 3, true);
 
-        List<SpeciesZoneType> spList = new ArrayList<SpeciesZoneType>();
+        HashMap<Integer, SpeciesZoneType> spList = new HashMap<Integer, SpeciesZoneType>();
         SpeciesZoneType szt1 = new SpeciesZoneType("", 10, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        spList.add(szt1);
+        spList.put(szt1.getNodeIndex(), szt1);
         szt1 = new SpeciesZoneType("", 11, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        spList.add(szt1);
+        spList.put(szt1.getNodeIndex(), szt1);
         szt1 = new SpeciesZoneType("", 12, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-        spList.add(szt1);
+        spList.put(szt1.getNodeIndex(), szt1);
 
         try {
-            simulationEngine.addMultipleSpeciesType(spList, 3, false, manpId);
+            simulationEngine.addMultipleSpeciesType(spList, spList, 3, false, manpId);
         } catch (SimulationException ex) {
             simulationEngine.deleteManipulation(manpId);
             return "addMultipleSpeciesType failed";
@@ -502,7 +513,14 @@ public class SimulationTest {
         String manpId = simulationEngine.createAndRunSeregenttiSubFoodweb(nodeList, "sg10Test27111121", 0, 1, true);
         for (int i = 1; i < 15; i++) {
             SpeciesZoneType szt = new SpeciesZoneType("", i + 7, 1, 1, 1.0, SpeciesTypeEnum.ANIMAL);
-            String result = simulationEngine.addSpeciesType(szt, i, false, manpId);
+            //null, //jtc - hashmap szt
+            String result = simulationEngine.addSpeciesType(
+                    szt, 
+                    null, 
+                    i, 
+                    false, 
+                    manpId
+            );
             if (result == null) {
                 return null;
             }
