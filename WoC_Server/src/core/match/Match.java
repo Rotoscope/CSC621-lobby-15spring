@@ -58,6 +58,10 @@ public class Match {
 	}
 	
         public boolean addPlayer(Player p) {
+            if (p == null) {
+                Log.println("Null player!");
+                return false;
+            }
             if (player1 != null && player2 != null) {
                 Log.println("The match is full, can't add new players");
                 return false;

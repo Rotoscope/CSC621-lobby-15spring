@@ -23,6 +23,7 @@ namespace CW
 			Add (NetworkCode.CLIENT, "Client");
 			Add (NetworkCode.LOGIN, "Login");
 			Add (NetworkCode.LOGOUT, "Logout");
+			//Add (NetworkCode.PLAYER_SELECT, "PlayerSelect");
 			Add (NetworkCode.MATCH_INIT, "MatchInit");
 			Add (NetworkCode.MATCH_STATUS, "MatchStatus");
 			Add (NetworkCode.MATCH_OVER, "MatchOver");
