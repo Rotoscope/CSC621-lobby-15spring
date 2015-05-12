@@ -151,6 +151,8 @@ public class ClashOfSpecies : MonoBehaviour {
 				RR.ReadyScene.ROOM_ID = args.id;
 				Game.SwitchScene ("RRGame");
 			} else if (args.gameID == Constants.MINIGAME_CARDS_OF_WILD) {
+				//RR.ReadyScene.ROOM_ID = args.id;
+				//Game.SwitchScene ("RRGame"
 			}
 		} else {
 			Debug.Log("New room allocated [room id=" + args.id + "]");
