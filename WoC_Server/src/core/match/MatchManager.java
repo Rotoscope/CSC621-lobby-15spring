@@ -1,5 +1,6 @@
 package core.match;
 
+import core.GameClient;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,8 @@ public class MatchManager {
     private final Map<Integer, Match> matchList = new HashMap<Integer, Match>();
     // <playerID, matchID>
     private final Map<Integer, Integer> matchIDList = new HashMap<Integer, Integer>();
+    
+    private final Map<Integer, String> idSessionList = new HashMap<Integer, String>();
 
     public MatchManager() {
     }
@@ -30,10 +33,20 @@ public class MatchManager {
         }
         return manager;
     }
+    
+    public static GameClient toClient(int playerid) {
+        String session = MatchManager.getInstance().idSessionList.get(playerid);
+        return GameServer.getInstance().getActiveClient(session);
+    }
+    
+    public static String toSession(int playerid) {
+        String session = MatchManager.getInstance().idSessionList.get(playerid);
+        return session;
+    }
 
     // This constructor adds sessionID, otherwise its the same
     public Match createMatch(int playerID1, int playerID2, String sessionID) {
-        List<Player> players = new ArrayList<Player>();
+        List<GameClient> players = new ArrayList<GameClient>();
         Match match = null;
 
         match = getMatchByPlayer(playerID1);
@@ -43,8 +56,8 @@ public class MatchManager {
             matchID = makeMatchID();
             System.out.println("Creating match" + matchID);
             // get players
-            players.add(GameServer.getInstance().getActivePlayer(playerID1));
-            players.add(GameServer.getInstance().getActivePlayer(playerID2));
+            players.add(GameServer.getInstance().getActiveClient(this.idSessionList.get(playerID1)));
+            players.add(GameServer.getInstance().getActiveClient(this.idSessionList.get(playerID2)));
             match = new Match(players, matchID, sessionID);
             //TODO: update when Lobby has design for passing data to games
             matchList.put(matchID, match);
@@ -59,7 +72,7 @@ public class MatchManager {
         
         if (match == null) {
             Log.printf("Manager creating new match");
-            System.out.println("Creating match" + matchID);
+            System.out.println("Creating match: " + matchID);
             
             match = new Match(null, matchID);
             matchList.put(matchID, match);
@@ -68,20 +81,23 @@ public class MatchManager {
         return match;
     }
     
-    public Match matchPlayerTo(int matchID, int playerID) {
-        Log.printf("Matching player[%d] to match[%d]", matchID, playerID);
+    public Match matchPlayerTo(int matchID, int playerID, GameClient client) {
+        Log.printf("Matching player[%d] to match[%d]", playerID, matchID);
+        this.idSessionList.put(playerID, client.getID());
         
         Match match = getOrCreateMatch(matchID);
-        if (match.addPlayer(GameServer.getInstance().getActivePlayer(playerID))) {
+        if (match.addPlayer(client)) {
             matchIDList.put(playerID, matchID);
-            Log.printf("Player added");
+            Log.println("Player added");
+        } else {
+            Log.println("Player can't be added");
         }
         return match;
     }
 
     public Match createMatch(int playerID1, int playerID2) {
-        List<Player> players = new ArrayList<Player>();
-        Match match = null;
+        List<GameClient> players = new ArrayList<GameClient>();
+        Match match;
 
         match = getMatchByPlayer(playerID1);
         // if match not initialized, initialize match
@@ -90,8 +106,8 @@ public class MatchManager {
             matchID = makeMatchID();
             System.out.println("Creating match" + matchID);
             // get players
-            players.add(GameServer.getInstance().getActivePlayer(playerID1));
-            players.add(GameServer.getInstance().getActivePlayer(playerID2));
+            players.add(GameServer.getInstance().getActiveClient(this.idSessionList.get(playerID1)));
+            players.add(GameServer.getInstance().getActiveClient(this.idSessionList.get(playerID2)));
             match = new Match(players, matchID);
             //TODO: update when Lobby has design for passing data to games
             matchList.put(matchID, match);

@@ -165,7 +165,6 @@ public class GameServer {
             String serverConf = "conf/gameServer.conf";
             File f = new File(serverConf);
             if (!f.exists()) {
-                
                 // get current absolute path
                 CodeSource codeSource = GameServer.class.getProtectionDomain().getCodeSource();
                 File jarFile = new File(codeSource.getLocation().toURI().getPath());

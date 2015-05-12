@@ -27,6 +27,8 @@ public class RequestMatchStatus extends GameRequest {
 	@Override
 	public void process() throws Exception {
 		Log.printf("Setting match status for player '%d, %s'", playerID, playerName);
+                
+                String session = MatchManager.toSession(playerID);
 		
 		MatchManager manager = MatchManager.getInstance();
 		Match match = manager.getMatchByPlayer(playerID);
@@ -39,8 +41,8 @@ public class RequestMatchStatus extends GameRequest {
 			response.setIsReady(false);
 		} else {
 			// Set ready true	
-			match.getPlayer(playerID).setDeck();
-			match.getPlayer(playerID).setReady(true);
+			match.getPlayer(session).setDeck();
+			match.getPlayer(session).setReady(true);
 			// Adds name to opponent's player2
 			
 			MatchAction action = new MatchAction();
@@ -54,18 +56,18 @@ public class RequestMatchStatus extends GameRequest {
 				opponentIsReady = true;
 				isActive = true;
 			} else {
-				match.addMatchAction(playerID, action);
-				opponentIsReady = match.isOpponentReady(playerID);
+				match.addMatchAction(session, action);
+				opponentIsReady = match.isOpponentReady(session);
 				
 				// If opponent is ready they should be active but double checking
-				if (match.isOpponentActive(playerID)){
+				if (match.isOpponentActive(session)){
 					Log.printf("Player: playerID '%d' is not Active", playerID);
 					isActive = false;
-					match.getPlayer(playerID).setActive(isActive);
+					match.getPlayer(session).setActive(isActive);
 				} else {
 					Log.printf("Setting playerID '%d' active", playerID);	
 					isActive = true;
-					match.getPlayer(playerID).setActive(isActive);
+					match.getPlayer(session).setActive(isActive);
 				}
 			}
 			response.setStatus(Constants.STATUS_SUCCESS);

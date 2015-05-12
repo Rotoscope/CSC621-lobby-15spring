@@ -14,44 +14,17 @@ namespace CW{
 		// Login tie in -- following pattern of ConvergeGame
 		void Awake(){
 			// Used for scene transition 
-			DontDestroyOnLoad (gameObject.GetComponent ("Login"));
+			//DontDestroyOnLoad (gameObject.GetComponent ("Login"));
 
-			CW.NetworkManager.Send (CW.MatchInitProtocol.Prepare 
-			                        (GameState.player.GetID(), matchID), 
-			                        ProcessMatchInit);
+
 		}
 		
 		void Start () {
-			// Needed to to fade into scene
-			CWGame.StartEnterTransition ();
-			protocols = (ProtocolManager)gameObject.AddComponent("ProtocolManager");
-			protocols.init ();
+			CW.NetworkManager.Send (CW.MatchInitProtocol.Prepare 
+			                        (GameState.player.GetID(), matchID), 
+			                        ProcessMatchInit);
 
-			enabled = true;
-			player1 = (BattlePlayer)gameObject.AddComponent("BattlePlayer");
-			player1.init (true);
-			player1.playerID = GameState.player.GetID ();
-			Debug.Log("player1 ID : " + player1.playerID);
-			player1.playerName = GameState.player.GetName ();
 
-			// initialize match here
-
-			if (Constants.SINGLE_PLAYER){
-				player2 = (BattlePlayer)gameObject.AddComponent("BattlePlayer");
-				player2.init (false);
-				player2.playerName = "Player 2";
-			} else {
-				// TODO: Need different logic here to make player 2
-				// not have cards dealt face up, etx.
-				player2 = (BattlePlayer)gameObject.AddComponent("BattlePlayer");
-				player2.init (false);
-				player2.playerName = "Player 2";
-			}
-			// Send MatchStatus protocol
-			initMatch();
-			
-			curPlayer = player1;
-			GameManager.manager = this;
 
 			// Poll for turn updates
 			//StartCoroutine(PollAction(Constants.UPDATE_RATE));
@@ -153,6 +126,37 @@ namespace CW{
 			if (args.status == 0) {
 				Debug.Log("MatchID set to: " + args.matchID);
 				//Game.SwitchScene ("CWBattle");
+
+				// Needed to to fade into scene
+				CWGame.StartEnterTransition ();
+				protocols = (ProtocolManager)gameObject.AddComponent("ProtocolManager");
+				protocols.init ();
+				
+				enabled = true;
+				player1 = (BattlePlayer)gameObject.AddComponent("BattlePlayer");
+				player1.init (true);
+				player1.playerID = GameState.player.GetID ();
+				Debug.Log("player1 ID : " + player1.playerID);
+				player1.playerName = GameState.player.GetName ();
+				
+				// initialize match here
+				
+				if (Constants.SINGLE_PLAYER){
+					player2 = (BattlePlayer)gameObject.AddComponent("BattlePlayer");
+					player2.init (false);
+					player2.playerName = "Player 2";
+				} else {
+					// TODO: Need different logic here to make player 2
+					// not have cards dealt face up, etx.
+					player2 = (BattlePlayer)gameObject.AddComponent("BattlePlayer");
+					player2.init (false);
+					player2.playerName = "Player 2";
+				}
+				// Send MatchStatus protocol
+				initMatch();
+				
+				curPlayer = player1;
+				GameManager.manager = this;
 			}
 		}
 	}

@@ -48,7 +48,7 @@ public class RequestTreeAttack extends GameRequest {
         
     	client.add(response);
         if (!Constants.SINGLE_PLAYER){
-        	match.addMatchAction(playerID, action);
+        	match.addMatchAction(MatchManager.toSession(playerID), action);
         }
    }
 

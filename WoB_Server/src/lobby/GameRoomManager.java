@@ -23,7 +23,7 @@ public class GameRoomManager {
     // key is session_id
     private final Map<String, GameRoom> mRoomTable = new HashMap<String, GameRoom>();
     
-    private int mRoomIDCount = 0;
+    private int mRoomIDCount = 100;
     
     public GameRoomManager() {
     }
@@ -45,7 +45,7 @@ public class GameRoomManager {
     
     public GameRoom createRoomWithClient(GameClient client) {
         GameRoom room = new GameRoom();
-        room.setID(mRoomIDCount++);
+        room.setID(++mRoomIDCount);
         room.addClient(client);
         mRooms.put(room.getID(), room);
         mRoomTable.put(client.getID(), room);

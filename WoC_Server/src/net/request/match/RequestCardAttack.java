@@ -26,9 +26,9 @@ public class RequestCardAttack extends GameRequest {
     
     @Override
 	public void parse(DataInputStream dataInput) throws IOException {
-	   playerID = DataReader.readInt(dataInput);
-       attackersPosition = DataReader.readInt(dataInput);
-       attackedPosition = DataReader.readInt(dataInput);
+            playerID = DataReader.readInt(dataInput);
+            attackersPosition = DataReader.readInt(dataInput);
+            attackedPosition = DataReader.readInt(dataInput);
 	}
     
     @Override
@@ -50,7 +50,7 @@ public class RequestCardAttack extends GameRequest {
         response.setStatus((short)0);
     	
         if(!Constants.SINGLE_PLAYER){
-        	match.addMatchAction(playerID, action);
+            match.addMatchAction(MatchManager.toSession(playerID), action);
         }
         client.add(response);
        

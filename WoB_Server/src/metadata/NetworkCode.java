@@ -60,7 +60,7 @@ public class NetworkCode {
     public final static short UPDATE_SEASON = 142;
     public final static short UPDATE_CURRENT_EVENT = 143;
     public final static short BATTLE_END = 144;
-    
+        
     public final static short PLAYER_SELECT = 145;
 
     public final static short CONVERGE_ECOSYSTEMS = 146;
