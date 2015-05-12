@@ -2,7 +2,8 @@ using UnityEngine;
 
 using System.Collections;
 
-public class Game : MonoBehaviour {
+public class Game : MonoBehaviour
+{
 
 	public string scene;
 	private static float time = 1f;
@@ -11,15 +12,17 @@ public class Game : MonoBehaviour {
 	private static float alphaFadeValue;
 	private static string nextScene;
 
-	void Awake() {
-		DontDestroyOnLoad(gameObject);
+	void Awake ()
+	{
+		DontDestroyOnLoad (gameObject);
 
-		SpeciesTable.Initialize();
-		texture = Functions.CreateTexture2D(Color.black);
+		SpeciesTable.Initialize ();
+		texture = Functions.CreateTexture2D (Color.black);
 	}
 	
 	// Use this for initialization
-	void Start() {
+	void Start ()
+	{
 //		NetworkManager.Send(
 //			SpeciesListProtocol.Prepare(),
 //			ProcessSpeciesList
@@ -27,31 +30,34 @@ public class Game : MonoBehaviour {
 
 		if (scene != "") {
 //			Application.LoadLevel(scene);
-			Game.SwitchScene(scene);
+			Game.SwitchScene (scene);
 		} else {
-			Debug.Log("Missing Scene");
+			Debug.Log ("Missing Scene");
 		}
 	}
 	
 	// Update is called once per frame
-	void Update() {
+	void Update ()
+	{
 		if (isFading != 0) {
-			PerformTransition();
+			PerformTransition ();
 		}
 	}
 
-	void OnGUI() {
-		GUI.color = new Color(0, 0, 0, alphaFadeValue);
+	void OnGUI ()
+	{
+		GUI.color = new Color (0, 0, 0, alphaFadeValue);
 		GUI.depth = 0;
-		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), texture);
+		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), texture);
 	}
 
-	public static bool SwitchScene(string scene) {
+	public static bool SwitchScene (string scene)
+	{
 		if (scene != nextScene) {
 			if (nextScene == null) {
-				Game.LoadScene(scene);
+				Game.LoadScene (scene);
 			} else {
-				StartLeaveTransition();
+				StartLeaveTransition ();
 			}
 
 			nextScene = scene;
@@ -62,75 +68,82 @@ public class Game : MonoBehaviour {
 		return false;
 	}
 
-	public static void LoadScene(string name) {
-		Application.LoadLevel(name);
+	public static void LoadScene (string name)
+	{
+		Application.LoadLevel (name);
 
-		GameObject gObject = GameObject.Find("Global Object");
+		GameObject gObject = GameObject.Find ("Global Object");
 
 		if (gObject != null) {
 			switch (name) {
-				case "Login":
-				case "MiniClient":
-				case "DontEatMe" :
-				case "RRGame" :
-				case "ClashSplash" :
-				case "Converge" :
-					Destroy(gObject.GetComponent<EcosystemScore>());
-					Destroy(gObject.GetComponent<GameResources>());
-					Destroy(gObject.GetComponent<Clock>());
-					Destroy(gObject.GetComponent<Chat>());
-					Destroy(gObject.GetComponent<Shop>());
+			case "Login":
+			case "MiniClient":
+			case "DontEatMe":
+			case "RRGame":
+			case "ClashSplash":
+			case "Converge":
+			case "CWBattle":
+				Destroy (gObject.GetComponent<EcosystemScore> ());
+				Destroy (gObject.GetComponent<GameResources> ());
+				Destroy (gObject.GetComponent<Clock> ());
+				Destroy (gObject.GetComponent<Chat> ());
+				Destroy (gObject.GetComponent<Shop> ());
 					//on non-initial login, need to reset isFading 1->0
-					StartEnterTransition();
-					break;
-				case "World":
-					NetworkManager.Send (BackToLobbyProtocol.Prepare ());
-					break;
-				case "Ecosystem":
-					break;
+				StartEnterTransition ();
+				break;
+			case "World":
+				NetworkManager.Send (BackToLobbyProtocol.Prepare ());
+				break;
+			case "Ecosystem":
+				break;
 			}
 		}
 	}
 
-	public static void StartEnterTransition() {
+	public static void StartEnterTransition ()
+	{
 		isFading = 1;
 	}
 
-	public static void StartLeaveTransition() {
+	public static void StartLeaveTransition ()
+	{
 		isFading = -1;
 	}
 
-	private void PerformTransition() {
+	private void PerformTransition ()
+	{
 		if (isFading > 0) {
-			alphaFadeValue = Mathf.Max(0, alphaFadeValue - Time.deltaTime / time);
+			alphaFadeValue = Mathf.Max (0, alphaFadeValue - Time.deltaTime / time);
 			
-			if (Mathf.Approximately(alphaFadeValue, 0)) {
+			if (Mathf.Approximately (alphaFadeValue, 0)) {
 				isFading = 0;
 				alphaFadeValue = 0;
 			}
 		} else if (isFading < 0) {
-			alphaFadeValue = Mathf.Min(1, alphaFadeValue + Time.deltaTime / time);
+			alphaFadeValue = Mathf.Min (1, alphaFadeValue + Time.deltaTime / time);
 			
-			if (Mathf.Approximately(alphaFadeValue, 1)) {
+			if (Mathf.Approximately (alphaFadeValue, 1)) {
 				isFading = 0;
 				alphaFadeValue = 1;
 
 				if (nextScene != null) {
-					Game.LoadScene(nextScene);
+					Game.LoadScene (nextScene);
 				}
 			}
 		}
 	}
 	
-	public void ProcessSpeciesList(NetworkResponse response) {
+	public void ProcessSpeciesList (NetworkResponse response)
+	{
 		ResponseSpeciesList args = response as ResponseSpeciesList;
 //		SpeciesTable.Update(args.speciesList);
 //		SpeciesTable.speciesList = args.speciesList;
 	}
 	
-	public GameObject CreateMessageBox(string message) {
-		GameObject messageBox = Instantiate(Resources.Load(Constants.PREFAB_RESOURCES_PATH + "MessageBox")) as GameObject;
-		messageBox.GetComponent<MessageBox>().setMessage(message);
+	public GameObject CreateMessageBox (string message)
+	{
+		GameObject messageBox = Instantiate (Resources.Load (Constants.PREFAB_RESOURCES_PATH + "MessageBox")) as GameObject;
+		messageBox.GetComponent<MessageBox> ().setMessage (message);
 		
 		return messageBox;
 	}

@@ -217,7 +217,7 @@ public class Match {
 	public MatchAction getMatchAction(String playerID){
 		
 		MatchAction action = getPlayer(playerID).getMatchAction();
-		Log.printf("Get action for player %d, actionID %d", 
+		Log.printf("Get action for player %s, actionID %d", 
 				player2.getID(), action.getActionID());
 		return action;
 		//return getPlayer(playerID).getMatchAction();

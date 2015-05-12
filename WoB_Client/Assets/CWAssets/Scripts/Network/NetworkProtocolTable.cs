@@ -17,36 +17,12 @@ namespace CW
 
 		public static void Init ()
 		{
+			if (table.Count != 0)
+				return;
+
 			Add (NetworkCode.CLIENT, "Client");
 			Add (NetworkCode.LOGIN, "Login");
 			Add (NetworkCode.LOGOUT, "Logout");
-			//Add(NetworkCode.REGISTER, "Register");
-			//Add(NetworkCode.MESSAGE, "Message");
-			//Add(NetworkCode.SHOP, "Shop");
-			//Add(NetworkCode.SPECIES_LIST, "SpeciesList");
-			//Add(NetworkCode.SPECIES_CREATE, "SpeciesCreate");
-			//Add(NetworkCode.ECOSYSTEM, "Ecosystem");
-			//Add(NetworkCode.SHOP_ACTION, "ShopAction");
-			//Add(NetworkCode.UPDATE_RESOURCES, "UpdateResources");
-			/*
-		Add(NetworkCode.SPECIES_ACTION, "SpeciesAction");
-		Add(NetworkCode.PREDICTION, "Prediction");
-		Add(NetworkCode.UPDATE_TIME, "UpdateTime");
-		Add(NetworkCode.UPDATE_ENV_SCORE, "UpdateEnvScore");
-		Add(NetworkCode.ZONE_LIST,"ZoneList");
-		Add(NetworkCode.ZONE,"Zone");
-		Add(NetworkCode.WORLD,"World");
-		Add(NetworkCode.ZONE_UPDATE, "ZoneUpdate");
-		Add(NetworkCode.PLAYERS, "Players");
-		Add(NetworkCode.PLAYER_SELECT, "PlayerSelect");
-		Add(NetworkCode.CONVERGE_ECOSYSTEMS, "ConvergeEcosystems");
-		Add(NetworkCode.CONVERGE_NEW_ATTEMPT, "ConvergeNewAttempt");
-		Add(NetworkCode.CONVERGE_PRIOR_ATTEMPT, "ConvergePriorAttempt");
-		Add(NetworkCode.CONVERGE_PRIOR_ATTEMPT_COUNT, "ConvergePriorAttemptCount");
-		Add(NetworkCode.CONVERGE_HINT, "ConvergeHint");
-		Add(NetworkCode.CONVERGE_HINT_COUNT, "ConvergeHintCount");
-		Add(NetworkCode.CONVERGE_NEW_ATTEMPT_SCORE, "ConvergeNewAttemptScore");
-		*/
 			Add (NetworkCode.MATCH_INIT, "MatchInit");
 			Add (NetworkCode.MATCH_STATUS, "MatchStatus");
 			Add (NetworkCode.MATCH_OVER, "MatchOver");

@@ -181,7 +181,7 @@ public class ClashOfSpecies : MonoBehaviour {
 		
 		if (args.status == 0) {
 			Debug.Log("MatchID set to: " + args.matchID);
-			//Game.SwitchScene ("CWBattle");
+			Game.SwitchScene ("CWBattle");
 		}
 	}
 }
