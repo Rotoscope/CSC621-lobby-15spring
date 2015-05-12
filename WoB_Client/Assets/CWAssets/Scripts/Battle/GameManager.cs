@@ -136,6 +136,17 @@ namespace CW{
 			
 		}
 
+		/*
+	 This is called when the game is over and the player 
+	 selects "ReturnToLobby button" or if the player fails
+	 to aquire a valid match
+	*/
+		public void returnToLobby(){
+			Debug.Log ("Returning to Lobby");
+			//protocols.sendReturnToLobby();
+		}
+
+
 		//Called many times a second listening for button clicks
 		void OnGUI(){
 			
@@ -143,7 +154,15 @@ namespace CW{
 			//TODO maybe make a new graphic for the button
 			if(GUI.Button(new Rect(0, (Screen.height/2.0f), (Screen.width/12.8f)/100 *150, (Screen.width/12.8f)/100 *40), "End Turn")){
 				endTurn();
-			}		
+			}	
+			if(GUI.Button(new Rect(0, //left
+			                       (Screen.height/3.0f), //height
+			                       (Screen.width/12.8f)/100 *150, 
+			                       (Screen.width/12.8f)/100 *40), 
+			              "Return Lobby")){
+				//protocols.sendReturnToLobby();
+			}
+
 		}
 	}
 }
