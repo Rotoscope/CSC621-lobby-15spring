@@ -77,6 +77,15 @@ public class GameRequestTable {
         add(NetworkCode.QUIT_ROOM, "RequestQuitRoom");
         add(NetworkCode.GET_ROOMS, "RequestGetRooms");
         add(NetworkCode.BACK_TO_LOBBY, "RequestBackToLobby");
+        
+        //Clash of species
+	add(NetworkCode.CLASH_ENTRY, "clashgame.RequestClashEntry");
+	add(NetworkCode.CLASH_SPECIES_LIST, "clashgame.RequestClashSpeciesList");
+	add(NetworkCode.CLASH_DEFENSE_SETUP, "clashgame.RequestClashDefenseSetup");
+	add(NetworkCode.CLASH_PLAYER_LIST, "clashgame.RequestClashPlayerList");
+	add(NetworkCode.CLASH_PLAYER_VIEW, "clashgame.RequestClashPlayerView");
+	add(NetworkCode.CLASH_INITIATE_BATTLE, "clashgame.RequestClashInitiateBattle");
+	add(NetworkCode.CLASH_END_BATTLE, "clashgame.RequestClashEndBattle");
 
         Log.println("Done!");
     }
