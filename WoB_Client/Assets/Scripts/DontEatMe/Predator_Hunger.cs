@@ -45,7 +45,7 @@ public class Predator_Hunger : MonoBehaviour {
 				currentHP.lowerHealth(amountToEatPerTick);
 				if(currentHP.eaten == true){
 					isHunger = true;
-					transform.position += new Vector3(3,0,0);
+					transform.position += new Vector3(4,0,0);
 				}
 
 				hunger += amountToEatPerTick;

@@ -42,7 +42,6 @@ public class HintBoard : MonoBehaviour
 	}
 
 	void OnGUI() {
-		
 		// draw the plant menu
 		GUILayout.BeginArea (new Rect (150, 510, 1000, 540));
 		GUILayout.BeginHorizontal ("box");
@@ -57,8 +56,6 @@ public class HintBoard : MonoBehaviour
 		// End GUI for plant menu
 		GUILayout.EndVertical();
 		GUILayout.EndArea ();
-		
-
 	}
 
 	public void setNextPredator(int nextPredator) {

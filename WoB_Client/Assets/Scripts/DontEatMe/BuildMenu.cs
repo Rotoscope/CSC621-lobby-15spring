@@ -21,6 +21,8 @@ public class BuildMenu : MonoBehaviour {
 	// Prey prefabs
 	public BuildInfo[] prey;
 
+	int coins = 0;
+
 	void OnGUI() {
 
 		// draw resource menu
@@ -39,7 +41,7 @@ public class BuildMenu : MonoBehaviour {
 		GUILayout.BeginHorizontal ("box");
 		
 		// draw score counter
-		GUILayout.Button (new GUIContent ("Score: " + score.ToString ()), GUILayout.Height(70));
+		GUILayout.Button (new GUIContent ("Coins: " + coins.ToString ()), GUILayout.Height(70));
 		
 		// end GUI for score menu
 		GUILayout.EndHorizontal ();
@@ -86,7 +88,37 @@ public class BuildMenu : MonoBehaviour {
 		InvokeRepeating ("increaseResources", 2, 3.0F);
 
 	}
-	
+
+	public void CalculateCoins() {
+		int newCoins = (score / 100);
+
+		int numCoinsDrop = (newCoins - coins);
+
+		if (newCoins > 0) {
+			dropCoins (newCoins);
+		}
+
+	}
+
+	void dropCoins(int numCoins) {
+		//Drop numCoins from screen
+		//Debug.Log ("DropCoins: " + numCoins);
+		coins += numCoins;
+
+		Vector3 spawnPoint = new Vector3 (8f, 3.3f, 0f);
+		Instantiate(Resources.Load("Prefabs/SpinCoin"), spawnPoint,  Quaternion.identity);
+	}
+
+
+	public void endGame() {
+		Debug.Log ("Game ended with X coins: " + coins);
+
+		//LOBBY TEAM, PUT YOUR RETURN CODE HERE, PASS BACK
+		//coins variable
+
+
+
+	}
 	// Update is called once per frame
 	void Update () {
 	

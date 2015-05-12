@@ -12,7 +12,7 @@ public class Health : MonoBehaviour {
 		// Subtract damage from current health
 		currentHealth -= damage;
 
-		Debug.Log ("Health now: " + currentHealth);
+		//Debug.Log ("Health now: " + currentHealth);
 
 		// Destroy object if health is depleted to 0
 		if (currentHealth <= 0) {
@@ -21,7 +21,7 @@ public class Health : MonoBehaviour {
 			Destroy(gameObject);
 
 //			Predator_Hunger.isHunger = true;
-			Debug.Log(gameObject.ToString() + " has been eaten");
+			//Debug.Log(gameObject.ToString() + " has been eaten");
 		}
 	}
 
