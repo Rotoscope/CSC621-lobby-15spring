@@ -139,7 +139,6 @@ public class GameClient {
                         send();
                     } catch (Exception ex) {
                         Log.printf_e("Request [%d] Error:\n%s", request_id, ex.getMessage());
-                        ex.printStackTrace();
                     }
                 }
             }
@@ -170,6 +169,8 @@ public class GameClient {
 
     private void shutdown() {
         if (account != null) {
+            // notify game room manager
+            GameRoomManager.getInstance().onClientQuit(this);
             logout();
         }
     }

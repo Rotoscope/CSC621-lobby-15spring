@@ -84,6 +84,7 @@ public class Game : MonoBehaviour {
 					StartEnterTransition();
 					break;
 				case "World":
+					NetworkManager.Send (BackToLobbyProtocol.Prepare ());
 					break;
 				case "Ecosystem":
 					break;

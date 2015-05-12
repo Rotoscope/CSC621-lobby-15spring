@@ -87,4 +87,15 @@ public class GameRoomManager {
     public GameRoom getRoom(String id) {
         return mRoomTable.getOrDefault(id, null);
     }
+
+    public void onClientQuit(GameClient client) {
+        if (!mRoomTable.containsKey(client.getID())) {
+            return;
+        }
+        
+        Log.println("Client is shutting down...");
+        GameRoom room = mRoomTable.get(client.getID());
+        mRooms.remove(room.getID());
+        mRoomTable.remove(client.getID());
+    }
 }

@@ -72,6 +72,7 @@
 	public static readonly short PAIR = 159;
 	public static readonly short QUIT_ROOM = 160;
 	public static readonly short GET_ROOMS = 161;
+	public static readonly short BACK_TO_LOBBY = 192;
 
 	//Clash of Species
 	public static readonly short CLASH_ENTRY = 162;
