@@ -28,10 +28,10 @@ public class RequestMatchInit extends GameRequest {
         short status;
 
         Log.printf("matchID = %d", matchID);
-        
-        // Assume player is in DB otherwise 
-        // Match match = manager.createMatch(playerID1, playerID2);
-        Match match = manager.matchPlayerTo(this.matchID, playerID, client);
+
+		// Assume player is in DB otherwise 
+        //Match match = manager.createMatch(playerID1, playerID2);
+        Match match = manager.matchPlayerTo(this.matchID, playerID);
         if (match != null) {
             // TODO: add response success constant
             status = 0;

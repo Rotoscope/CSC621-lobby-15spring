@@ -210,7 +210,7 @@ public class GameServer {
      * @param args contains additional launching parameters
      */
     public static void main(String[] args) {
-        Log.printf("Cards of the Wild Server v%s is starting...", Constants.CLIENT_VERSION);
+        Log.printf("World of Balance Server v%s is starting...", Constants.CLIENT_VERSION);
 
         try {
             Log.console("Loading Configuration File...");

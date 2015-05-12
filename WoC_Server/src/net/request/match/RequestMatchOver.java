@@ -78,7 +78,7 @@ public class RequestMatchOver extends GameRequest {
     	
         client.add(response);
         if (!Constants.SINGLE_PLAYER){
-        	match.addMatchAction(MatchManager.toSession(playerID), action);
+        	match.addMatchAction(playerID, action);
         }
     }
 	

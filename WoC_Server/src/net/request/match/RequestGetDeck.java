@@ -34,7 +34,7 @@ public class RequestGetDeck extends GameRequest {
         ResponseGetDeck opponentResponse = new ResponseGetDeck();    
         Log.printf("Player '%d' is gettting Deck ", playerID);
         
-        CardDeck cardDeck = match.getPlayer(MatchManager.toSession(playerID)).getDeck();
+        CardDeck cardDeck = match.getPlayer(playerID).getDeck();
         opponentResponse.setNumCards(cardDeck.getDeckSize());
         //TODO: This field is not used on client side 
         opponentResponse.setNumFields(7);
