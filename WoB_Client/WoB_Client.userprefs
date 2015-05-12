@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CWAssets\CWGame.cs">
     <Files>
@@ -10,6 +11,56 @@
       <File FileName="Assets\Scripts\Network\Protocol\BackToLobbyProtocol.cs" Line="4" Column="28" />
       <File FileName="Assets\CWAssets\CWGame.cs" Line="9" Column="23" />
     </Files>
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DontEatMe/GameOverWall.cs">
+    <Files>
+      <File FileName="Assets/Scripts/DontEatMe/BuildMenu.cs" Line="117" Column="19" />
+      <File FileName="Assets/Scripts/ClashOfSpecies/ClashSplash.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ConnectionLostGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/ConnectionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HUD/GameResources.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Protocol/HeartbeatProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/NetworkCode.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Protocol/PairProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/NetworkProtocolTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/CWGame.cs" Line="1" Column="1" />
+      <File FileName="Assets/Game.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/GameManager.cs" Line="98" Column="35" />
+      <File FileName="Assets/Scripts/PlayerList/PlayerListPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Login.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Menu.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Network/ConnectionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/ProtocolManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Network/Protocol/MatchActionProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkProtocolTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/BattlePlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/Actions/EndTurnAction.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/BattleMainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMe/GameOverWall.cs" Line="42" Column="3" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="DontEatMe" expanded="True">
+                <Node name="GameOverWall.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+>>>>>>> 72c78c92c2f4692e999729a28f6e861997f90e51
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

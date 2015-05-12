@@ -11,6 +11,11 @@ public class GameOverWall : MonoBehaviour
 	GameObject spawnPredator;
 	SpawnPredator spawnPredatorScript;
 
+	GameObject buildMenu;
+	BuildMenu buildMenuScript;
+
+	bool endedGame = false;
+
 	void OnCollisionStay2D(Collision2D collision) {
 		LostGame ();
 	
@@ -55,11 +60,22 @@ public class GameOverWall : MonoBehaviour
 			// end GUI for resource menu
 			GUILayout.EndHorizontal ();
 			GUILayout.EndArea ();
-		
+
 			if (GUI.Button (new Rect (360, 420, 140, 30), "Return to Lobby")) {
 				Destroy (this);
 				Game.SwitchScene("World");
 			}
+
+		}
+
+		if (GameIsOver && !endedGame) {
+			endedGame = true;
+
+			buildMenu = GameObject.Find ("MainCamera");
+			buildMenuScript = buildMenu.GetComponent<BuildMenu>();
+
+			buildMenuScript.endGame();
+
 		}
 	}
 

@@ -14,9 +14,17 @@ public class SpawnPredator : MonoBehaviour
 	Vector3 spawnPointTwo;
 	Vector3 spawnPointThree;
 
+	GUIStyle largeFont;
+
 	float time = 0;
 
 	bool gameOver = false;
+
+	bool spawnedLastPredator = false;
+	bool drawYouWon = false;
+
+	GameObject buildMenu;
+	BuildMenu buildMenuScript;
 
 	/*
 	 * hintBoard = GameObject.Find ("HintBoard");
@@ -29,6 +37,37 @@ public class SpawnPredator : MonoBehaviour
 		if (!gameOver) {
 			time += Time.deltaTime;
 			//Debug.Log (time);
+
+			if (spawnedLastPredator) {
+
+				GameObject[] arr = GameObject.FindGameObjectsWithTag("Carnivore");
+
+				if (arr.Length == 0) {
+					buildMenu = GameObject.Find ("MainCamera");
+					buildMenuScript = buildMenu.GetComponent<BuildMenu>();
+
+
+					drawYouWon = true;
+					gameOver = true;
+
+					buildMenuScript.endGame();
+				}
+			}
+		}
+	}
+
+	void OnGUI() {
+
+		if (drawYouWon) {
+			// draw resource menu
+			GUILayout.BeginArea (new Rect (350, 350, 600, 600));
+			GUILayout.BeginHorizontal ("box");
+			
+			GUILayout.Label ("You Won!", largeFont);
+			
+			// end GUI for resource menu
+			GUILayout.EndHorizontal ();
+			GUILayout.EndArea ();
 		}
 	}
 
@@ -43,6 +82,11 @@ public class SpawnPredator : MonoBehaviour
 
 	void Start ()
 	{
+
+		largeFont = new GUIStyle();
+		
+		largeFont.fontSize = 32;
+		largeFont.normal.textColor = Color.green;
 
 		StartCoroutine("MyEvent");
 	}
@@ -102,7 +146,7 @@ public class SpawnPredator : MonoBehaviour
 	{
 		int[,] spawnArray = new int[,] {
 										{2, 0, 1, 0}, 
-										{3, 2, 0, 0}, 
+										{11, 2, 0, 0},
 										{15, 0, 0, 3},
 										{10, 0, 1, 0},
 										{13, 3, 0, 0},
@@ -122,8 +166,9 @@ public class SpawnPredator : MonoBehaviour
 										{17, 0, 4, 0},
 										{32, 5, 0, 0},
 										{45, 0, 0, 5}};
-		
-		//Debug.Log (spawnArray);
+										
+
+
 		
 		currIndex = 0;
 		nextSpawn = 0;
@@ -153,10 +198,11 @@ public class SpawnPredator : MonoBehaviour
 			} else if (spawnThree != 0) {
 				hintBoardScript.setNextPredator(spawnThree);
 			}
-
+			//Debug.Log ("Sleeping");
 			yield return new WaitForSeconds(nextSpawn); // wait x seconds
-			//Debug.Log ("Waited " + nextSpawn + " seconds!");
+			//Debug.Log ("Waited " + nextSpawn + " seconds!" + gameOver);
 			if (!gameOver) {
+				//Debug.Log ("Spawning Something!" + gameOver);
 				for (int i = 1; i < 4; i++) {
 					if (spawnArray[currIndex,i] != 0) {
 						createCreature(i, spawnArray[currIndex,i]);
@@ -166,7 +212,10 @@ public class SpawnPredator : MonoBehaviour
 			}
 		}
 
-		//No more predators, Win game!
+		spawnedLastPredator = true;
+
 	}
+
+
 }
 

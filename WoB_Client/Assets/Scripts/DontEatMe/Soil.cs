@@ -19,6 +19,15 @@ public class Soil : MonoBehaviour {
 			// Add the price of the game piece onto the score
 			BuildMenu.score += BuildMenu.currentlyBuilding.price;
 
+			//Calculate coins
+			BuildMenu buildMenuScript;
+			GameObject mainCamera;
+			
+			mainCamera = GameObject.Find("MainCamera");
+			buildMenuScript = mainCamera.GetComponent<BuildMenu>();
+			buildMenuScript.CalculateCoins();
+
+
 			BuildMenu.currentlyBuilding = null;
 		}
 	}
