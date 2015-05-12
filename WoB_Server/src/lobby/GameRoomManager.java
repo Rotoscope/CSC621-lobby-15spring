@@ -93,7 +93,7 @@ public class GameRoomManager {
             return;
         }
         
-        Log.println("Client is shutting down...");
+        Log.println("Game room is closing...");
         GameRoom room = mRoomTable.get(client.getID());
         mRooms.remove(room.getID());
         mRoomTable.remove(client.getID());

@@ -129,7 +129,7 @@ public class Login : MonoBehaviour {
 		if (testing){
 			tests.runTest();
 		} else {
-			Game.SwitchScene("Battle");
+			CWGame.SwitchScene("Battle");
 		}
 	}
 
@@ -138,10 +138,7 @@ public class Login : MonoBehaviour {
 			tests.initMatch ();
 		} else {
 			// For using player Nat
-		
-			NetworkManager.Send (
-				MatchInitProtocol.Prepare (GameState.player.GetID(), player2ID), ProcessMatchInit);
-
+			NetworkManager.Send (MatchInitProtocol.Prepare (GameState.player.GetID(), player2ID), ProcessMatchInit);
 		}
 	}
 
@@ -150,7 +147,7 @@ public class Login : MonoBehaviour {
 		ResponseMatchInit args = response as ResponseMatchInit;
 
 		if (args.status == 0) {
-			GameState.matchID = args.matchID;
+			GameManager.matchID = args.matchID;
 			Debug.Log("MatchID set to: " + args.matchID);
 		}
 

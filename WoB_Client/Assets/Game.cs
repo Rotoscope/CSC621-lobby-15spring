@@ -73,7 +73,6 @@ public class Game : MonoBehaviour {
 				case "MiniClient":
 				case "DontEatMe" :
 				case "RRGame" :
-				case "CWGame" :
 				case "ClashSplash" :
 				case "Converge" :
 					Destroy(gObject.GetComponent<EcosystemScore>());
@@ -136,3 +135,4 @@ public class Game : MonoBehaviour {
 		return messageBox;
 	}
 }
+

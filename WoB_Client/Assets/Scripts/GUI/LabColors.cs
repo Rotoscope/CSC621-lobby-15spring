@@ -41,17 +41,17 @@ public struct LABColor{
 	
 	// constructor - takes three floats for lightness and color-opponent dimensions
 	public LABColor(float l, float a, float b){
-		this.l = l;
-		this.a = a;
-		this.b = b;
+		L = l;
+		A = a;
+		B = b;
 	}
 	
 	// constructor - takes a Color
 	public LABColor(Color col){
 		LABColor temp = FromColor(col);
-		l = temp.l;
-		a = temp.a;
-		b = temp.b;
+		L = temp.l;
+		A = temp.a;
+		B = temp.b;
 	}
 	
 	// static function for linear interpolation between two LABColors

@@ -44,6 +44,7 @@ public class NetworkProtocolTable {
 		Add(NetworkCode.PAIR, "Pair");
 		Add(NetworkCode.QUIT_ROOM, "QuitRoom");
 		Add(NetworkCode.GET_ROOMS, "GetRooms");
+		Add(NetworkCode.BACK_TO_LOBBY, "BackToLobby");
 
 		//Clash of Species
 		Add(NetworkCode.CLASH_ENTRY, "ClashEntry");

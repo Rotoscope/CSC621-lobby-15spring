@@ -9,6 +9,12 @@ import javax.sql.DataSource;
 
 // Other Imports
 import config.DBConf;
+import core.GameServer;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.ConfFileParser;
 import util.Log;
 
@@ -45,8 +51,21 @@ public class GameDB {
      * memory.
      */
     private void configure() {
+        String serverConf = "conf/db.conf";
+        File f = new File(serverConf);
+        if (!f.exists()) {
+            // get current absolute path
+            CodeSource codeSource = GameServer.class.getProtectionDomain().getCodeSource();
+            File jarFile = null;
+            try {
+                jarFile = new File(codeSource.getLocation().toURI().getPath());
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(GameDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            serverConf = jarFile.getParentFile().getPath() + "/../conf/db.conf";
+        }
         // Parse the configuration file
-        ConfFileParser confFileParser = new ConfFileParser("conf/db.conf");
+        ConfFileParser confFileParser = new ConfFileParser(serverConf);
         configuration.setConfRecords(confFileParser.parse());
     }
 

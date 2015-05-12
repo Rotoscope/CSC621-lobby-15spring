@@ -57,8 +57,8 @@ public class MiniGameServers {
         game.setAsMultiPlayerGame("../Speed_Server/dist/Speed_Server.jar", 20039);
         miniGames.put(game.getName(), game);
         
-        //game = new MiniGame("Cards of the Wild");
-        //game.setAsMultiPlayerGame("../WoC_Server/dist/Cards_Server.jar", 20038);
-        //miniGames.put(game.getName(), game);
+        game = new MiniGame("Cards of the Wild");
+        game.setAsMultiPlayerGame("../WoC_Server/dist/Cards_Server.jar", 20038);
+        miniGames.put(game.getName(), game);
     }
 }

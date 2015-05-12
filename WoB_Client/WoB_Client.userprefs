@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Network/Protocol/PairProtocol.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs">
     <Files>
       <File FileName="Assets/Scripts/ClashOfSpecies/ClashSplash.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ConnectionLostGUI.cs" Line="1" Column="1" />
@@ -8,29 +8,44 @@
       <File FileName="Assets/Scripts/HUD/GameResources.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/Protocol/HeartbeatProtocol.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Game.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Constants.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/NetworkCode.cs" Line="75" Column="49" />
+      <File FileName="Assets/Scripts/Network/NetworkCode.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/Protocol/PairProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/NetworkProtocolTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/CWGame.cs" Line="1" Column="1" />
+      <File FileName="Assets/Game.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="188" Column="43" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/GameManager.cs" Line="61" Column="6" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/ProtocolManager.cs" Line="175" Column="1" />
+      <File FileName="Assets/Scripts/PlayerList/PlayerListPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Login.cs" Line="167" Column="19" />
+      <File FileName="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs" Line="38" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="MiniClientAssets" expanded="True">
-              <Node name="Network" expanded="True">
-                <Node name="Protocol" expanded="True" />
+            <Node name="CWAssets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Battle" expanded="True" />
+                <Node name="Network" expanded="True">
+                  <Node name="Protocol" expanded="True">
+                    <Node name="LoginProtocol.cs" selected="True" />
+                  </Node>
+                </Node>
               </Node>
             </Node>
             <Node name="Scripts" expanded="True">
+              <Node name="Containers" expanded="True" />
+              <Node name="GUI" expanded="True" />
               <Node name="HUD" expanded="True" />
               <Node name="Network" expanded="True">
-                <Node name="Protocol" expanded="True">
-                  <Node name="PairProtocol.cs" selected="True" />
-                </Node>
+                <Node name="Protocol" expanded="True" />
               </Node>
+              <Node name="PlayerList" expanded="True" />
+              <Node name="Shop" expanded="True" />
               <Node name="World" expanded="True" />
             </Node>
           </Node>

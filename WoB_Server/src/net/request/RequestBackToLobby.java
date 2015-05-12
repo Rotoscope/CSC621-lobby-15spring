@@ -22,5 +22,5 @@ public class RequestBackToLobby extends GameRequest {
     @Override
     public void process() throws Exception {
         GameRoomManager.getInstance().onClientQuit(client);
-    }
+    }   
 }

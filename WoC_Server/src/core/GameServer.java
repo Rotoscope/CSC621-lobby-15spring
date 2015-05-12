@@ -16,6 +16,8 @@ import java.util.UUID;
 import config.GameServerConf;
 import core.badge.BadgeController;
 import core.world.WorldController;
+import java.io.File;
+import java.security.CodeSource;
 import metadata.Constants;
 import metadata.GameRequestTable;
 import model.Account;
@@ -208,11 +210,20 @@ public class GameServer {
      * @param args contains additional launching parameters
      */
     public static void main(String[] args) {
-        Log.printf("World of Balance Server v%s is starting...", Constants.CLIENT_VERSION);
+        Log.printf("Cards of the Wild Server v%s is starting...", Constants.CLIENT_VERSION);
 
         try {
             Log.console("Loading Configuration File...");
-            GameServerConf config = new GameServerConf(new ConfFileParser("conf/gameServer.conf").parse());
+            String serverConf = "conf/gameServer.conf";
+            File f = new File(serverConf);
+            if (!f.exists()) {
+                // get current absolute path
+                CodeSource codeSource = GameServer.class.getProtectionDomain().getCodeSource();
+                File jarFile = new File(codeSource.getLocation().toURI().getPath());
+                serverConf = jarFile.getParentFile().getPath() + "/../conf/gameServer.conf";
+            }
+        
+            GameServerConf config = new GameServerConf(new ConfFileParser(serverConf).parse());
             Log.println("Done!");
 
             server = new GameServer(config.getPortNumber(), Constants.MAX_CLIENT_THREADS);
