@@ -1,6 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ClashOfSpecies.cs">
     <Files>
       <File FileName="Assets/Scripts/ClashOfSpecies/ClashSplash.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ConnectionLostGUI.cs" Line="1" Column="1" />
@@ -16,12 +16,13 @@
       <File FileName="Assets/CWAssets/Scripts/Constants.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/CWGame.cs" Line="1" Column="1" />
       <File FileName="Assets/Game.cs" Line="1" Column="1" />
-      <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="188" Column="43" />
-      <File FileName="Assets/CWAssets/Scripts/Battle/GameManager.cs" Line="61" Column="6" />
+      <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="154" Column="3" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/GameManager.cs" Line="16" Column="33" />
       <File FileName="Assets/CWAssets/Scripts/Battle/ProtocolManager.cs" Line="175" Column="1" />
       <File FileName="Assets/Scripts/PlayerList/PlayerListPanel.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Login.cs" Line="167" Column="19" />
-      <File FileName="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs" Line="38" Column="12" />
+      <File FileName="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs" Line="26" Column="32" />
+      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="157" Column="47" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -29,11 +30,11 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="CWAssets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Battle" expanded="True" />
+                <Node name="Battle" expanded="True">
+                  <Node name="Actions" expanded="True" />
+                </Node>
                 <Node name="Network" expanded="True">
-                  <Node name="Protocol" expanded="True">
-                    <Node name="LoginProtocol.cs" selected="True" />
-                  </Node>
+                  <Node name="Protocol" expanded="True" />
                 </Node>
               </Node>
             </Node>
@@ -47,6 +48,7 @@
               <Node name="PlayerList" expanded="True" />
               <Node name="Shop" expanded="True" />
               <Node name="World" expanded="True" />
+              <Node name="ClashOfSpecies.cs" selected="True" />
             </Node>
           </Node>
         </State>

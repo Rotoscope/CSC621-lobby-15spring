@@ -152,7 +152,9 @@ public class ClashOfSpecies : MonoBehaviour {
 				Game.SwitchScene ("RRGame");
 			} else if (args.gameID == Constants.MINIGAME_CARDS_OF_WILD) {
 				CW.GameManager.matchID = args.id;
-				NetworkManager.Send (CW.MatchInitProtocol.Prepare (GameState.player.GetID(), args.id), ProcessMatchInit);
+				CW.NetworkManager.Send (CW.MatchInitProtocol.Prepare 
+				                        (GameState.player.GetID(), args.id), 
+				                        ProcessMatchInit);
 				//RR.ReadyScene.ROOM_ID = args.id;
 				//Game.SwitchScene ("RRGame"
 			}
