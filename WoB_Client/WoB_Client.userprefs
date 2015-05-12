@@ -1,26 +1,31 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ClashOfSpecies\ClashSplash.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ConnectionLostGUI.cs">
     <Files>
-      <File FileName="Assets\Scripts\Network\NetworkCode.cs" Line="83" Column="53" />
-      <File FileName="Assets\Scripts\Network\NetworkProtocolTable.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\World\WorldController.cs" Line="32" Column="47" />
-      <File FileName="Assets\Scripts\DontEatMeGUI.cs" Line="77" Column="1" />
-      <File FileName="Assets\Scripts\ClashOfSpecies.cs" Line="174" Column="1" />
-      <File FileName="Assets\Scripts\ClashOfSpeciesGUI.cs" Line="70" Column="23" />
-      <File FileName="Assets\Game.cs" Line="76" Column="18" />
-      <File FileName="Assets\Scripts\ClashOfSpecies\ClashSplash.cs" Line="19" Column="56" />
-      <File FileName="Assets\Scripts\ClashOfSpecies\ClashGameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ConnectionLostGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/ConnectionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HUD/GameResources.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Protocol/HeartbeatProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="MiniClientAssets" expanded="True">
+              <Node name="Network" expanded="True">
+                <Node name="Protocol" expanded="True" />
+              </Node>
+            </Node>
             <Node name="Scripts" expanded="True">
-              <Node name="ClashOfSpecies" expanded="True">
-                <Node name="ClashSplash.cs" selected="True" />
+              <Node name="HUD" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Protocol" expanded="True" />
               </Node>
               <Node name="World" expanded="True" />
+              <Node name="ConnectionLostGUI.cs" selected="True" />
             </Node>
           </Node>
         </State>
