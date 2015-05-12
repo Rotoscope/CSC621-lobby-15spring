@@ -27,6 +27,14 @@ public class Grass : MonoBehaviour {
 			// Add the price of the game piece onto the score
 			BuildMenu.score += BuildMenu.currentlyBuilding.price;
 
+			//Calculate coins
+			BuildMenu buildMenuScript;
+			GameObject mainCamera;
+
+			mainCamera = GameObject.Find("MainCamera");
+			buildMenuScript = mainCamera.GetComponent<BuildMenu>();
+			buildMenuScript.CalculateCoins();
+
 			// give the currently placed piece a reference to this tile
 			if (currentlyPlacedPiece != null && pairedSoil != null) {
 				currentlyPlacedPiece.GetComponent<Prey_Hunger>().soilWithPlant = pairedSoil;

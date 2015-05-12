@@ -24,7 +24,7 @@ public class Prey_Hunger : MonoBehaviour {
 
 			lastPlantEatTime = 0;
 			
-			Debug.Log ("Herbivore eating plant");
+			//Debug.Log ("Herbivore eating plant");
 
 			GetComponent<Animator>().SetTrigger("hasPlant");
 
@@ -37,7 +37,7 @@ public class Prey_Hunger : MonoBehaviour {
 
 			lastPlantEatTime++;
 			if (lastPlantEatTime >= 6) {
-				Debug.Log ("herbivore wandered away");
+				//Debug.Log ("herbivore wandered away");
 				Destroy (gameObject);
 			}
 
@@ -58,7 +58,7 @@ public class Prey_Hunger : MonoBehaviour {
 			// will only eat when there is a plant to eat on the soil
 			if (!isPreyEating) {
 				GetComponent<Animator>().SetTrigger("hasPlant");
-				Debug.Log ("is prey eating");
+				//Debug.Log ("is prey eating");
 
 				isPreyEating = true;
 			}
