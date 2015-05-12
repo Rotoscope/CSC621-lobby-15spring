@@ -46,10 +46,10 @@ public class RequestQuitMatch extends GameRequest {
         response.setStatus((short)0);
         
         if (!Constants.SINGLE_PLAYER){
-        	match.addMatchAction(MatchManager.toSession(playerID), action);
+        	match.addMatchAction(playerID, action);
         	// Set player inactive so no more actions are
         	// received from other player
-        	match.setPlayerHasDisconnected(MatchManager.toSession(playerID));
+        	match.setPlayerHasDisconnected(playerID);
  
         }
        

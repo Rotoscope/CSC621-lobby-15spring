@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 // Other Imports
 import config.DBConf;
+import config.GameServerConf;
 import core.GameServer;
 import java.io.File;
 import java.net.URISyntaxException;
@@ -34,8 +35,12 @@ public class GameDB {
      * Configures the database connection.
      */
     private GameDB() {
-        // Load the configuration file into memory
-        configure();
+        try {
+            // Load the configuration file into memory
+            configure();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(GameDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // Create a connection to the database
         String connectURI = String.format(
                 "jdbc:mysql://%s/%s?user=%s&password=%s",
@@ -50,20 +55,16 @@ public class GameDB {
      * Parses the database configuration file and store those values into
      * memory.
      */
-    private void configure() {
+    private void configure() throws URISyntaxException {
         String serverConf = "conf/db.conf";
         File f = new File(serverConf);
         if (!f.exists()) {
             // get current absolute path
             CodeSource codeSource = GameServer.class.getProtectionDomain().getCodeSource();
-            File jarFile = null;
-            try {
-                jarFile = new File(codeSource.getLocation().toURI().getPath());
-            } catch (URISyntaxException ex) {
-                Logger.getLogger(GameDB.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            File jarFile = new File(codeSource.getLocation().toURI().getPath());
             serverConf = jarFile.getParentFile().getPath() + "/../conf/db.conf";
         }
+
         // Parse the configuration file
         ConfFileParser confFileParser = new ConfFileParser(serverConf);
         configuration.setConfRecords(confFileParser.parse());

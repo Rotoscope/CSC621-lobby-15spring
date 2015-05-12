@@ -54,7 +54,7 @@ public class RequestEndTurn extends GameRequest {
         }
         
         if(!Constants.SINGLE_PLAYER){
-        	match.addMatchAction(MatchManager.toSession(playerID), action);
+        	match.addMatchAction(playerID, action);
         }
         client.add(response);
         

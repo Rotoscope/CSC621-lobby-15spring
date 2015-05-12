@@ -1,6 +1,5 @@
 package core.match;
 
-import core.GameClient;
 import java.util.ArrayList;
 
 import util.Log;
@@ -15,7 +14,7 @@ import model.Card;
 
 public class MatchPlayer{
 	
-	private GameClient client;
+	private Player player;
 	// TODO: which status variables are needed?
 	private boolean isActive = false;
 
@@ -38,15 +37,15 @@ public class MatchPlayer{
 	
 	
 	// TODO: register client? or access elsewhere
-	public MatchPlayer(String sessionID, int matchID){
-		this.setPlayer(GameServer.getInstance().getActiveClient(sessionID));
+	public MatchPlayer(int playerID, int matchID){
+		this.setPlayer(GameServer.getInstance().getActivePlayer(playerID));
 		actionQueue = new ActionQueue();
 		this.matchID = matchID;
 	}
 	
 	// Hack constructor for single player version
-	public MatchPlayer(String sessionID, int matchID, Boolean setDeck){
-		this.setPlayer(GameServer.getInstance().getActiveClient(sessionID));
+	public MatchPlayer(int playerID, int matchID, Boolean setDeck){
+		this.setPlayer(GameServer.getInstance().getActivePlayer(playerID));
 		actionQueue = new ActionQueue();
 		this.matchID = matchID;
 	}
@@ -131,7 +130,7 @@ public class MatchPlayer{
 		return deck;
 	}
 	
-	public String getID(){
+	public int getID(){
 		return getPlayer().getID();
 	}
 	
@@ -139,7 +138,7 @@ public class MatchPlayer{
 	 * @param response : Response to set
 	 */
 	public void addResponse(GameResponse response){
-		getPlayer().add(response);
+		getPlayer().getClient().add(response);
 	}
 	
 
@@ -190,15 +189,15 @@ public class MatchPlayer{
 	}
 
 
-	public GameClient getPlayer() {
-		return client;
+	public Player getPlayer() {
+		return player;
 	}
 
 
-	public void setPlayer(GameClient client) {
-		this.client = client;
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
-	/*
+	
 	public static void  main(){
 		MatchPlayer player = new MatchPlayer(10, 20);
 		MatchAction action = new MatchAction();
@@ -211,5 +210,5 @@ public class MatchPlayer{
 		
 		System.exit(0);
 	}
-	*/
+	
 }

@@ -143,6 +143,8 @@ public class Login : MonoBehaviour {
 				LoginProtocol.Prepare(user_id, password),
 				ProcessLogin
 				);
+
+			CW.NetworkManager.Send(CW.LoginProtocol.Prepare(user_id, password));
 		}
 	}
 	

@@ -1,7 +1,8 @@
 package core.match;
 
-import core.GameClient;
 import metadata.Constants;
+import model.Player;
+import net.response.GameResponse;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Match {
 	
 	// Leaving in separate players and player map for convenience
 	MatchPlayer player1, player2;
-	Map<String, MatchPlayer> playerList = new HashMap<String, MatchPlayer>();
+	Map<Integer, MatchPlayer> playerList = new HashMap<Integer, MatchPlayer>();
 	
 	// set my matchManager
 	private int matchID;
@@ -28,7 +29,7 @@ public class Match {
 	// sessionID set by Lobby -- Not currently used
 	private String sessionId;
 	
-	public Match (List<GameClient> players, int matchID){
+	public Match (List<Player> players, int matchID){
 		this.matchID = matchID;
 		
                 if (players != null) {
@@ -42,8 +43,7 @@ public class Match {
                 }
 	}
 	
-        
-	public Match (List<GameClient> players, int matchID, String sessionID){
+	public Match (List<Player> players, int matchID, String sessionID){
 		this.matchID = matchID;
 		this.sessionId = sessionID;
 		
@@ -57,8 +57,11 @@ public class Match {
 		}
 	}
 	
-        public boolean addPlayer(GameClient p) {
-            if (player1 == null) {
+        public boolean addPlayer(Player p) {
+            if (player1 != null && player2 != null) {
+                Log.println("The match is full, can't add new players");
+                return false;
+            } else if (player1 == null) {
                 player1 = new MatchPlayer(p.getID(), matchID);
 		playerList.put(player1.getID(), player1);
                 return true;
@@ -67,7 +70,6 @@ public class Match {
 		playerList.put(player2.getID(), player2);
                 return true;
             }
-            Log.println("The match is full, can't add new players");
             return false;
         }
         
@@ -75,8 +77,8 @@ public class Match {
 	 * Returns inactive playerID
 	 * @return
 	 */
-	public String getInactivePlayerID(){
-		String playerID;
+	public int getInactivePlayerID(){
+		int playerID;
 		if(player1.isActive()){
 			playerID = player1.getID();
 		} else {
@@ -89,7 +91,7 @@ public class Match {
 	/*
 	 * Set player quit and disable adding Actions
 	 */
-	public void setPlayerHasDisconnected(String playerID){
+	public void setPlayerHasDisconnected(int playerID){
 		MatchPlayer player = getPlayer(playerID);
 		player.setHasDisconnected(true);
 	}
@@ -102,9 +104,9 @@ public class Match {
 	 * @param playerID
 	 * @return
 	 */
-	public Boolean isOpponentReady(String playerID){
+	public Boolean isOpponentReady(int playerID){
 		Boolean isReady;
-		if(playerID.equals(player1.getID())){
+		if(playerID == player1.getID()){
 			isReady = player2.isReady();
 		} else{
 			isReady = player1.isReady();
@@ -121,9 +123,9 @@ public class Match {
 	 * @param playerID
 	 * @return
 	 */
-	public Boolean isOpponentActive(String playerID){
+	public Boolean isOpponentActive(int playerID){
 		Boolean isActive;
-		if(playerID.equals(player1.getID())){
+		if(playerID == player1.getID()){
 			isActive = player2.isActive();
 		} else{
 			isActive = player1.isActive();
@@ -136,7 +138,7 @@ public class Match {
 	 * @return
 	 */
 	private MatchPlayer getInactiveMatchPlayer(){
-		String playerID = getInactivePlayerID();
+		int playerID = getInactivePlayerID();
 		MatchPlayer player = getPlayer(playerID);
 		return player;
 	}
@@ -173,9 +175,11 @@ public class Match {
 	}
 	
 	
-	public MatchPlayer getPlayer(String playerID){
+	public MatchPlayer getPlayer(int playerID){
 		return playerList.get(playerID);
 	}
+	
+	
 	
 	/**
 	 * @return the sessionId
@@ -192,12 +196,12 @@ public class Match {
 	}
 
 	// Add
-	public void addMatchAction(String playerID, MatchAction action){
+	public void addMatchAction(int playerID, MatchAction action){
 		MatchPlayer player = getPlayer(playerID);
 		if (!player.getHasDisconnected()){
 			// could player i
 			//player.addMatchAction(action);
-			if(playerID.equals(player1.getID())){
+			if(playerID == player1.getID()){
 				player2.addMatchAction(action);
 			} else {
 				player1.addMatchAction(action);
@@ -207,17 +211,19 @@ public class Match {
 	
 	
 	
-	public boolean actionWaiting(String playerID){
+	public boolean actionWaiting(int playerID){
 		if(getPlayer(playerID).actionQueue.isEmpty()){
 			return false;
 		}
 		return true;
 	}
 	
-	public MatchAction getMatchAction(String playerID){
+	
+	
+	public MatchAction getMatchAction(int playerID){
 		
 		MatchAction action = getPlayer(playerID).getMatchAction();
-		Log.printf("Get action for player %s, actionID %d", 
+		Log.printf("Get action for player %d, actionID %d", 
 				player2.getID(), action.getActionID());
 		return action;
 		//return getPlayer(playerID).getMatchAction();
