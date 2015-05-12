@@ -6,6 +6,7 @@
 package net.request.convergegame;
 
 import db.ConvergeAttemptDAO;
+import db.PlayerDAO;
 import java.io.DataInputStream;
 import java.io.IOException;
 import metadata.Constants;
@@ -13,6 +14,7 @@ import net.request.GameRequest;
 import net.response.convergegame.ResponseConvergeNewAttempt;
 import simulation.simjob.SimJobConverge;
 import util.DataReader;
+import util.Log;
 
 /**
  *
@@ -42,6 +44,8 @@ public class RequestConvergeNewAttempt extends GameRequest {
 
     @Override
     public void process() throws Exception {
+        String user_id = PlayerDAO.getPlayerByAccount(playerId).getName();
+        Log.printf("User '%s' has submitted a simulation request...", user_id);
         //Log.consoleln("Processing RequestConvergeNewAttempt");
         //run simulation
         SimJobConverge convergeJob = new SimJobConverge(config, timesteps);

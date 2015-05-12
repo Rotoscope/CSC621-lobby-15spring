@@ -31,8 +31,10 @@ public class SimJobConverge {
 
         GameServer.getInstance();  //load species information
         /* read in experimental variables only used for running simulation jobs*/
-        SpeciesType.loadSimTestNodeParams(Constants.ECOSYSTEM_TYPE);
-        SpeciesType.loadSimTestLinkParams(Constants.ECOSYSTEM_TYPE); 
+        if (SimJob.DFLT_USE_SIMTESTNODE_VALS) {
+            SpeciesType.loadSimTestNodeParams(Constants.ECOSYSTEM_TYPE);
+            SpeciesType.loadSimTestLinkParams(Constants.ECOSYSTEM_TYPE); 
+        }
 
 
         jobMgr = new SimJobManager();
@@ -71,7 +73,8 @@ public class SimJobConverge {
         }
         //remove trailing information (follows at least one trailing blank)
         for (int i=0; i < dataSet.size(); i++) {
-            if (dataSet.get(i).size() < simJob.getTimesteps()) {
+            //note: species that go extinct have less than {timesteps} values
+            if (dataSet.get(i).size() < 2) {   
                 break;
             }
             String line = dataSet.get(i).toString();

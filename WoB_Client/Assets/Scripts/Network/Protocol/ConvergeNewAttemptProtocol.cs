@@ -51,8 +51,8 @@ public class ConvergeNewAttemptProtocol
 			                                               allowHints,
 			                                               hintId,
 			                                               config,
-			                                               csv,
-			                                               null
+			                                               csv
+			                                               //null
 			                                               );
 
 			response.attempt = attempt;

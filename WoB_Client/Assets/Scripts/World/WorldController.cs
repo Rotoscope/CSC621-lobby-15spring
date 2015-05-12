@@ -29,7 +29,7 @@ public class WorldController : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (140, 10, 130, 30), "Clash of Species")) {
-			gameObject.AddComponent ("ClashOfSpecies"); //Single Player
+			gameObject.AddComponent ("ClashOfSpeciesGUI"); //Single Player
 		}
 
 		if (GUI.Button (new Rect (10, 50, 120, 30), "Don't Eat Me")) {
@@ -38,6 +38,10 @@ public class WorldController : MonoBehaviour {
 
 		if (GUI.Button (new Rect (140, 50, 130, 30), "Multiplayer Games")) {
 			gameObject.AddComponent ("ClashOfSpecies");
+		}
+
+		if (GUI.Button (new Rect (10, 90, 120, 30), "Converge")) {
+			gameObject.AddComponent ("ConvergeGUI"); //Single player
 		}
 	}
 	

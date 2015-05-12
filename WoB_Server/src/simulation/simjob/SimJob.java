@@ -10,13 +10,13 @@ import static java.lang.Math.ceil;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metadata.Constants;
 import simulation.ParamValue;
 import simulation.SpeciesZoneType;
-import util.CSVParser;
 
 /**
  * SimJob is class that is used to manage a single simulation job. It is closely
@@ -49,14 +49,14 @@ public class SimJob {
     //storing locally to provide more flexibility for simulation experimentation
     static final String FLD_PREFIX = "param", FLD_PREFIX_DFLT = "dflt";
     //PP = PRIMARY PRODUCER (AKA GRASS)
-    public static final double DFLT_PP_TOTAL_BIOMASS = 2000.0;
+    public static final double DFLT_PP_TOTAL_BIOMASS = 1000.0;   //2000.0;
     public static final double DFLT_PP_PER_UNIT_BIOMASS = 1;
-    public static final double DFLT_PP_PARAMK = 10000.0;  //k=carrying capacity  (SEConfig properties dflt = 1.0)
+    public static final double DFLT_PP_PARAMK = 2000.0;  //10000.0;  //k=carrying capacity  (SEConfig properties dflt = 1.0)
     public static double DFLT_PP_PARAMX = 0.5;  //x=metabolic rate (init 0.5, from SEConfig properties)
     public static double DFLT_PP_PARAMR = 1.0;  //r=growth rate (init 1.0, from SEConfig properties)
     //not currently used...
-    public static final double DFLT_PP_AR = 1.0;
-    public static final double DFLT_PP_FR = 0.1;
+//    public static final double DFLT_PP_AR = 1.0;
+//    public static final double DFLT_PP_FR = 0.1;
 
     public static final int DFLT_TIMESTEPS = 200;
     public static final int NO_ID = -1;
@@ -70,16 +70,16 @@ public class SimJob {
     enum DfltParams {
 
         paramR("R", -1.0, ParamType.NODE), //no single valid dflt for r (prev 1.0)
-        paramK("K", -1.0, ParamType.NODE), //no single valid dflt for k (prev 1.0)
+        paramK("K", -1.0, ParamType.NODE), //no single valid dflt for k (prev 10000)
         paramX("X", -1.0, ParamType.NODE), //no single valid dflt for x (prev 0.5)
         paramA("A", 0.01, ParamType.LINK),
         paramE("E", 0.85, ParamType.LINK),
         paramD("D", 0.0, ParamType.LINK),
         paramQ("Q", 0.0, ParamType.LINK),
         paramY("Y", 6.0, ParamType.LINK);
-        private final String paramID;
-        private final double dfltValue;
-        private final ParamType ptype;
+        protected final String paramID;
+        protected final double dfltValue;
+        protected final ParamType ptype;
 
         private DfltParams(String paramID, double dfltValue,
                 ParamType ptype) {
@@ -98,7 +98,7 @@ public class SimJob {
 
         //10/28/14, jtc, revised method to acquire new dfltK/R/X field value
         //prev was just using static defaults entered above - inaccurate.
-        double getDfltValue(SimJobSZT szt) throws NoSuchFieldException, 
+        double getDfltValue(SpeciesZoneType szt) throws NoSuchFieldException, 
                 IllegalArgumentException, IllegalAccessException {
             double dflt;
             if (ptype == ParamType.NODE) {
@@ -124,7 +124,7 @@ public class SimJob {
         }
 
         //see if actual value equals default value - NODE
-        boolean equalsDefault(SimJobSZT sjSzt)
+        boolean equalsDefault(SpeciesZoneType sjSzt)
                 throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
             double actualVal = getActualValue(sjSzt);
             if (actualVal == Constants.PARAM_INITVALUE) {
@@ -133,7 +133,7 @@ public class SimJob {
             return (double) getActualValue(sjSzt) == this.getDfltValue(sjSzt);
         }
 
-        double getActualValue(SimJobSZT sjSzt)
+        double getActualValue(SpeciesZoneType sjSzt)
                 throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
             if (this.ptype != ParamType.NODE) {
                 return 0.0;  //only used for node parameters
@@ -142,17 +142,17 @@ public class SimJob {
         }
     }
 
-    private int job_Id = NO_ID;
-    private String job_Descript = "";
-    private int timesteps = 0;
-    private String node_Config = "";
-    private String manipulation_Id = null;  //9/25/14, JTC, had to change to null
-    private String manip_Timestamp = "";
-    private String csv = "";
-    private boolean include = true;
+    protected int job_Id = NO_ID;
+    protected String job_Descript = "";
+    protected int timesteps = 0;
+    protected String node_Config = "";
+    protected String manipulation_Id = null;  //9/25/14, JTC, had to change to null
+    protected String manip_Timestamp = "";
+    protected String csv = "";
+    protected boolean include = true;
     //11/9/14, jtc, add new option to use simtest node param values or not:
-    private boolean useSimTestNodeVals = DFLT_USE_SIMTESTNODE_VALS;
-    private List<SpeciesZoneType> speciesZoneList = null;
+    protected boolean useSimTestNodeVals = DFLT_USE_SIMTESTNODE_VALS;
+    protected List<SpeciesZoneType> speciesZoneList = null;
 
     //adding the following parameters to SZT:
     //double paramY;  //link level
@@ -264,6 +264,15 @@ public class SimJob {
         return speciesZoneList;
     }
 
+    public HashMap<Integer, SpeciesZoneType> getSpeciesZoneMap() {
+        HashMap<Integer, SpeciesZoneType> speciesZoneMap = 
+                new HashMap<Integer, SpeciesZoneType>();
+        for (SpeciesZoneType szt : speciesZoneList) {
+            speciesZoneMap.put(szt.getNodeIndex(), szt);
+        }
+        return speciesZoneMap;
+    }
+
     public int[] getSpeciesNodeList() {
         int[] nodeList = new int[speciesZoneList.size()];
         int i = 0;
@@ -277,10 +286,10 @@ public class SimJob {
         return this.useSimTestNodeVals;
     }
 
-    private void parseNodeConfig() {
+    protected void parseNodeConfig() {
         //reset species list
         speciesZoneList = new ArrayList<SpeciesZoneType>();
-        SimJobSZT sjSzt = null;
+        SpeciesZoneType sjSzt = null;
         String remainder = node_Config, paramID;
         int nodeCnt = 0, paramCnt, nextNode_Id;
         double biomass, perUnitBiomass, value;
@@ -301,8 +310,7 @@ public class SimJob {
             perUnitBiomass = Double.valueOf(remainder.substring(0, endIndex(remainder, ",")));
             remainder = trim(remainder, ",");
             //create entry in szt list
-            sjSzt = new SimJobSZT("", nextNode_Id, 0, perUnitBiomass, biomass, null, 
-                    useSimTestNodeVals);
+            sjSzt = new SpeciesZoneType("", nextNode_Id, 0, perUnitBiomass, biomass, null);
             speciesZoneList.add(sjSzt);
 
             if (remainder.isEmpty()) {
@@ -331,7 +339,7 @@ public class SimJob {
         }
     }
 
-    private String parseLinkParams(String remainder, SimJobSZT sjSzt) {
+    protected String parseLinkParams(String remainder, SpeciesZoneType sjSzt) {
         String paramID;
         int linkParamCnt = 0, prey_Id;
         double value;
@@ -368,7 +376,7 @@ public class SimJob {
         return remainder.indexOf(",") == -1 ? "" : trim(remainder, ",");
     }
 
-    private String trim(String superString, String cutoff) {
+    protected String trim(String superString, String cutoff) {
         int idx = superString.indexOf(cutoff);
         if (idx < 0) {
             return "";
@@ -378,7 +386,7 @@ public class SimJob {
 
     //get endindex for substring where may be a comma or may be end of string
     //note: assumes that startindex is 0
-    private int endIndex(String superString, String cutoff) {
+    protected int endIndex(String superString, String cutoff) {
         if (superString.indexOf(cutoff) < 0) {
             return superString.length();
         } else {
@@ -389,7 +397,7 @@ public class SimJob {
     /* 4/21/14, JTC, added per species biomass */
     public String buildNodeConfig() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException {
         String configStr;
-        SimJobSZT sjSzt;
+        SpeciesZoneType sjSzt;
         int paramCnt;
 
         //sequence is nodeCnt,[node0],biomass0,per-unit-biomass0,paramCnt0,(if any)paramID0,value0,paramID1,value1,...
@@ -398,7 +406,7 @@ public class SimJob {
         //sort for easier (human) review of configuration
         Collections.sort(speciesZoneList, new SZTComparator());
         for (SpeciesZoneType szt : speciesZoneList) {
-            sjSzt = (SimJobSZT) szt;
+            sjSzt = szt;
             //"[node_Id],biomass,"
             configStr = configStr.concat(String.format("[%d],", sjSzt.getNodeIndex()));
 
@@ -441,7 +449,7 @@ public class SimJob {
         return (node_Config = configStr.substring(0, configStr.length() - 1));
     }
 
-    private String buildLinkParams(SimJobSZT sjSzt)
+    protected String buildLinkParams(SpeciesZoneType sjSzt)
             throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         String paramStr;
         int paramCnt = 0, paramNum;
@@ -722,72 +730,12 @@ public class SimJob {
     }
 
     //10/27/14, jtc, previous use of ceil created inaccuracies
-    private double roundToThreeDigits(double val) {
+    protected double roundToThreeDigits(double val) {
         val = Math.round(1000 * val) / 1000.0;
         if (val == 0) {
             val = 0.001;
         }
         return val;
     }
-    
-    public EcosystemTimesteps extractCSVData() {
-        EcosystemTimesteps ecosysTimesteps = new EcosystemTimesteps();
-        int nodeId, steps;
-        String spNameNode;
-        NodeTimesteps nodeTimesteps;
-
-        csv = csv.replaceAll("Grains, seeds", "Grains and seeds");
-        List<List<String>> dataSet = CSVParser.convertCSVtoArrayList(csv);
-        //remove header lines
-        while (!dataSet.isEmpty()) {
-            //exit when first line of species data is found
-            if (dataSet.get(0).get(0).contains("[")) {
-                break;
-            }
-            dataSet.remove(0);
-        }
-        if (dataSet.isEmpty()) {
-            return ecosysTimesteps;
-        }
-
-        //have problem with mismatched speciesInfo.size(); they SHOULD all be 
-        //the same; therefore normalizing to use that of the first species 
-        //listed (note: probably due to bug later found in createAndRumSim)
-        steps = dataSet.get(0).size() - 1;  //first entry is node name/id        
-
-        //loop through dataset
-        for (List<String> speciesInfo : dataSet) {
-            //exit after last line of species data
-            if (!speciesInfo.get(0).contains("[")) {
-                break;
-            }
-            spNameNode = speciesInfo.get(0);
-            nodeId = Integer.valueOf(spNameNode.substring(
-                    spNameNode.lastIndexOf("[") + 1,
-                    spNameNode.lastIndexOf("]")));
-            //System.out.printf("\n%s ", spNameNode);
-            nodeTimesteps = new NodeTimesteps(nodeId, steps);
-            ecosysTimesteps.putNodeTimesteps(nodeId, nodeTimesteps);
-            for (int i = 0; i < steps; i++) {
-                //make sure there are values for this timestep, o/w enter 0
-                if ((i + 1) < speciesInfo.size()) {
-                    //have to eliminate special characters (Java does not like
-                    //return chars)
-                    speciesInfo.set(i + 1, speciesInfo.get(i + 1).
-                            replaceAll("\\r|\\n", ""));
-
-                    if (speciesInfo.get(i + 1).isEmpty()) {
-                        nodeTimesteps.setBiomass(i, 0);
-                    } else {
-                        nodeTimesteps.setBiomass(i,
-                                Double.valueOf(speciesInfo.get(i + 1)));
-                    }
-                } else {
-                    nodeTimesteps.setBiomass(i, 0);
-                }
-                //System.out.printf(">%d %s ", i, nodeTimesteps.getBiomass(i));
-            }
-        }
-        return ecosysTimesteps;
-    }
+ 
 }

@@ -141,8 +141,18 @@ public class SimJobRandom extends SimJob {
         HERBIVORE, INSECT, RANDOM
     }
 
-    public static final int DFLT_MAX_BIOMASS_COEFF = 10000;  //3000; //5000.0
-    public static final double DFLT_PP_TOTAL_BIOMASS = 0.0;
+    public static final double DFLT_PP_TOTAL_BIOMASS = 0;   //2000.0;
+    public static final double DFLT_PP_PER_UNIT_BIOMASS = 1;
+    public static final double DFLT_PP_PARAMK = 2000.0;  //10000.0;  //k=carrying capacity  (SEConfig properties dflt = 1.0)
+    public static double DFLT_PP_PARAMX = 0.5;  //x=metabolic rate (init 0.5, from SEConfig properties)
+    public static double DFLT_PP_PARAMR = 0.5;  //r=growth rate (init 0.5, reduced from SEConfig properties - 1.0)
+    public static final int DFLT_TIMESTEPS = 400;
+    
+    //minimal biomass value
+    public static final double MIN_BIOMASS = 25.0f;
+    public static final double DFLT_MAX_BIOMASS = 4000;
+    
+    //PP = PRIMARY PRODUCER (AKA GRASS)
     public static final int DFLT_MIN_SPECIES = 10;
     public static final int DFLT_MAX_SPECIES = 30;
 
@@ -153,7 +163,8 @@ public class SimJobRandom extends SimJob {
     public static final double PARAM_MIN = 0.0;
     public static final double PARAM_MAX = 1.0;
     public static final boolean ALLOW_MIN = true;
-    public static final boolean GAUSSIAN_VAR = true;
+    public static final boolean GAUSSIAN_PARAM_VAL = false;
+    public static final boolean RANDOM_PARAM_VAL = false;
 
     public static final boolean DFLT_CREATEBASE = false;
     public static final boolean DFLT_RANDOMGRASS = true;
@@ -161,7 +172,7 @@ public class SimJobRandom extends SimJob {
 
     private double ppTotalBiomass, ppPerUnitBiomass;
     private double ppAR, ppFR, ppParamX, ppParamK, ppParamR;
-    private int maxBiomassCoeff;
+    private double maxBiomass;
     private int minSpecies, maxSpecies;
     
     private Map<Integer,SubNodes> subNodeMap;
@@ -192,7 +203,7 @@ public class SimJobRandom extends SimJob {
         this.ppParamX = srcJob.ppParamX;
         this.ppParamK = srcJob.ppParamK;
         this.ppParamR = srcJob.ppParamR;
-        this.maxBiomassCoeff = srcJob.maxBiomassCoeff;
+        this.maxBiomass = srcJob.maxBiomass;
         this.minSpecies = srcJob.minSpecies;
         this.maxSpecies = srcJob.maxSpecies;
     }
@@ -218,9 +229,10 @@ public class SimJobRandom extends SimJob {
                 distrib = nodeDistr.getValue();
                 stn = st.getSimTestNode(nodeId);
                 perUnitBiomass = stn.getPerUnitBiomass();
-                biomass = Math.max(biomass, perUnitBiomass * 2);
+                
                 /*if node already exists (should only happen for multi-node plants),
-                 just update biomass*/
+                 just update biomass - actually shouldn't happen at all with most
+                 recent implementation */
                 szt = getSpeciesZoneByNodeId(nodeId);
                 if (szt != null) {
                     szt.setCurrentBiomass(szt.getCurrentBiomass() + biomass * distrib);
@@ -232,7 +244,7 @@ public class SimJobRandom extends SimJob {
                 if (multiNode) {
                     subNodeMap.get(species_id).addNode(nodeId, biomass * distrib);
                 }
-            }
+                }
         } catch (Exception ex) {
             Log.printf_e("SimJobRandom.addNodesFromRandomSpecies() Error:\n%s", ex.getMessage());
             ex.printStackTrace();
@@ -324,19 +336,20 @@ public class SimJobRandom extends SimJob {
     public void configRandomSimJob() throws SQLException {
         boolean success;
 
+        //set biomass for primary producer
+        rand = new RandomGen();
+        if (randomGrassBiomass) {
+            ppTotalBiomass += getRandomBiomass();
+        }
+        int speciesCnt = rand.getNextInt(maxSpecies - minSpecies + 1) + minSpecies;
         do {
             success = true;
-            rand = new RandomGen();
             //9/25/14, JTC, integration with Gary's code (ECOSYSTEM_TYPE)
             List<Integer> speciesIdList = SpeciesType.getSpeciesIdList("", Constants.ECOSYSTEM_TYPE);
-
-            int speciesCnt = rand.getNextInt(maxSpecies - minSpecies + 1) + minSpecies;
+            speciesZoneList = new ArrayList<SpeciesZoneType>();
 
             //add primary producer information (w/ random biomass if so specified)
-            if (randomGrassBiomass) {
-                ppTotalBiomass += getRandomBiomass();
-            }
-            getSpeciesZoneList().addAll(addNodesFromRandomSpecies(Constants.PP_SPECIES_ID,
+            speciesZoneList.addAll(addNodesFromRandomSpecies(Constants.PP_SPECIES_ID,
                     ppTotalBiomass));
             //job may have overrides for default values for per-unit-biomass, param K (carrying capacity)
             getSpeciesZoneByNodeId(Constants.PP_NODE_ID).setPerSpeciesBiomass(ppPerUnitBiomass);
@@ -347,7 +360,7 @@ public class SimJobRandom extends SimJob {
             if (createBaseEcosys) {
             //select an herbivore
                 //9/25/14, JTC, integration with Gary's code (ECOSYSTEM_TYPE)
-                getSpeciesZoneList().addAll(addNodesFromRandomSpecies(
+                speciesZoneList.addAll(addNodesFromRandomSpecies(
                         getRandomSpeciesNode(
                                 SpeciesType.getSpeciesIdList(
                                         "`diet_type`=2 AND (`category`='Large Animal' OR `category`='Small Animal')",
@@ -356,25 +369,25 @@ public class SimJobRandom extends SimJob {
 
             //select an insect
                 //9/25/14, JTC, integration with Gary's code (ECOSYSTEM_TYPE)
-                getSpeciesZoneList().addAll(addNodesFromRandomSpecies(
+                speciesZoneList.addAll(addNodesFromRandomSpecies(
                         getRandomSpeciesNode(
                                 SpeciesType.getSpeciesIdList("`category`='Insect'", Constants.ECOSYSTEM_TYPE)),
                         getRandomBiomass()));
 
                 //select a random non-pp plant species
-                getSpeciesZoneList().addAll(addNodesFromRandomSpecies(
+                speciesZoneList.addAll(addNodesFromRandomSpecies(
                         PLANT_SPECIES_ID[rand.getNextInt(PLANT_SPECIES_ID.length)],
                         getRandomBiomass()));
 
                 //select some decaying matter
-                getSpeciesZoneList().addAll(addNodesFromRandomSpecies(DECAY_SPECIES_ID,
+                speciesZoneList.addAll(addNodesFromRandomSpecies(DECAY_SPECIES_ID,
                         getRandomBiomass()));
 
                 entries += 4;
             }
             //select random species and random biomass for that species
             while (entries < speciesCnt) {
-                getSpeciesZoneList().addAll(addNodesFromRandomSpecies(
+                speciesZoneList.addAll(addNodesFromRandomSpecies(
                         getRandomSpeciesNode(speciesIdList), getRandomBiomass()));
                 entries++;
             }
@@ -408,34 +421,41 @@ public class SimJobRandom extends SimJob {
                 //may randomly be selected, "min", i.e. rand biomass, is not directly controllable.
                 //t/f, let range be from min to + dflt param val, w/ mu = larger of the two
                 min = szt.getCurrentBiomass();
-                if (GAUSSIAN_VAR) {
+                if (GAUSSIAN_PARAM_VAL) {
                     double mu = Math.max(min, szt.getParamK());
                     paramVal = Math.round(rand.getGaussian(min, szt.getParamK() + mu,
                             mu));
 //                    paramVal = Math.round(rand.getGaussian(min, 2 * szt.getParamK() - min,
 //                            szt.getParamK()));
                 } else {
+                    //must use for RANDOM_PARAM_VAL or not, as there can be no default value
+                    //due to random initial biomass
                     paramVal = Math.round(rand.getNextDouble(min, 2 * szt.getParamK() + min));
 //                    paramVal = Math.round(rand.getNextDouble(min, 2 * szt.getParamK() - min));
                 }
                 System.out.format("K[%d] paramVal=%10.3f, dlft=%10.3f, biomass=%10.3f\n",
                         szt.getNodeIndex(), paramVal, szt.getParamK(), min);
                 szt.setParamK(paramVal);
-                if (GAUSSIAN_VAR) {
+                if (GAUSSIAN_PARAM_VAL) {
                     paramVal = rand.getSkewedGaussian(PARAM_MIN, PARAM_MAX,
                             szt.getParamR(), !ALLOW_MIN);
-                } else {
+                } else if (RANDOM_PARAM_VAL) {
                     paramVal = rand.getSkewedDouble50Pcnt(PARAM_MIN, PARAM_MAX,
                             szt.getParamR(), !ALLOW_MIN);
+                } else {
+                    paramVal = DFLT_PP_PARAMR;
                 }
                 System.out.format("R[%d] paramVal=%10.3f, dlft=%10.3f\n",
                         szt.getNodeIndex(), paramVal, szt.getParamR());
                 szt.setParamR(paramVal);
+                
+                //animals
             } else {
-                if (GAUSSIAN_VAR) {
+                paramVal = szt.getParamX();  //dflt = calculated value
+                if (GAUSSIAN_PARAM_VAL) {
                     paramVal = rand.getSkewedGaussian(PARAM_MIN, PARAM_MAX,
                             szt.getParamX(), !ALLOW_MIN);
-                } else {
+                } else if (RANDOM_PARAM_VAL) {
                     paramVal = rand.getSkewedDouble50Pcnt(PARAM_MIN, PARAM_MAX,
                             szt.getParamX(), !ALLOW_MIN);
                 }
@@ -445,13 +465,13 @@ public class SimJobRandom extends SimJob {
             }
         }
 
-        System.out.printf("Created %d nodes.\n", getSpeciesZoneList().size());
+        System.out.printf("Created %d nodes.\n", speciesZoneList.size());
     }
 
     private int getRandomBiomass() {
-        return (int) (rand.getNextDouble() * (double) maxBiomassCoeff);
+        return (int)rand.getNextDouble(MIN_BIOMASS, maxBiomass);
     }
-
+    
     private int getRandomSpeciesNode(List<Integer> speciesIdList) {
         int speciesId = 0;
         boolean inUse = true;
@@ -459,11 +479,20 @@ public class SimJobRandom extends SimJob {
         //make sure species hasn't already been selected
         while (inUse) {
             speciesId = speciesIdList.get(rand.getNextInt(speciesIdList.size()));
-
-            if (getSpeciesZoneBySpeciesId(speciesId) != null) {
-                continue;
+        
+            //check to see if any of species nodes have already been selected.
+            //(1-1 relationship for animals, but not plants).
+            //Can't have more than one tree, as they become generic nodes, which
+            //causes them to add up to extraordinarily large initial biomasses
+            //if multiple trees are selected.  It is also possible for member nodes
+            //of trees to be randomly selected independently of trees.
+            SpeciesType st = ServerResources.getSpeciesTable().getSpecies(speciesId);
+            for (Map.Entry<Integer, Float> nodeDistr : st.getNodeDistribution().entrySet()) {
+                inUse = getSpeciesZoneByNodeId(nodeDistr.getKey()) != null;
+                if (inUse) {
+                    break;
+                }
             }
-            inUse = false;
         }
         return speciesId;
     }
@@ -520,8 +549,8 @@ public class SimJobRandom extends SimJob {
         this.ppParamR = ppParamR;
     }
 
-    public void setMaxBiomassCoeff(int maxBiomassCoeff) {
-        this.maxBiomassCoeff = maxBiomassCoeff;
+    public void setMaxBiomass(double maxBiomass) {
+        this.maxBiomass = maxBiomass;
     }
 
     public void setMinSpecies(int minSpecies) {
@@ -560,8 +589,8 @@ public class SimJobRandom extends SimJob {
         return ppParamR;
     }
 
-    public int getMaxBiomassCoeff() {
-        return maxBiomassCoeff;
+    public double getMaxBiomass() {
+        return maxBiomass;
     }
 
     public int getMinSpecies() {

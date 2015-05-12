@@ -16,6 +16,7 @@ public class ConvergeAttempt {
     protected boolean allowHints;
     protected int hintId;
     protected java.sql.Timestamp time;
+    protected int score;
     protected String config;
     protected String csv;
 
@@ -103,4 +104,11 @@ public class ConvergeAttempt {
         this.hintId = id;
     }
 
+    public int getScore() {
+        return this.score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

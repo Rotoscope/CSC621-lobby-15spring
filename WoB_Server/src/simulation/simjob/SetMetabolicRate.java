@@ -52,7 +52,7 @@ public class SetMetabolicRate {
         //extracted the following from simengine:
         propertiesConfig = new Properties();
         try {
-            propertiesConfig.load(new FileInputStream("src/simulationEngine/config/SimulationEngineConfig.properties"));
+            propertiesConfig.load(new FileInputStream("src/simulation/config/SimulationEngineConfig.properties"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(SetMetabolicRate.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

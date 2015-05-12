@@ -1,6 +1,7 @@
 package model;
 
 // Java Imports
+import core.ServerResources;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class SpeciesType {
     protected String name;
     protected int cost;
     protected String description;
-    protected float biomass;
+    protected float biomass;  //per-unit biomass
     protected short diet_type;
     protected int model_id;
     protected float carrying_capacity;
@@ -210,9 +211,15 @@ public class SpeciesType {
     public List<Integer> getPredatorNodeIDs() {
         List<Integer> nodeList = new ArrayList<Integer>();
 
-        for (Integer nodeId : predatorList) {
-            if (nodeList.indexOf(nodeId) == -1) {
-                nodeList.add(nodeId);
+        for (Integer speciesId : predatorList) {
+            //pred species won't actually have multiple node IDs, so this would
+            //return a list of one
+            List<Integer> spNodeList = ServerResources.getSpeciesTable().
+                        getSpecies(speciesId).getNodeList();
+            for (int nodeId : spNodeList) {
+                if (nodeList.indexOf(nodeId) == -1) {
+                    nodeList.add(nodeId);
+                }
             }
         }
 
@@ -230,9 +237,14 @@ public class SpeciesType {
     public List<Integer> getPreyNodeIDs() {
         List<Integer> nodeList = new ArrayList<Integer>();
 
-        for (Integer nodeId : preyList) {
-            if (nodeList.indexOf(nodeId) == -1) {
-                nodeList.add(nodeId);
+        for (Integer speciesId : preyList) {
+            //prey species may have multiple node IDs
+            List<Integer> spNodeList = ServerResources.getSpeciesTable().
+                        getSpecies(speciesId).getNodeList();
+            for (int nodeId : spNodeList) {
+                if (nodeList.indexOf(nodeId) == -1) {
+                    nodeList.add(nodeId);
+                }
             }
         }
 

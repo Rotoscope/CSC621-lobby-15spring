@@ -35,8 +35,8 @@ public class ConvergePriorAttemptProtocol {
 			                                               allowHints,
 			                                               hintId,
 			                                               config,
-			                                               csv,
-			                                               null
+			                                               csv
+			                                               //null
 			                                               );
 
 			response.attempt = attempt;

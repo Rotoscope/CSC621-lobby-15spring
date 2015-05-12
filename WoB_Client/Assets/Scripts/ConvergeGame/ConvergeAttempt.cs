@@ -14,7 +14,7 @@ public class ConvergeAttempt {
 	public string config { get; set; }
 	public string csv_string { get; private set; }
 	public CSVObject csv_object { get; private set; }
-	public ConvergeManager manager { get; set; }
+	//public ConvergeManager manager { get; set; }
 	public Dictionary<string, ConvergeParam> seriesParams { get; set; }
 
 	public ConvergeAttempt(int player_id, 
@@ -23,8 +23,8 @@ public class ConvergeAttempt {
 	                       bool allow_hints,
 	                       int hint_id,
 	                       string config,
-	                       string csv_string,
-	                       ConvergeManager manager
+	                       string csv_string
+	                       //ConvergeManager manager
 	                       ) {
 		this.player_id = player_id;
 		this.ecosystem_id = ecosystem_id;
@@ -55,7 +55,7 @@ public class ConvergeAttempt {
 	//note: link level parameters are not supported in this implementation
 	public void ParseConfig (ConvergeManager manager)
 	{
-		this.manager = manager;
+		//this.manager = manager;
 		this.seriesParams = new Dictionary<string, ConvergeParam>();
 		string remainder = config;
 		int nodeCnt = 0;

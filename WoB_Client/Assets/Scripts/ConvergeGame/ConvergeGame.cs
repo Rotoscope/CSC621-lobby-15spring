@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -145,8 +146,13 @@ public class ConvergeGame : MonoBehaviour
 		style.fontSize = 16;
 
 		GUI.Label (new Rect ((windowRect.width - 100) / 2, 0, 100, 30), "Convergence Game", style);
-		if (GUI.Button (new Rect (windowRect.width - 100 - bufferBorder, 0, 100, 30), "Logout")) {
-			NetworkManager.Send (LogoutProtocol.Prepare (0), ProcessLogout);
+		if (GUI.Button (new Rect (windowRect.width - 100 - bufferBorder, 0, 100, 30), "Return to Lobby")) {
+			Destroy (this);
+			Destroy (foodWeb);
+			GameState gs = GameObject.Find ("Global Object").GetComponent<GameState> ();
+			Species[] s = gs.GetComponents<Species>();
+			foreach (Species sp in s) Destroy (sp); //destroy the "species" objects
+			Game.SwitchScene("World");
 		}
 
 		GUI.BeginGroup (new Rect (bufferBorder, 0, windowRect.width, 100));
@@ -247,8 +253,9 @@ public class ConvergeGame : MonoBehaviour
 		style.alignment = TextAnchor.UpperRight;
 		style.font = font;
 		style.fontSize = 14;
-		Color temp = GUI.color;
-	
+		Color savedColor = GUI.color;
+		Color savedBkgdColor = GUI.backgroundColor;
+
 		if (currAttempt != null && currAttempt.seriesParams.Count > 0) {
 			int paramCnt = currAttempt.seriesParams.Count;
 			int row = 0;
@@ -291,7 +298,7 @@ public class ConvergeGame : MonoBehaviour
 						manager.selected = param.name;
 						manager.lastSeriesToDraw = param.name;
 					}
-					style.normal.textColor = (param.name == manager.selected) ? 
+					GUI.color = (param.name.Equals (manager.selected)) ? 
 						manager.seriesColors [param.name] : Color.white;
 					GUI.Label (labelRect, param.name + " - " + param.paramId, style);
 					//if player clicks on species, set as selected and activate foodWeb
@@ -314,7 +321,7 @@ public class ConvergeGame : MonoBehaviour
 					Color slTexture= new Color (0.85f, 0.85f, 0.85f);
 					GUI.DrawTexture (new Rect (sliderRect.x, sliderRect.y, origValWidth, 10), //sliderRect.height),
 					                 Functions.CreateTexture2D (slTexture));
-					GUI.color = temp;
+//					GUI.color = savedColor;
 					
 					//draw slider for parameter value manipulation
 					GUI.backgroundColor = manager.seriesColors [param.name];
@@ -324,7 +331,6 @@ public class ConvergeGame : MonoBehaviour
 					min, 
 					max
 					);
-					GUI.backgroundColor = temp;
 
 					//show normalized value for parameter
 					if (param.name.Equals (manager.selected)) {
@@ -345,8 +351,6 @@ public class ConvergeGame : MonoBehaviour
 						Rect valRect = new Rect(xPosn, labelRect.y, 70, labelRect.height - 5);
 
 						GUI.Box (valRect, valLabel);
-						GUI.color = manager.seriesColors [param.name];
-						GUI.backgroundColor = temp;
 						style.alignment = TextAnchor.UpperRight;
 					}
 
@@ -356,6 +360,10 @@ public class ConvergeGame : MonoBehaviour
 					} else {
 						row++;
 					}
+
+					GUI.color = savedColor;
+					GUI.backgroundColor = savedBkgdColor;
+
 				}
 			}
 			GUI.EndGroup ();
@@ -363,8 +371,6 @@ public class ConvergeGame : MonoBehaviour
 		style.alignment = TextAnchor.UpperLeft;
 		style.font = font;
 		style.fontSize = 16;
-		style.normal.textColor = temp;
-		GUI.color = temp;
 	}
 
 	void DrawResetButtons (int screenOffset, GUIStyle style)
@@ -542,8 +548,8 @@ public class ConvergeGame : MonoBehaviour
 			    allowHintsMaster,
 			    Constants.ID_NOT_SET,
 			    attempt.config,
-			    null,
-			    manager
+			    null
+			    //manager
 			);
 
 			FinalizeAttemptUpdate (attemptCount - 1, false);
@@ -644,8 +650,8 @@ public class ConvergeGame : MonoBehaviour
 			    allowHintsMaster,
 			    Constants.ID_NOT_SET,
 			    ecosystemList [ecosystem_idx].config_default,
-			    ecosystemList [ecosystem_idx].csv_default_string,
-			    manager
+			    ecosystemList [ecosystem_idx].csv_default_string
+			    //manager
 			);
 			//otherwise, base next attempt info on immediate prior attempt
 		} else {
@@ -657,8 +663,8 @@ public class ConvergeGame : MonoBehaviour
 			    allowHintsMaster,
 			    Constants.ID_NOT_SET,
 			    attemptList [attemptCount - 1].config,
-			    attemptList [attemptCount - 1].csv_string,
-			    manager
+			    attemptList [attemptCount - 1].csv_string
+			    //manager
 			);
 		}
 
@@ -685,8 +691,8 @@ public class ConvergeGame : MonoBehaviour
 		        allowHintsMaster,
 		        hint_id,
 		        ecosystemList [ecosystem_idx].config_default,
-			    ecosystemList [ecosystem_idx].csv_default_string,
-			    manager
+			    ecosystemList [ecosystem_idx].csv_default_string
+			    //manager
 			);
 		} else {
 			currAttempt = new ConvergeAttempt (
@@ -696,8 +702,8 @@ public class ConvergeGame : MonoBehaviour
 		        allowHintsMaster,
 			    hint_id,
 			    attemptList [attemptIdx].config,
-			    attemptList [attemptIdx].csv_string,
-			    manager
+			    attemptList [attemptIdx].csv_string
+			    //manager
 			);
 		}
 
@@ -872,6 +878,8 @@ public class ConvergeGame : MonoBehaviour
 		} else {
 			foodWeb.manager = manager;
 		}
+
+		
 	}
 
 	private void SetIsProcessing (bool isProc)

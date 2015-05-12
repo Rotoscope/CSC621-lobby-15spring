@@ -121,4 +121,16 @@ public class EcosystemTimesteps {
             return 0;
         }
     }
+
+    //calculate score for converge game against the target ecosystem
+    public int calculateConvergeScore(EcosystemTimesteps target) {
+        double score = 0.0f;
+        
+        for (Integer nodeId : nodeList) {
+            score += timestepMap.get(nodeId).
+                    AvgDiffTimesteps (target.getTimestepMap().get(nodeId));
+        }
+        return (int) Math.round(score);
+    }
+
 }

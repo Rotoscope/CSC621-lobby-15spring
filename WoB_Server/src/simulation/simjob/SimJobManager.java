@@ -89,7 +89,14 @@ public final class SimJobManager {
 
             /*run timestep #1 (executeManipulationRequest); initializes all node and link parameters 
              that can affect manipulation*/
-            simEngine.increaseMultipleSpeciesType(job.getSpeciesZoneList(), ++nextTimestep, false, manipId);
+            simEngine.increaseMultipleSpeciesType(
+                    job.getSpeciesZoneMap(), 
+                    job.getSpeciesZoneMap(), 
+                    //job.getSpeciesZoneList(), 
+                    ++nextTimestep, 
+                    false, 
+                    manipId
+            );
 
             /*runs manipulation timestep 2+ (executeManipulationRequest)*/
             simEngine.run(++nextTimestep, job.getTimesteps(), manipId, false);

@@ -5,6 +5,8 @@
  */
 package simulation.simjob;
 
+import java.util.Map;
+
 /**
  *
  * @author justinacotter
@@ -12,9 +14,7 @@ package simulation.simjob;
 public class NodeTimesteps {
 
     protected int nodeId;
-    protected double[] biomass, ppBiomass, predBiomass, predShareGrpBiomass, preyBiomass,
-            preyShareGrpBiomass, dietGrpBiomass, totBiomass;
-    protected double[][] trophGrpBiomass;
+    protected double[] biomass;
 
     public NodeTimesteps(int nodeId, int count) {
         this.nodeId = nodeId;
@@ -35,12 +35,12 @@ public class NodeTimesteps {
     public double getBiomass(int idx) {
         return biomass[idx];
     }
-    
+
     public int getNodeId() {
         return nodeId;
     }
-    
-    public double getAvgBiomass () {
+
+    public double getAvgBiomass() {
         double avg = 0;
         for (double bm : biomass) {
             avg += bm;
@@ -51,4 +51,19 @@ public class NodeTimesteps {
             return 0;
         }
     }
+
+    //get average difference between current CSV object values and object "target" 
+    //(using root mean square distrib)
+    public double AvgDiffTimesteps(NodeTimesteps target) {
+        double score = 0.0f;
+
+        //for each timestep, calc different and add squared val to score total
+        for (int i = 0; i < biomass.length; i++) {
+            double diff = biomass[i] - target.getBiomass(i);
+            score += diff * diff;
+        }
+
+        return Math.sqrt (score / (double) biomass.length);
+    }
+
 }

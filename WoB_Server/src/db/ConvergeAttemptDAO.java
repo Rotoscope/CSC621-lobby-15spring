@@ -1,18 +1,16 @@
 package db;
 
 // Java Imports
-import convergegame.AttemptComparator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 // Other Imports
 import convergegame.ConvergeAttempt;
 import java.sql.Statement;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 import metadata.Constants;
 import util.Log;
 
@@ -91,7 +89,9 @@ public final class ConvergeAttemptDAO {
                 + "WHERE `player_id` = ? "
                 + "ORDER BY `time` DESC LIMIT 1) " //note descending order to get most recent ecosystem
                 + "temp_tab) " 
-                + "ORDER BY `attempt_id` ";
+				+ "GROUP BY `ecosystem_id` "
+                + "ORDER BY `attempt_id` "
+                ;
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -238,6 +238,7 @@ public final class ConvergeAttemptDAO {
                 attempt.setAllowHints(rs.getBoolean("allow_hints"));
                 attempt.setHintId(rs.getInt("hint_id"));
                 attempt.setTime(rs.getTimestamp("time"));
+                attempt.setScore(rs.getInt("score"));
                 attempt.setConfig(rs.getString("config"));
                 attempt.setCsv(rs.getString("csv"));
             }
@@ -248,6 +249,50 @@ public final class ConvergeAttemptDAO {
         }
 
         return attempt;
+    }
+
+    //get specific converge attempt for specified ecosystem
+    public static List<ConvergeAttempt> getConvergeAttempts() {
+        List<ConvergeAttempt> attempts = new ArrayList <ConvergeAttempt>();
+
+        //not loading config or csv file (use individual get..Attempt for that)
+        String query = ""
+                + "SELECT `player_id`, `ecosystem_id`, `attempt_id`,"
+                + "`allow_hints`, `hint_id`, `time`, `score`  "
+                + "FROM `converge_attempt` "
+                + "ORDER BY `player_id`, `ecosystem_id` ASC";
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = GameDB.getConnection();
+            pstmt = con.prepareStatement(query);
+
+            rs = pstmt.executeQuery();
+
+            //if record found, prepare new object
+            while (rs.next()) {
+                ConvergeAttempt attempt = new ConvergeAttempt();
+
+                attempt.setPlayerId(rs.getInt("player_id"));
+                attempt.setEcosystemId(rs.getInt("ecosystem_id"));
+                attempt.setAttemptId(rs.getInt("attempt_id"));
+                attempt.setAllowHints(rs.getBoolean("allow_hints"));
+                attempt.setHintId(rs.getInt("hint_id"));
+                attempt.setTime(rs.getTimestamp("time"));
+                attempt.setScore(rs.getInt("score"));
+                
+                attempts.add(attempt);
+            }
+        } catch (SQLException ex) {
+            Log.println_e(ex.getMessage());
+        } finally {
+            GameDB.closeConnection(con, pstmt, rs);
+        }
+
+        return attempts;
     }
 
     public static int updateConvergeAttemptScore(int player_id, 
