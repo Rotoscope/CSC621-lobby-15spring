@@ -1,9 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RRAssets\Scripts\RunnerScene Scripts\Running.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CWAssets\CWGame.cs">
     <Files>
-      <File FileName="..\..\cards_of_the_wild\cards_of_the_wild\WoB_Client\Assets\Scripts\BattleMainMenu.cs" Line="10" Column="15" />
-      <File FileName="Assets\RRAssets\Scripts\RunnerScene Scripts\Running.cs" Line="32" Column="16" />
+      <File FileName="Assets\CWAssets\Scripts\Network\Protocol\ReturnLobbyProtocol.cs" Line="1" Column="1" />
+      <File FileName="Assets\CWAssets\Scripts\Battle\GameManager.cs" Line="6" Column="24" />
+      <File FileName="Assets\RRAssets\Scripts\RunnerScene Scripts\Running.cs" Line="28" Column="5" />
+      <File FileName="Assets\RRAssets\Scripts\EndScene\EndGameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game.cs" Line="95" Column="26" />
+      <File FileName="Assets\Scripts\Network\Protocol\BackToLobbyProtocol.cs" Line="4" Column="28" />
+      <File FileName="Assets\CWAssets\CWGame.cs" Line="9" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
