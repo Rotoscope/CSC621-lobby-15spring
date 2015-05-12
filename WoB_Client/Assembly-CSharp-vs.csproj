@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_2;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,6 +46,90 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CWAssets\Resources\Prefabs\Battle\TextOutline.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\AI.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\AnimalAI.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\CardAttackAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\DealCardAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\EndTurnAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\MatchOverAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\MatchStatusAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\QuitMatchAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\SummonCardAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\TreeAttackAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\TurnAction.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\BattlePlayer.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Cards\AbstractCard.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Cards\Handler\AbstractCardHandler.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Cards\Handler\InHand.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Cards\Handler\InPlay.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Cards\Handler\RemoveFromPlay.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\DeckData.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\GameManager.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\ProtocolManager.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Trees\Handler\EndGame.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Trees\Handler\LivingTreeClick.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Trees\Handler\TreesHandler.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Battle\Trees\Trees.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\BattleMainMenu.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Camera\BasicCamera.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Constants.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Containers\Account.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Containers\Ecosystem.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Containers\World.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\ExtendedEventArgs.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Bar Graph\BarGraph.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Bar Graph\BarGrid.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Bar Graph\BarLegend.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Bar Graph\BarSeries.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Bar Graph\CSVObject.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Bar Graph\GraphInput.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Bar Graph\SeriesSet.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Database\Card.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Database\Database.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Database\Page.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GUI\Database\View.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\GameState.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Login.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\MainGUI.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Menu.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\MessageBox.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\ConnectionManager.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\DataReader.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\GamePacketStream.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\NetworkCode.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\NetworkManager.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\NetworkProtocolTable.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\CardAttackProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\ChartProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\ClientProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\DealCardProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\EcosystemProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\EndTurnProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\ErrorLogProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\GetDeckProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\HeartbeatProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\LoginProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\LogoutProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\MatchActionProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\MatchInitProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\MatchOverProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\MatchStartProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\MatchStatusProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\QuitMatchProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\ReturnLobbyProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\SummonCardProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Network\Protocol\TreeAttackProtocol.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Other\Drawing.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Other\DynamicRect.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Other\Functions.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Other\GUIExtended.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Other\InputExtended.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\ProgressBar.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Register.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\RegisterColorPanel.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Strings.cs" />
+     <Compile Include="Assets\CWAssets\Scripts\Tests.cs" />
      <Compile Include="Assets\Game.cs" />
      <Compile Include="Assets\MiniClientAssets\Background.cs" />
      <Compile Include="Assets\MiniClientAssets\Constants.cs" />
@@ -152,6 +236,7 @@
      <Compile Include="Assets\Scripts\Containers\Ecosystem.cs" />
      <Compile Include="Assets\Scripts\Containers\Player.cs" />
      <Compile Include="Assets\Scripts\Containers\World.cs" />
+     <Compile Include="Assets\Scripts\ConvergeGUI.cs" />
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeAttempt.cs" />
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeEcosystem.cs" />
      <Compile Include="Assets\Scripts\ConvergeGame\ConvergeGame.cs" />
@@ -293,11 +378,13 @@
      <Compile Include="Assets\Scripts\World\WorldMouse.cs" />
      <Compile Include="Assets\Scripts\World\Zone.cs" />
      <Compile Include="Assets\Scripts\WorldMenu.cs" />
+     <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$Alpha-Selective.shader" />
+     <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$3DTextOneSided.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.Sqlite">
- <HintPath>C:/Users/Sammy/Documents/GitHub/CSC621-lobby-15spring/WoB_Client/Assets/RRAssets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ <HintPath>C:/Users/Dong/Documents/CSC621-lobby-15spring/WoB_Client/Assets/RRAssets/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

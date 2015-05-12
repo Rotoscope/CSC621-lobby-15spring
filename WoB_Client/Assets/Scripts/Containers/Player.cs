@@ -17,4 +17,7 @@ public class Player {
 	public int GetID() {
 		return player_id;
 	}
+	public string GetName() {
+		return name;
+	}
 }
