@@ -15,6 +15,10 @@ namespace CW{
 		void Awake(){
 			// Used for scene transition 
 			DontDestroyOnLoad (gameObject.GetComponent ("Login"));
+
+			CW.NetworkManager.Send (CW.MatchInitProtocol.Prepare 
+			                        (GameState.player.GetID(), matchID), 
+			                        ProcessMatchInit);
 		}
 		
 		void Start () {
@@ -141,6 +145,15 @@ namespace CW{
 			if(GUI.Button(new Rect(0, (Screen.height/2.0f), (Screen.width/12.8f)/100 *150, (Screen.width/12.8f)/100 *40), "End Turn")){
 				endTurn();
 			}		
+		}
+
+		public void ProcessMatchInit(NetworkResponse response) {
+			CW.ResponseMatchInit args = response as CW.ResponseMatchInit;
+			
+			if (args.status == 0) {
+				Debug.Log("MatchID set to: " + args.matchID);
+				//Game.SwitchScene ("CWBattle");
+			}
 		}
 	}
 }
