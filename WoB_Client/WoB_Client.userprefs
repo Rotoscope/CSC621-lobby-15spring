@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ClashOfSpecies.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CWAssets/Scripts/Battle/GameManager.cs">
     <Files>
       <File FileName="Assets/Scripts/ClashOfSpecies/ClashSplash.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ConnectionLostGUI.cs" Line="1" Column="1" />
@@ -13,16 +13,24 @@
       <File FileName="Assets/Scripts/Network/NetworkCode.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/Protocol/PairProtocol.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/NetworkProtocolTable.cs" Line="1" Column="1" />
-      <File FileName="Assets/CWAssets/Scripts/Constants.cs" Line="1" Column="1" />
-      <File FileName="Assets/CWAssets/CWGame.cs" Line="1" Column="1" />
-      <File FileName="Assets/Game.cs" Line="1" Column="1" />
-      <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="154" Column="3" />
-      <File FileName="Assets/CWAssets/Scripts/Battle/GameManager.cs" Line="16" Column="33" />
-      <File FileName="Assets/CWAssets/Scripts/Battle/ProtocolManager.cs" Line="175" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Constants.cs" Line="76" Column="4" />
+      <File FileName="Assets/CWAssets/CWGame.cs" Line="119" Column="2" />
+      <File FileName="Assets/Game.cs" Line="92" Column="29" />
+      <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="10" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/GameManager.cs" Line="98" Column="35" />
       <File FileName="Assets/Scripts/PlayerList/PlayerListPanel.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Login.cs" Line="167" Column="19" />
       <File FileName="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs" Line="26" Column="32" />
-      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="157" Column="47" />
+      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="184" Column="4" />
+      <File FileName="Assets/CWAssets/Scripts/Menu.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkManager.cs" Line="31" Column="4" />
+      <File FileName="Assets/CWAssets/Scripts/Network/ConnectionManager.cs" Line="24" Column="17" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/ProtocolManager.cs" Line="37" Column="54" />
+      <File FileName="Assets/CWAssets/Scripts/Network/Protocol/MatchActionProtocol.cs" Line="13" Column="66" />
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkProtocolTable.cs" Line="17" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/BattlePlayer.cs" Line="194" Column="12" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/Actions/EndTurnAction.cs" Line="21" Column="29" />
+      <File FileName="Assets/CWAssets/Scripts/BattleMainMenu.cs" Line="15" Column="54" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -32,6 +40,7 @@
               <Node name="Scripts" expanded="True">
                 <Node name="Battle" expanded="True">
                   <Node name="Actions" expanded="True" />
+                  <Node name="GameManager.cs" selected="True" />
                 </Node>
                 <Node name="Network" expanded="True">
                   <Node name="Protocol" expanded="True" />
@@ -40,15 +49,6 @@
             </Node>
             <Node name="Scripts" expanded="True">
               <Node name="Containers" expanded="True" />
-              <Node name="GUI" expanded="True" />
-              <Node name="HUD" expanded="True" />
-              <Node name="Network" expanded="True">
-                <Node name="Protocol" expanded="True" />
-              </Node>
-              <Node name="PlayerList" expanded="True" />
-              <Node name="Shop" expanded="True" />
-              <Node name="World" expanded="True" />
-              <Node name="ClashOfSpecies.cs" selected="True" />
             </Node>
           </Node>
         </State>
