@@ -91,7 +91,7 @@ namespace CW{
 		}
 		
 		void endTurn(){
-		
+			Debug.Log ("end turn..");
 			// If two_player, only switch turns if player1 isActive
 			if(!Constants.SINGLE_PLAYER && player1.isActive){
 				protocols.sendEndTurn(player1.playerID);

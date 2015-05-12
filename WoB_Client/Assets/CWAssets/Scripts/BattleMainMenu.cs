@@ -11,8 +11,8 @@ public class BattleMainMenu : MonoBehaviour
 {
 	private int playerID = 108;
 
-	public static readonly string SceneNameMainMenu = "BattleMainMenu";
-    public static readonly string SceneNameGame = "Battle";
+	public static readonly string SceneNameMainMenu = "CWBattleMainMenu";
+    public static readonly string SceneNameGame = "CWBattle";
 	//public static readonly string SceneNameEditDeck = "EditDeckScene";
 
 
