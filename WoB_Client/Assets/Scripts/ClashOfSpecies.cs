@@ -152,7 +152,10 @@ public class ClashOfSpecies : MonoBehaviour {
 				Game.SwitchScene ("RRGame");
 			} else if (args.gameID == Constants.MINIGAME_CARDS_OF_WILD) {
 				CW.GameManager.matchID = args.id;
-				Game.SwitchScene ("CWBattle");
+				//Game.SwitchScene ("CWBattle");
+				CW.NetworkManager.Send (CW.MatchInitProtocol.Prepare 
+				                        (GameState.player.GetID(), args.id), 
+				                        ProcessMatchInit);
 			}
 		} else {
 			Debug.Log("New room allocated [room id=" + args.id + "]");
@@ -171,5 +174,14 @@ public class ClashOfSpecies : MonoBehaviour {
 		NetworkManager.Send (GetRoomsProtocol.Prepare ());
 		
 		StartCoroutine(RequestGetRooms(1f));
+	}
+
+	public void ProcessMatchInit(NetworkResponse response) {
+		CW.ResponseMatchInit args = response as CW.ResponseMatchInit;
+		
+		if (args.status == 0) {
+			Debug.Log("MatchID set to: " + args.matchID);
+			//Game.SwitchScene ("CWBattle");
+		}
 	}
 }
