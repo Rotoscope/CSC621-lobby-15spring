@@ -83,6 +83,15 @@ public class NetworkCode {
     public final static short QUIT_ROOM = 160;
     public final static short GET_ROOMS = 161;
     
+    //Clash of Species
+    public final static short CLASH_ENTRY = 162;
+    public final static short CLASH_SPECIES_LIST = 163;
+    public final static short CLASH_DEFENSE_SETUP = 164;
+    public final static short CLASH_PLAYER_LIST = 165;
+    public final static short CLASH_PLAYER_VIEW = 166;
+    public final static short CLASH_INITIATE_BATTLE = 167;
+    public final static short CLASH_END_BATTLE = 168;
+    
     public final static short BACK_TO_LOBBY = 192;
 
     /**
