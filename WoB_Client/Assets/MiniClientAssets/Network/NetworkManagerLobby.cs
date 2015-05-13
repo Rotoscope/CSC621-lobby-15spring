@@ -27,7 +27,7 @@ public class NetworkManagerLobby : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		Debug.Log ("Connecting lobby server...");
-		if (connectManager.Connect(Constants.REMOTE_HOST, Constants.REMOTE_PORT_LOBBY) == ConnectionManager.SUCCESS) {
+			if (connectManager.Connect(Config.REMOTE_HOST, Constants.REMOTE_PORT_LOBBY) == ConnectionManager.SUCCESS) {
 			NetworkManagerLobby.Send(
 				ClientProtocol.Prepare(Constants.CLIENT_VERSION, Constants.SESSION_ID),
 				ProcessClient

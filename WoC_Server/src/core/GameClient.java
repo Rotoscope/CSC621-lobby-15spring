@@ -168,10 +168,11 @@ public class GameClient {
         GameServer.getInstance().setActiveAccount(account);
 
         // test
-        Player p = PlayerDAO.getPlayerByAccount(getAccount().getID());
-        if (p != null) {
-            select(p);
-        }
+        player = PlayerDAO.getPlayerByAccount(getAccount().getID());
+        player.setClient(this);       
+        Log.printf("Selecting player: %d", player.getID());
+        PlayerDAO.updateLastPlayed(player.getID());
+        GameServer.getInstance().setActivePlayer(player);
 
         startSaveTimer();
     }
@@ -186,16 +187,16 @@ public class GameClient {
         GameServer.getInstance().setActivePlayer(player);
 
         {
-            //ResponsePlayerSelect response = new ResponsePlayerSelect();
-            //response.setStatus(ResponsePlayerSelect.SUCCESS);
-            //response.setPlayer(player);
-            //NetworkFunctions.sendToGlobal(response);
+            ResponsePlayerSelect response = new ResponsePlayerSelect();
+            response.setStatus(ResponsePlayerSelect.SUCCESS);
+            response.setPlayer(player);
+            NetworkFunctions.sendToGlobal(response);
         }
 
-        //if (player.getLastPlayed() == null) {
-        //    int world_id = WorldController.getInstance().first().getID();
-        //    EcosystemController.createEcosystem(world_id, player.getID(), player.getName() + "'s Ecosystem", (short) type);
-        //}
+        if (player.getLastPlayed() == null) {
+            int world_id = WorldController.getInstance().first().getID();
+            EcosystemController.createEcosystem(world_id, player.getID(), player.getName() + "'s Ecosystem", (short) type);
+        }
 
         {
 //            ResponseMessage response = new ResponseMessage();

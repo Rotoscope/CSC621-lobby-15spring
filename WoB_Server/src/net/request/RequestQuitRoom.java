@@ -10,6 +10,7 @@ import java.io.IOException;
 import lobby.GameRoom;
 import lobby.GameRoomManager;
 import net.response.ResponseQuitRoom;
+import util.Log;
 
 /**
  *
@@ -23,7 +24,10 @@ public class RequestQuitRoom extends GameRequest {
 
     @Override
     public void process() throws Exception {
+        Log.printf("Client ID: %s", client.getID());
         GameRoom room = GameRoomManager.getInstance().getRoom(client.getID());
+        
+        Log.printf("Client requests to quit a game room[%d]", room.getID());
         
         ResponseQuitRoom response = new ResponseQuitRoom();     
         response.setStatus((short)1);

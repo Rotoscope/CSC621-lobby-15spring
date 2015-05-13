@@ -55,8 +55,9 @@ public class MatchManager {
     }
     
     public Match getOrCreateMatch(int matchID) {
-        Match match = matchList.getOrDefault(matchID, null);
-        
+        Log.printf("getOrCreateMatch..");
+        Match match = matchList.get(matchID);
+        Log.printf("got match object..");
         if (match == null) {
             Log.printf("Manager creating new match");
             System.out.println("Creating match" + matchID);
@@ -71,7 +72,7 @@ public class MatchManager {
     public Match matchPlayerTo(int matchID, int playerID) {
         Log.printf("Matching player[%d] to match[%d]", playerID, matchID);
         
-        Log.printf("active player num %d", GameServer.getInstance().getActivePlayers().size());
+        //Log.printf("active player num %d", GameServer.getInstance().getActivePlayers().size());
         Match match = getOrCreateMatch(matchID);
         if (match.addPlayer(GameServer.getInstance().getActivePlayer(playerID))) {
             matchIDList.put(playerID, matchID);

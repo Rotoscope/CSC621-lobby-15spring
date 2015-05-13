@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		Debug.Log ("Connecting server...");
-		if (connectManager.Connect(Constants.REMOTE_HOST, Constants.REMOTE_PORT) == ConnectionManager.SUCCESS) {
+		if (connectManager.Connect(Config.REMOTE_HOST, Constants.REMOTE_PORT) == ConnectionManager.SUCCESS) {
 			NetworkManager.Send(
 				ClientProtocol.Prepare(Constants.CLIENT_VERSION, Constants.SESSION_ID),
 				ProcessClient

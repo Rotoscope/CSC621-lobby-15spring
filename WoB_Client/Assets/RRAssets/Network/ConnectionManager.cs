@@ -35,7 +35,7 @@ namespace RR
 			}
 
 			try {
-				mySocket = new TcpClient (Constants.REMOTE_HOST, Constants.REMOTE_PORT);
+				mySocket = new TcpClient (Config.REMOTE_HOST, Constants.REMOTE_PORT);
 				theStream = mySocket.GetStream ();
 				socketReady = true;
 			

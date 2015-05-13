@@ -50,6 +50,6 @@ public class GameRoomManager {
     }
 
     public GameRoom getRoom(String id) {
-        return mRoomTable.getOrDefault(id, null);
+        return mRoomTable.get(id);
     }
 }
