@@ -11,30 +11,32 @@ public class ClashBattleController : MonoBehaviour {
 
     private ClashSpecies selected;
     private Terrain terrain;
-    private ToggleGroup toggle;
+    private ToggleGroup toggleGroup;
 
     public HorizontalLayoutGroup unitList;
     public GameObject attackItemPrefab;
-    public GameObject attackUnitPrefab;
 
     public List<ClashBattleUnit> enemiesList = new List<ClashBattleUnit>();
     public List<ClashBattleUnit> alliesList = new List<ClashBattleUnit>();
 
+	public GameObject messageCanvas;
+	public Text messageText;
+
 	void Awake() {
         manager = GameObject.Find("MainObject").GetComponent<ClashGameManager>();
+		toggleGroup = unitList.gameObject.GetComponent<ToggleGroup> ();
     }
 
 	void Start () {
-        var terrainObject = Instantiate(Resources.Load("Prefabs/ClashOfSpecies/Terrains/" + manager.currentTarget.terrain)) as GameObject;
-        terrainObject.transform.position = Vector3.zero;
-        terrainObject.transform.localScale = Vector3.one;
+        var terrainResource = Resources.Load("Prefabs/ClashOfSpecies/Terrains/" + manager.currentTarget.terrain);
+        var terrainObject = Instantiate(terrainResource, Vector3.zero, Quaternion.identity) as GameObject;
 
         var terrain = terrainObject.GetComponentInChildren<Terrain>();
+        Camera.main.GetComponent<ClashBattleCamera>().target = terrain;
 
         foreach (var pair in manager.currentTarget.layout) {
             var species = pair.Key;
             
-
             // Place navmesh agent.
             var speciesPos = new Vector3(pair.Value.x * terrain.terrainData.size.x, 0.0f, pair.Value.y * terrain.terrainData.size.z);
             NavMeshHit placement;
@@ -68,6 +70,7 @@ public class ClashBattleController : MonoBehaviour {
                 }
             });
 
+			item.GetComponentInChildren<Toggle>().group = toggleGroup;
             item.transform.SetParent(unitList.transform);
             item.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, 0.0f);
             item.transform.localScale = Vector3.one;
@@ -83,14 +86,24 @@ public class ClashBattleController : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 100000, LayerMask.GetMask("Terrain"))) {
                 NavMeshHit placement;
                 if (NavMesh.SamplePosition(hit.point, out placement, 1000, 1)) {
+                    //Added by Omar
+                    var allyResource = Resources.Load<GameObject>("Prefabs/ClashOfSpecies/Units/" + selected.name);
+                    var allyObject = Instantiate(allyResource, placement.position, Quaternion.identity) as GameObject;
+                    /*
                     var allyObject = Instantiate(Resources.Load<GameObject>("Prefabs/ClashOfSpecies/Units/" + selected.name)) as GameObject;
                     allyObject.transform.position = placement.position;
                     allyObject.transform.rotation = Quaternion.identity;
+                    */
+
                     allyObject.tag = "Ally";
 
                     var unit = allyObject.AddComponent<ClashBattleUnit>();
                     alliesList.Add(unit);
                     unit.species = selected;
+
+					var toggle = toggleGroup.ActiveToggles ().FirstOrDefault();
+					toggle.enabled = false;
+					toggle.interactable = false;
 
                     selected = null;
                 }
@@ -100,39 +113,56 @@ public class ClashBattleController : MonoBehaviour {
 	
 	void FixedUpdate() {
         int totalEnemyHealth = 0;
+
         foreach (var enemy in enemiesList) {
+
             totalEnemyHealth += enemy.currentHealth;
-            if (enemy.currentHealth > 0 && !enemy.target && alliesList.Count > 0) {
+			Debug.Log(totalEnemyHealth);
+			if (enemy.currentHealth > 0 && !enemy.target && alliesList.Count > 0) {
+				Debug.Log ("Finding Enemy Target", gameObject);
                 var target = alliesList.Where(u => {
-                    switch (enemy.species.type) {
-                        case UnitType.CARNIVORE:
-                            return (u.species.type == UnitType.CARNIVORE) || (u.species.type == UnitType.HERBIVORE) ||
-                                                    (u.species.type == UnitType.OMNIVORE);
-                        case UnitType.HERBIVORE:
-                            return (u.species.type == UnitType.PLANT);
-                        case UnitType.OMNIVORE:
-                            return (u.species.type == UnitType.HERBIVORE) || (u.species.type == UnitType.PLANT);
-                        case UnitType.PLANT:
-                            return false;
-                        default: return false;
-                    }
-                    return false;
-                }).OrderBy(u => {
-                    return (enemy.transform.position - u.transform.position).sqrMagnitude;
-                }).FirstOrDefault();
-                enemy.target = target;
-            }
+					if(u.currentHealth<=0) 
+						return false;
+					switch (enemy.species.type) {
+					case UnitType.CARNIVORE:
+						return (u.species.type == UnitType.CARNIVORE) || (u.species.type == UnitType.HERBIVORE) ||
+							(u.species.type == UnitType.OMNIVORE);
+					case UnitType.HERBIVORE:
+						return (u.species.type == UnitType.PLANT);
+					case UnitType.OMNIVORE:
+						return (u.species.type == UnitType.HERBIVORE) || (u.species.type == UnitType.PLANT)||
+							(u.species.type == UnitType.CARNIVORE)||
+								(u.species.type == UnitType.OMNIVORE);
+					case UnitType.PLANT:
+						return false;
+					default: return false;
+					}
+					return false;
+				}).OrderBy(u => {
+					return (enemy.transform.position - u.transform.position).sqrMagnitude;
+				}).FirstOrDefault();
+				enemy.target = target;
+			}
         }
 
         if (totalEnemyHealth == 0 && enemiesList.Count > 0) {
             // ALLIES HAVE WON!
+
+			//messageCanvas.SetActive(true);
+			//messageText.text = "You Won!\n\nKeep on fighting!";
+
+			//TODO: Tell server you won
         }
 
         int totalAllyHealth = 0;
         foreach (var ally in alliesList) {
             totalAllyHealth += ally.currentHealth;
             if (ally.currentHealth > 0 && !ally.target && enemiesList.Count > 0) {
+				Debug.Log ("Finding Ally Target", gameObject);
                 var target = enemiesList.Where(u => {
+					if(u.currentHealth<=0) 
+						return false;
+
                     switch (ally.species.type) {
                         case UnitType.CARNIVORE:
                             return (u.species.type == UnitType.CARNIVORE) || (u.species.type == UnitType.HERBIVORE) ||
@@ -140,10 +170,12 @@ public class ClashBattleController : MonoBehaviour {
                         case UnitType.HERBIVORE:
                             return (u.species.type == UnitType.PLANT);
                         case UnitType.OMNIVORE:
-                            return (u.species.type == UnitType.HERBIVORE) || (u.species.type == UnitType.PLANT);
-                        case UnitType.PLANT:
-                            return false;
-                        default: return false;
+						return (u.species.type == UnitType.HERBIVORE) || (u.species.type == UnitType.PLANT)||
+													(u.species.type == UnitType.CARNIVORE)||
+													(u.species.type == UnitType.OMNIVORE);
+					case UnitType.PLANT:
+						return false;
+					default: return false;
                     }
                     return false;
                 }).OrderBy(u => {
@@ -153,8 +185,17 @@ public class ClashBattleController : MonoBehaviour {
             }
         }
 
-        if (totalAllyHealth == 0 && alliesList.Count > 0) {
+        if (totalAllyHealth == 0 && alliesList.Count == 5) {
             // ENEMIES HAVE WON!
+
+			messageCanvas.SetActive(true);
+			messageText.text = "You Lost!\n\nTry again next time!";
+
+			//TODO: Tell server you lost
         }
     }
+
+	public void ConfirmResult() {
+		Game.LoadScene ("ClashMain");
+	}
 }
