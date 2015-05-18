@@ -8,6 +8,7 @@ package net.request;
 import java.io.DataInputStream;
 import java.io.IOException;
 import lobby.GameRoomManager;
+import util.Log;
 
 /**
  *
@@ -21,6 +22,7 @@ public class RequestBackToLobby extends GameRequest {
 
     @Override
     public void process() throws Exception {
+        Log.println("The client is requesting for quiting...");
         GameRoomManager.getInstance().onClientQuit(client);
     }   
 }

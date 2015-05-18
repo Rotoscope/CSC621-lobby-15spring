@@ -181,7 +181,7 @@ namespace RR {
 						
 						GameObject mainObject = GameObject.Find ("MainObject");
 						RRConnectionManager cManager;
-						cManager = mainObject.GetComponent<RRConnectionManager> ();
+						cManager = RRConnectionManager.getInstance ();
 						
 						RequestRREndGame requestRREndGame = new RequestRREndGame ();
 						requestRREndGame.Send (Running.completed, Running.time.ToString ());

@@ -30,6 +30,26 @@ public class Race {
     private int mapID;
 
     private short playersReadyToStart;
+    
+    public Race(int raceID) {
+        this.raceID = raceID;
+        try {
+            RaceDAO.createRace(raceID);
+        } catch (SQLException e) {
+            Log.println_e("Error in writing record of race " + raceID + " into database.");
+            Log.println_e(e.getMessage());
+        }
+    }
+    
+    public void addPlayer(Player player) {
+        this.rPlayers.put(player.getID(), new RacePlayer(player.getID(), raceID));
+        try {
+            RaceDAO.createPlayerRecord(player.getID(), raceID);
+        } catch (SQLException e) {
+            Log.println_e("Error in writing record of player ID " + player.getID() + " in race ID " + raceID + " into database.");
+            Log.println_e(e.getMessage());
+        }
+    }
 
     public Race(List<Player> players, int raceID) {
         this.raceID = raceID;

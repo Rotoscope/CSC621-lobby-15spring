@@ -21,6 +21,8 @@ public class ClashOfSpecies : MonoBehaviour {
 	private bool quiting = false;
 	private bool waiting = false;
 
+	private int room_id = 0;
+
 	void Awake() {
 		mainObject = GameObject.Find("MainObject");
 		window_id = Constants.GetUniqueID();
@@ -137,6 +139,7 @@ public class ClashOfSpecies : MonoBehaviour {
 		
 		if (args.status == 0) {
 			Debug.Log("All players are ready to play [room id=" + args.id + "]");
+			this.room_id = args.id;
 
 			this.enableRRButton = true;
 			this.enableCWButton = true;
@@ -148,8 +151,11 @@ public class ClashOfSpecies : MonoBehaviour {
 
 			// switch scene
 			if (args.gameID == Constants.MINIGAME_RUNNING_RHINO) {
+				RR.RRConnectionManager cManager = RR.RRConnectionManager.getInstance();
+				cManager.Send (RR_RequestRaceInit ());
+
 				//RR.ReadyScene.ROOM_ID = args.id;
-				Game.SwitchScene ("RRGame");
+				Game.SwitchScene ("RRReadyScene");
 			} else if (args.gameID == Constants.MINIGAME_CARDS_OF_WILD) {
 				CW.GameManager.matchID = args.id;
 				//Game.SwitchScene ("CWBattle");
@@ -183,5 +189,12 @@ public class ClashOfSpecies : MonoBehaviour {
 			Debug.Log("MatchID set to: " + args.matchID);
 			Game.SwitchScene ("CWBattle");
 		}
+	}
+
+	public RR.RequestRaceInit RR_RequestRaceInit ()
+	{
+		RR.RequestRaceInit request = new RR.RequestRaceInit ();
+		request.Send (RR.Constants.USER_ID, this.room_id);
+		return request;
 	}
 }

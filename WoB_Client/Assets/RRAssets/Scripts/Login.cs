@@ -125,8 +125,7 @@ namespace RR
 		public RequestRaceInit RequestRaceInit ()
 		{
 			RequestRaceInit request = new RequestRaceInit ();
-			request.Send (Constants.USER_ID);
-	
+			request.Send (Constants.USER_ID, 0);
 			return request;
 		}
 	
@@ -159,12 +158,6 @@ namespace RR
 				Debug.Log ("Login Failed");
 			}
 		}
-	
-		//	public void ResponseSpeciesList(ExtendedEventArgs eventArgs) {
-		//		ResponseSpeciesListEventArgs args = eventArgs as ResponseSpeciesListEventArgs;
-		//		
-		//		//		SpeciesTable.Update(args.speciesList);
-		//	}
 		
 		public void Show ()
 		{

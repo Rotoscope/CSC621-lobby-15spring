@@ -79,7 +79,7 @@ public class Game : MonoBehaviour
 			case "Login":
 			case "MiniClient":
 			case "DontEatMe":
-			case "RRGame":
+			case "RRReadyScene":
 			case "ClashSplash":
 			case "Converge":
 			case "CWBattle":
@@ -92,6 +92,7 @@ public class Game : MonoBehaviour
 				StartEnterTransition ();
 				break;
 			case "World":
+				Debug.Log("The client is requesting for quiting...");
 				NetworkManager.Send (BackToLobbyProtocol.Prepare ());
 				break;
 			case "Ecosystem":

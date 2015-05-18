@@ -34,5 +34,4 @@ public class RequestRRGetMap extends GameRequest {
         
         getMap.setRandomNumber(mapID);
     }
-
 }

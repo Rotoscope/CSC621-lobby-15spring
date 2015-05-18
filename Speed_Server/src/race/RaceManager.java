@@ -72,12 +72,37 @@ public class RaceManager {
         return race;
     }
 
+    public Race createRace(int player_id, int raceID) {
+        Race race = this.raceList.get(raceID);
+
+        if (race == null) {
+            System.out.println("Creating a Race with id = [" + raceID + "]");
+            race = new Race(raceID);
+            Random randomGenerator = new Random();
+            race.setMapID(randomGenerator.nextInt(101));
+            raceList.put(race.getID(), race);
+        } else {
+            System.out.println("Race with id = [" + raceID + "] "
+                    + "already exists, add player " + player_id);
+        }
+        
+        race.addPlayer(GameServer.getInstance().getActivePlayer(player_id));
+        playerRaceList.put(player_id, race);
+
+        ResponseRaceInit response = new ResponseRaceInit();
+        for (int p_id : race.getPlayers().keySet()) {
+            NetworkManager.addResponseForUser(p_id, response);
+        }
+        return race;
+    }
+
     /**
      * This method will end a race and delete the existing instances of a race
+     *
      * @param raceID is the caller's race ID
      * @param playerID is the caller's player ID
      * @param winningTime this is the caller's winning time
-     * @throws Exception 
+     * @throws Exception
      */
     public void endRace(int raceID, int playerID, String winningTime) throws Exception {
         Race race = raceList.get(raceID);
@@ -86,15 +111,15 @@ public class RaceManager {
         // this eliminates loser calling end race
         if (race != null) {
             int opponentID = race.getOpponentID(playerID);
-            
+
             // remove race instances
             playerRaceList.remove(playerID);
             playerRaceList.remove(opponentID);
-            
+
             // create resposes
             ResponseRREndGame response = new ResponseRREndGame();
             response.setWinningTime(winningTime);
-            
+
             // send responses to both players
             for (int p_id : race.getPlayers().keySet()) {
                 if (playerID == p_id) {

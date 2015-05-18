@@ -30,7 +30,8 @@ namespace RR {
 		}
 	
 		public void backButton(){
-			Application.LoadLevel ("RRSelectionScene");
+			Game.SwitchScene ("World");
+
 		}
 	}
 }

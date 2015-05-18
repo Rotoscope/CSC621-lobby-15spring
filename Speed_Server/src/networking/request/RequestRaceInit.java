@@ -21,17 +21,20 @@ import utility.Log;
 public class RequestRaceInit extends GameRequest {
 
     private int player_id;
+    private int room_id;
     
     @Override
     public void parse() throws IOException {
         player_id = DataReader.readInt(dataInput);
+        room_id = DataReader.readInt(dataInput);
     }
 
     @Override
     public void doBusiness() throws Exception {
-        Race race = RaceManager.getInstance().createRace(player_id);
+        Race race = RaceManager.getInstance().createRace(player_id, room_id);
         
-        Log.println("Trying to start Race: Player: " + player_id);
+        Log.println("Trying to start Race: PlayerID[" +
+                player_id + "], RoomID[" + room_id + "]");
         
         if(race != null) {
             ResponseRaceInit response = new ResponseRaceInit();
