@@ -145,12 +145,12 @@
      <Compile Include="Assets\MiniClientAssets\Network\Protocol\HeartbeatProtocol.cs" />
      <Compile Include="Assets\MiniClientAssets\Network\Protocol\MessageProtocol.cs" />
      <Compile Include="Assets\MiniClientAssets\Network\Protocol\RequestStart.cs" />
-     <Compile Include="Assets\RRAssets\Network\ConnectionManager.cs" />
      <Compile Include="Assets\RRAssets\Network\DataReader.cs" />
      <Compile Include="Assets\RRAssets\Network\GamePacket.cs" />
      <Compile Include="Assets\RRAssets\Network\GamePacketStream.cs" />
      <Compile Include="Assets\RRAssets\Network\NetworkRequestTable.cs" />
      <Compile Include="Assets\RRAssets\Network\NetworkResponseTable.cs" />
+     <Compile Include="Assets\RRAssets\Network\RRConnectionManager.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\NetworkRequest.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\RRRequestSpecies.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\RequestGameState.cs" />
@@ -158,6 +158,8 @@
      <Compile Include="Assets\RRAssets\Network\Request\RequestInGameHeartbeat.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\RequestKeyboard.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\RequestLogin.cs" />
+     <Compile Include="Assets\RRAssets\Network\Request\RequestRREndGame.cs" />
+     <Compile Include="Assets\RRAssets\Network\Request\RequestRRGetMap.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\RequestRRPostion.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\RequestRRSpecies.cs" />
      <Compile Include="Assets\RRAssets\Network\Request\RequestRRStartGame.cs" />
@@ -168,6 +170,8 @@
      <Compile Include="Assets\RRAssets\Network\Response\ResponseHeartbeat.cs" />
      <Compile Include="Assets\RRAssets\Network\Response\ResponseKeyboard.cs" />
      <Compile Include="Assets\RRAssets\Network\Response\ResponseLogin.cs" />
+     <Compile Include="Assets\RRAssets\Network\Response\ResponseRREndGame.cs" />
+     <Compile Include="Assets\RRAssets\Network\Response\ResponseRRGetMap.cs" />
      <Compile Include="Assets\RRAssets\Network\Response\ResponseRRPostion.cs" />
      <Compile Include="Assets\RRAssets\Network\Response\ResponseRRSpecies.cs" />
      <Compile Include="Assets\RRAssets\Network\Response\ResponseRRStartGame.cs" />
@@ -176,11 +180,14 @@
      <Compile Include="Assets\RRAssets\Scripts\CountdownScene\CountdownManager.cs" />
      <Compile Include="Assets\RRAssets\Scripts\EndScene\EndGameManager.cs" />
      <Compile Include="Assets\RRAssets\Scripts\ExtendedEventArgs.cs" />
-     <Compile Include="Assets\RRAssets\Scripts\Main.cs" />
-     <Compile Include="Assets\RRAssets\Scripts\MessageQueue.cs" />
-     <Compile Include="Assets\RRAssets\Scripts\ReadyScene.cs" />
+     <Compile Include="Assets\RRAssets\Scripts\Login.cs" />
+     <Compile Include="Assets\RRAssets\Scripts\RRMain.cs" />
+     <Compile Include="Assets\RRAssets\Scripts\RRMessageQueue.cs" />
+     <Compile Include="Assets\RRAssets\Scripts\ReadyScene\RacePrep.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\GameCamera.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\GameManager.cs" />
+     <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\ItemController.cs" />
+     <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\ItemReader.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\PlatformActions\ElevatorPlatform.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\PlatformActions\SpinPlatform.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\Player.cs" />
@@ -188,6 +195,7 @@
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\PlayerController2.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\PlayerPhysics.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\ReadyScene\ButtonLogic.cs" />
+     <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\RunnerUI.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\Running.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\TestingGameManager.cs" />
      <Compile Include="Assets\RRAssets\Scripts\RunnerScene Scripts\TestingPlayerController.cs" />
@@ -378,9 +386,11 @@
      <Compile Include="Assets\Scripts\World\WorldMouse.cs" />
      <Compile Include="Assets\Scripts\World\Zone.cs" />
      <Compile Include="Assets\Scripts\WorldMenu.cs" />
+     <None Include="Assets\RRAssets\Resources\Prefabs\map\ItemLocationFiles\1.txt" />
      <None Include="Assets\RRAssets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\RRAssets\SpritePack1\!Readme.txt" />
      <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$Alpha-Selective.shader" />
+     <None Include="Assets\RRAssets\Resources\ItemLocationFiles\1.txt" />
      <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$3DTextOneSided.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.5/UnityEngine.UI.dll</HintPath>

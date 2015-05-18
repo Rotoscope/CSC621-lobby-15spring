@@ -1,9 +1,7 @@
 using UnityEngine;
 
 using System;
-
-namespace RR {
-
+namespace RR{
 public class ResponseLoginEventArgs : ExtendedEventArgs {
 	public short status { get; set; }
 	public int user_id { get; set; }
@@ -16,7 +14,9 @@ public class ResponseLoginEventArgs : ExtendedEventArgs {
 		event_id = Constants.SMSG_AUTH;
 	}
 }
+}
 
+namespace RR {
 public class ResponseLogin : NetworkResponse {
 	
 	private short status;

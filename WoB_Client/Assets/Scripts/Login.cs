@@ -33,11 +33,14 @@ public class Login : MonoBehaviour {
 		
 		bgTexture = Resources.Load<Texture2D>(Constants.THEME_PATH + Constants.ACTIVE_THEME + "/gui_bg");
 		font = Resources.Load<Font>("Fonts/" + "Chalkboard");
+
+		RR.RRMessageQueue.getInstance().AddCallback (RR.Constants.SMSG_AUTH, RR_ResponseLogin);
 	}
 	
 	// Use this for initialization
 	void Start() {
 		//StartCoroutine("AutoLogin");
+
 	}
 	
 	// Update is called once per frame
@@ -145,6 +148,9 @@ public class Login : MonoBehaviour {
 				);
 
 			CW.NetworkManager.Send(CW.LoginProtocol.Prepare(user_id, password));
+
+			RR.RRConnectionManager cManager = RR.RRConnectionManager.getInstance();
+			cManager.Send(RR_RequestLogin(user_id, password));
 		}
 	}
 	
@@ -228,5 +234,23 @@ public class Login : MonoBehaviour {
 		this.isActive = active;
 		//reset GUI focus if reactivating login.
 		this.isInitial = this.isInitial || this.isActive;
+	}
+
+	public RR.RequestLogin RR_RequestLogin (string username, string password)
+	{
+		RR.RequestLogin request = new RR.RequestLogin ();
+		request.send (username, password);
+		return request;
+	}
+	
+	public void RR_ResponseLogin (RR.ExtendedEventArgs eventArgs)
+	{
+		RR.ResponseLoginEventArgs args = eventArgs as RR.ResponseLoginEventArgs;
+		
+		if (args.status == 0) {
+			RR.Constants.USER_ID = args.user_id;
+		} else {
+			Debug.Log ("RR: Login Failed");
+		}
 	}
 }

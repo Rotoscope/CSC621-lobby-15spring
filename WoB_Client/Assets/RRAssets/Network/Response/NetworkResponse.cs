@@ -1,6 +1,5 @@
 using System.IO;
-
-namespace RR {
+namespace RR{
 public abstract class NetworkResponse {
 	
 	public MemoryStream dataStream { get; set; }

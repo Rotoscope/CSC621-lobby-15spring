@@ -148,7 +148,7 @@ public class ClashOfSpecies : MonoBehaviour {
 
 			// switch scene
 			if (args.gameID == Constants.MINIGAME_RUNNING_RHINO) {
-				RR.ReadyScene.ROOM_ID = args.id;
+				//RR.ReadyScene.ROOM_ID = args.id;
 				Game.SwitchScene ("RRGame");
 			} else if (args.gameID == Constants.MINIGAME_CARDS_OF_WILD) {
 				CW.GameManager.matchID = args.id;

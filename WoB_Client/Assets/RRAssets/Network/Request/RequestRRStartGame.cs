@@ -2,8 +2,7 @@ using UnityEngine;
 
 using System;
 using System.Collections.Generic;
-
-namespace RR {
+namespace RR{
 public class RequestRRStartGame : NetworkRequest {
 	
 	public RequestRRStartGame() {

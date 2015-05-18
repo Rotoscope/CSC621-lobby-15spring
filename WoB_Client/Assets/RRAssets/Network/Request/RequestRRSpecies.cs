@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-namespace RR {
+namespace RR{
 public class RequestRRSpecies : NetworkRequest {
 	
 	// Use this for initialization

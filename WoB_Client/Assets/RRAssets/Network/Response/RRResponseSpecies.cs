@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace RR {
+
+namespace RR{
 public class RRResponseSpeciesEventArgs : ExtendedEventArgs {
 	public int  id { get; set; }
 
@@ -10,7 +11,9 @@ public class RRResponseSpeciesEventArgs : ExtendedEventArgs {
 		event_id = Constants.SMSG_RRSPECIES;
 	}
 }
+}
 
+namespace RR {
 public class RRResponseSpecies : NetworkResponse {
 
 	private int id;
@@ -33,5 +36,7 @@ public class RRResponseSpecies : NetworkResponse {
 
 		return args;
 	}
+
+
 }
 }

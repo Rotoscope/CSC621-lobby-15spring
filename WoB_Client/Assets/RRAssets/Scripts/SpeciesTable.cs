@@ -4,29 +4,28 @@ using System;
 using System.Collections.Generic;
 
 using Mono.Data.Sqlite;
-
 namespace RR {
 	public class SpeciesTable {
-
+	
 		public static Dictionary<int, SpeciesData> speciesList = new Dictionary<int, SpeciesData>();
 		
 		public static void initialize() {
 			SqliteConnection con = new SqliteConnection("URI=file:" + Application.dataPath + "/Database/WoB_DB.db");
 			con.Open();
-
+	
 			SqliteCommand cmd = new SqliteCommand(con);
 			cmd.CommandText = "" +
 				"SELECT *" +
 				" FROM `species`";
-
+	
 			cmd.Prepare();
 			cmd.ExecuteNonQuery();
-
+	
 			SqliteDataReader reader = cmd.ExecuteReader();
 			
 			while (reader.Read()) {
 				int species_id = reader.GetInt32(0);
-
+	
 				SpeciesData species = new SpeciesData(species_id);
 				species.name = reader.GetString(1);
 				species.description = reader.GetString(2);
@@ -47,7 +46,7 @@ namespace RR {
 				
 				while (subreader.Read()) {
 					int predator_id = subreader.GetInt32(0);
-
+	
 					if (!species.predatorList.ContainsKey(predator_id)) {
 						species.predatorList.Add(predator_id, "");
 					}
@@ -66,15 +65,15 @@ namespace RR {
 		
 				while (subreader.Read()) {
 					int prey_id = subreader.GetInt32(0);
-
+	
 					if (!species.preyList.ContainsKey(prey_id)) {
 						species.preyList.Add(subreader.GetInt32(0), "");
 					}
 				}
-
+	
 				speciesList.Add(species.species_id, species);
 			}
-
+	
 			foreach (SpeciesData species in speciesList.Values) {
 				foreach (int predator_id in new List<int>(species.predatorList.Keys)) {
 					if (SpeciesTable.speciesList.ContainsKey(predator_id)) {
@@ -92,7 +91,7 @@ namespace RR {
 					}
 				}
 			}
-
+	
 			reader.Close();
 			con.Close();
 		}
@@ -100,29 +99,29 @@ namespace RR {
 		public static void update(Dictionary<int, SpeciesData> updateList) {
 			SqliteConnection con = new SqliteConnection("URI=file:" + Application.dataPath + "/Database/WoB_DB.db");
 			con.Open();
-
+	
 			SqliteCommand cmd = new SqliteCommand(con);
 			cmd.CommandText = "" +
 				"DELETE FROM `pp_relations`" +
 				" WHERE `predator_id` > 0 OR `prey_id` > 0";
-
+	
 			cmd.Prepare();
 			cmd.ExecuteNonQuery();
-
+	
 			foreach (KeyValuePair<int, SpeciesData> entry in updateList) {
 				int species_id = entry.Key;
 				SpeciesData species = entry.Value;
-
+	
 				if (speciesList.ContainsKey(species_id)) { // If Exists, Delete Record
 					cmd.CommandText = "" +
 						"DELETE FROM `species`" +
 						" WHERE `species_id` = @species_id";
 					cmd.Parameters.Add(new SqliteParameter("@species_id", species.species_id));
-
+	
 					cmd.Prepare();
 					cmd.ExecuteNonQuery();
 				}
-
+	
 				cmd.CommandText = "" +
 					"INSERT INTO `species` (`species_id`, `name`, `description`, `biomass`, `diet_type`, `trophic_level`)" +
 					" VALUES (@species_id, @name, @description, @biomass, @diet_type, @trophic_level)";
@@ -132,7 +131,7 @@ namespace RR {
 				cmd.Parameters.Add(new SqliteParameter("@biomass", species.biomass));
 				cmd.Parameters.Add(new SqliteParameter("@diet_type", species.diet_type));
 				cmd.Parameters.Add(new SqliteParameter("@trophic_level", species.trophic_level));
-
+	
 				cmd.Prepare();
 				cmd.ExecuteNonQuery();
 				
@@ -142,7 +141,7 @@ namespace RR {
 						" VALUES (@predator_id, @prey_id)";
 					cmd.Parameters.Add(new SqliteParameter("@predator_id", predator_id));
 					cmd.Parameters.Add(new SqliteParameter("@prey_id", species.species_id));
-
+	
 					cmd.Prepare();
 					cmd.ExecuteNonQuery();
 				}
@@ -153,12 +152,12 @@ namespace RR {
 						" VALUES (@predator_id, @prey_id)";
 					cmd.Parameters.Add(new SqliteParameter("@predator_id", species.species_id));
 					cmd.Parameters.Add(new SqliteParameter("@prey_id", prey_id));
-
+	
 					cmd.Prepare();
 					cmd.ExecuteNonQuery();
 				}
 			}
-
+	
 			con.Close();
 		}
 	}

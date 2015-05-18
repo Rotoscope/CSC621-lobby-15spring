@@ -64,12 +64,12 @@ public class Game : MonoBehaviour
 
 			return true;
 		}
-
 		return false;
 	}
 
 	public static void LoadScene (string name)
 	{
+		Debug.Log ("Loading scene: " + name);
 		Application.LoadLevel (name);
 
 		GameObject gObject = GameObject.Find ("Global Object");

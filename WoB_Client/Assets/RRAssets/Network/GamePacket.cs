@@ -1,5 +1,5 @@
 namespace RR {
-public class GamePacket {
+	public class GamePacket {
 
 	private GamePacketStream buffer;
 

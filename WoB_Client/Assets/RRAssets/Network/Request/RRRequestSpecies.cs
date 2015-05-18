@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-namespace RR {
+namespace RR{
 public class RRRequestSpecies : NetworkRequest {
 
 	// Use this for initialization
@@ -16,5 +15,4 @@ public class RRRequestSpecies : NetworkRequest {
 		
 	}
 }
-
 }
