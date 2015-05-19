@@ -38,10 +38,17 @@ public class DontEatMeGUI : MonoBehaviour {
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
+
+		GUIStyle style2 = new GUIStyle ();
+		style2.alignment = TextAnchor.MiddleCenter;
+		style2.normal.textColor = Color.white;
+		style2.fontSize = 20;
 		
 		GUILayout.Label(message, style);
 
 		GUILayout.Space(30);
+
+		GUILayout.Label ("COST TO PLAY: 10 Credits", style2);
 		
 		if (GUI.Button(new Rect(windowRect.width / 2 + 80, windowRect.height - 40, 100, 30), "Quit")) {
 			Submit();
