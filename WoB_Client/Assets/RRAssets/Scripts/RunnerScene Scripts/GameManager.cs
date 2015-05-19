@@ -26,6 +26,10 @@ namespace RR {
 		private const string FILEPATH = "ItemLocationFiles/1";//   <-----------need fix
 	
 	
+		void OnDestroy() {
+			relationship.Clear ();
+		}
+
 		// Use this for initialization
 		void Start () {
 			Debug.Log ("this is specie2 : " + species2);
@@ -102,7 +106,7 @@ namespace RR {
 	    {
 	
 	        float tempEnd = -35f;
-	        mapLength = 6;
+	        mapLength = 20;
 			if (mapSeed != null) {
 				Debug.Log("Map seed is " + mapSeed);
 				Random.seed = mapSeed;

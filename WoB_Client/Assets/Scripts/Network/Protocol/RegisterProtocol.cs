@@ -11,7 +11,6 @@ public class RegisterProtocol {
 		request.AddString(email);
 		request.AddString(password);		
 		request.AddString(name);
-//		request.AddShort16(color);
 		
 		return request;
 	}
@@ -20,7 +19,7 @@ public class RegisterProtocol {
 		ResponseRegister response = new ResponseRegister();
 		response.status = DataReader.ReadShort(dataStream);
 		if (response.status != 0) {
-			Debug.LogError ("Server error during registration, status = " + response.status);
+			Debug.LogWarning ("Server error during registration, status = " + response.status);
 		}
 		return response;
 	}

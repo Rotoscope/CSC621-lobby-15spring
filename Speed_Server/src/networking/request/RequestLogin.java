@@ -44,7 +44,7 @@ public class RequestLogin extends GameRequest {
         // Checks if the connecting client meets the minimum version required
         if (version.compareTo(Constants.CLIENT_VERSION) >= 0) {
             if (!user_id.isEmpty()) {
-                player = new Player(Integer.parseInt(user_id));
+                player = new Player(user_id.hashCode());
             	player.setUsername(user_id);
             	player.setPassword(password);
             }

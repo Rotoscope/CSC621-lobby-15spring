@@ -54,7 +54,9 @@ namespace RR
 	
 		public void RemoveCallback (int event_id)
 		{
-			callbackList.Remove (event_id);
+			if (callbackList.ContainsKey (event_id)) {
+				callbackList.Remove (event_id);
+			}
 		}
 		
 		public void AddMessage (int event_id, ExtendedEventArgs args)
