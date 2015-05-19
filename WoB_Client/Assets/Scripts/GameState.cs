@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class GameState : MonoBehaviour
 {
-
 	public static Account account { get; set; }
 
 	public static Player player { get; set; }
@@ -18,6 +17,8 @@ public class GameState : MonoBehaviour
 	public Dictionary<int, Species> speciesList { get; set; }
 
 	public static CSVObject csvList { get; set; }
+
+	public static int matchID { get; set; }
 	
 	// Use this for initialization
 	void Awake ()

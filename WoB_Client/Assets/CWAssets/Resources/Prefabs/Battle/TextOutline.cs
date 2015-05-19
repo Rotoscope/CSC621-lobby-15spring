@@ -2,7 +2,7 @@
 //Creates outline of a custom color around and inside text characters
 using UnityEngine;
 using System.Collections;
-
+namespace CW{
 public class TextOutline : MonoBehaviour {
 	
 	public float pixelSize = 1;
@@ -78,4 +78,5 @@ public class TextOutline : MonoBehaviour {
 		default: return Vector3.zero;
 		}
 	}
+}
 }

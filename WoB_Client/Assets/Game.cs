@@ -4,7 +4,6 @@ using System.Collections;
 
 public class Game : MonoBehaviour
 {
-
 	public string scene;
 	private static float time = 1f;
 	private static Texture2D texture;

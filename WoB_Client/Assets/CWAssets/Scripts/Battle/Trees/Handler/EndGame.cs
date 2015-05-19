@@ -14,7 +14,7 @@ public class EndGame : TreesHandler {
 	
 	public override void affect ()
 	{
-		player.creatGameover ();
+		player.createGameover ();
 	}
 }
 }

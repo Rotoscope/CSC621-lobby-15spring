@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 namespace CW{
 public class Trees : MonoBehaviour {
@@ -6,10 +6,13 @@ public class Trees : MonoBehaviour {
 	private int hp, maxHP, dmgTimer = 0;
 	private BattlePlayer player;
 	private TreesHandler handler;
+	private bool removeAfterDelay;
+	private float delayTimer = 0, DELAY_CONSTANT = 3;
+	private bool surrendering = false;
 
-	Texture2D tree1Texture = (Texture2D) Resources.Load ("Prefabs/Battle/tree1", typeof(Texture2D));
-	Texture2D tree2Texture = (Texture2D) Resources.Load ("Prefabs/Battle/tree2", typeof(Texture2D));
-	Texture2D tree3Texture = (Texture2D) Resources.Load ("Prefabs/Battle/tree3", typeof(Texture2D));
+	Texture2D tree1Texture = (Texture2D) Resources.Load ("Images/Battle/tree1", typeof(Texture2D));
+	Texture2D tree2Texture = (Texture2D) Resources.Load ("Images/Battle/tree2", typeof(Texture2D));
+	Texture2D tree3Texture = (Texture2D) Resources.Load ("Images/Battle/tree3", typeof(Texture2D));
 
 	// Use this for initialization
 	void Start () {
@@ -47,16 +50,17 @@ public class Trees : MonoBehaviour {
 //	}
 	void OnMouseOver ()
 	{
+		//Debug.Log ("MouseOver Clicked the Tree");
 		if (Input.GetMouseButtonDown (0)) {
 			if(handler != null )
 				handler.clicked ();
 		}
-		this.transform.localScale = new Vector3 (30, 1, 30);
+		this.transform.localScale = new Vector3 (25.5f, 1, 30);
 	}
 	
 	void OnMouseExit()
 	{
-		this.transform.localScale = new Vector3 (25, 1, 25);
+		this.transform.localScale = new Vector3 (20.5f, 1, 25);
 
 	}
 
@@ -74,8 +78,9 @@ public class Trees : MonoBehaviour {
 		
 		if(hp <= 0){
 			Debug.Log("End Game");	
-			handler = new EndGame(this, player);
-			handler.affect();
+
+			this.player.isWon=false;
+			removeAfterDelay = true;
 		}
 		
 	}
@@ -83,6 +88,18 @@ public class Trees : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(removeAfterDelay){
+			delayTimer += Time.deltaTime;
+
+			if(delayTimer > DELAY_CONSTANT){
+
+				handler = new EndGame(this, player);
+				handler.affect();
+				delayTimer = 0;
+				removeAfterDelay = false;
+			}
+		}
 		//Display health and change texture accordingly
 		transform.Find("HealthText").GetComponent<TextMesh>().text = hp.ToString();
 		if(hp <= (maxHP)/4) { //Under 1/4 hp
@@ -104,6 +121,49 @@ public class Trees : MonoBehaviour {
 			dmgTimer--;
 		} else {
 			transform.Find("DamageText").GetComponent<TextMesh>().text = "";
+		}
+	}
+	void OnGUI(){
+		
+		//End game
+		if(GUI.Button(new Rect(Screen.width-(Screen.width/12.8f)/100 *150, (Screen.height/2.0f), 
+		                       (Screen.width/12.8f)/100 *150, (Screen.width/12.8f)/100 *40), 
+		              			"Surrender")){
+			toggleSurrender();
+		}
+		if (surrendering) { //should only show when surrendering  is true
+			GUI.skin.box.fontStyle = FontStyle.Bold;
+			GUI.skin.box.fontSize = 30;
+			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "Do you want to surrender?");
+			GUILayout.BeginArea(new Rect((Screen.width/2.0f)-100, (Screen.height/2.0f), 400, 250));
+			GUILayout.BeginHorizontal();
+			if (GUILayout.Button("Yes", GUILayout.Width(100),GUILayout.Height (100)))
+			{
+				toggleSurrender();//get rid of buttons
+				Debug.Log("End Game");	
+				this.player.isWon=false;
+//				handler = new EndGame(this, player);
+//				handler.affect();
+
+				// Call quitmatch protocol -- notify oponent that player is quitting
+				// return player to lobby
+				GameManager.protocols.sendQuitMatch(player.playerID);
+			}
+			if (GUILayout.Button("No", GUILayout.Width(100),GUILayout.Height (100)))
+			{
+				toggleSurrender();
+			}
+			GUILayout.EndHorizontal();
+			GUILayout.EndArea();
+		}
+	}
+
+	//Toggles surrender gui true or false
+	void toggleSurrender(){
+		if (surrendering) {
+			surrendering=false;
+		} else if (!surrendering){
+			surrendering=true;
 		}
 	}
 }

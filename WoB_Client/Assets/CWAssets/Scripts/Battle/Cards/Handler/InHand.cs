@@ -24,15 +24,6 @@ public class InHand : AbstractCardHandler
 	
 		player.hand.Remove (removeCard);
 		player.currentMana -= card.getManaCost();
-	
-		//reset hand card postion
-		for (int i = 0; i < player.hand.Count; i++) {
-
-			/*cardName = "p1card" + (temp);
-			newCardName = "p1card" + temp;*/
-			GameObject setCard = (GameObject) player.hand[i];
-			setCard.transform.position = new Vector3((player.handPos.x + 280) - 185 * i, player.handPos.y, player.handPos.z);
-		}
 
 
 		player.cardsInPlay.Add (removeCard.gameObject);
@@ -40,8 +31,12 @@ public class InHand : AbstractCardHandler
 	
 		card.setCanAttack(false);
 		card.handler = new InPlay (card, player);
-		Vector3 targetPosition  = new Vector3(player.FieldPos.x + 185 * (player.cardsInPlay.Count - 1), player.FieldPos.y, player.FieldPos.z);
-		card.calculateDirection(targetPosition, false);
+			Vector3 position = new Vector3(card.transform.position.x, card.transform.position.y, card.transform.position.z);
+			player.reposition();
+			Vector3 destination =  new Vector3(card.transform.position.x, card.transform.position.y, card.transform.position.z);
+			card.transform.position = position;
+
+			card.calculateDirection(destination, false);
 
 		GameManager.player1.getProtocolManager().sendSummon (player.playerID, card.cardID,  card.dietNum, 
 			                                        card.level, card.dmg,  card.maxHP, 

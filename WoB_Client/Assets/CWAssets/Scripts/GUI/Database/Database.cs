@@ -225,9 +225,9 @@ public class Database : MonoBehaviour
 				}
 
 				if (mode == Constants.MODE_SHOP) {
-					if (GUI.Button (new Rect (83, 0, 70, 30), "Buy")) {
-						GameObject.Find ("Global Object").GetComponent<GameState> ().CreateSpecies (-1, card.species.biomass, card.name, card.species);
-					}
+					//if (GUI.Button (new Rect (83, 0, 70, 30), "Buy")) {
+//						GameObject.Find ("Global Object").GetComponent<GameState> ().CreateSpecies (-1, card.species.biomass, card.name, card.species);
+//					}
 				}
 				GUI.EndGroup ();
 			}
@@ -332,6 +332,7 @@ public class Database : MonoBehaviour
 
 	public void Switch (int view)
 	{
+			/*
 		switch (view) {
 		case 0:  //Constants.MODE_ECOSYSTEM:
 		case 2:  //Constants.MODE_CONVERGE_GAME:
@@ -349,6 +350,7 @@ public class Database : MonoBehaviour
 		case 1:  //Constants.MODE_SHOP:
 			break;
 		}
+		*/
 	}
 	
 	public void Refresh ()

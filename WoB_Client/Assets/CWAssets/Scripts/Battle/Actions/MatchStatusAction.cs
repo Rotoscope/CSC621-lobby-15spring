@@ -1,7 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
 namespace CW{
 public class MatchStatusAction : TurnAction{
 	// our primitive system does not have bools so 0 = false, 1=true

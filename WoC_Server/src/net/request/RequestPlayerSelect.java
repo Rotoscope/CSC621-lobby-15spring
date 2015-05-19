@@ -8,6 +8,7 @@ import java.io.IOException;
 import db.PlayerDAO;
 import model.Player;
 import util.DataReader;
+import util.Log;
 
 public class RequestPlayerSelect extends GameRequest {
 
@@ -16,6 +17,7 @@ public class RequestPlayerSelect extends GameRequest {
     @Override
     public void parse(DataInputStream dataInput) throws IOException {
         player_id = DataReader.readInt(dataInput);
+        Log.println("Parse RequestPlayerSelect");
     }
 
     @Override

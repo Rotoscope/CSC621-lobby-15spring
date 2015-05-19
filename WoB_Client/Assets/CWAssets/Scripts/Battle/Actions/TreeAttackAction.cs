@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 namespace CW{
@@ -15,6 +15,7 @@ public class TreeAttackAction : TurnAction {
 	
 	override public void execute(){
 		readData ();
+		GameManager.player2.attackTree(attackersPosition);
 		Debug.Log ("Executing TreeAttackAction");
 		// Do stuff
 	}

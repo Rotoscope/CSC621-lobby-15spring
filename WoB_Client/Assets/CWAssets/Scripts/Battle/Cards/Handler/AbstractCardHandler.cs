@@ -14,5 +14,5 @@ public abstract class AbstractCardHandler
 	public abstract void clicked();
 	public abstract void affect();
 }
-}
 
+}

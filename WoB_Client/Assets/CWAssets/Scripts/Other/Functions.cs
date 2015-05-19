@@ -178,4 +178,5 @@ public class Functions
 	{
 		return (UnityEngine.Random.Range (-1f, +1f) > 0);
 	}
-	}}
+}
+}

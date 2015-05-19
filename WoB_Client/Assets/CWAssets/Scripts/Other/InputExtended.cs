@@ -23,4 +23,5 @@ public class InputExtended {
 		
 		return 0;
 	}
-	}}
+}
+}

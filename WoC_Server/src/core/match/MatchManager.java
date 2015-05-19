@@ -72,7 +72,7 @@ public class MatchManager {
     public Match matchPlayerTo(int matchID, int playerID) {
         Log.printf("Matching player[%d] to match[%d]", playerID, matchID);
         
-        //Log.printf("active player num %d", GameServer.getInstance().getActivePlayers().size());
+        Log.printf("active player num %d", GameServer.getInstance().getActivePlayers().size());
         Match match = getOrCreateMatch(matchID);
         if (match.addPlayer(GameServer.getInstance().getActivePlayer(playerID))) {
             matchIDList.put(playerID, matchID);
@@ -83,7 +83,7 @@ public class MatchManager {
 
     public Match createMatch(int playerID1, int playerID2) {
         List<Player> players = new ArrayList<Player>();
-        Match match = null;
+        Match match;
 
         match = getMatchByPlayer(playerID1);
         // if match not initialized, initialize match

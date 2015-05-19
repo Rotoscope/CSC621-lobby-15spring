@@ -178,6 +178,10 @@ public class Login : MonoBehaviour {
 				PlayerSelectProtocol.Prepare(0),
 				ProcessPlayerSelect
 				);
+			CW.NetworkManager.Send(
+				CW.PlayerSelectProtocol.Prepare(0),
+				CW_ProcessPlayerSelect
+				);
 		} else {
 			Debug.Log ("login failed, server message = " + args.status);
 			//mainObject.GetComponent<Main>().CreateMessageBox("Login Failed");
@@ -204,6 +208,10 @@ public class Login : MonoBehaviour {
 			GameState.player = args.player;
 			playerRank = PlayerIsTop(user_id);
 		}
+	}
+
+	public void CW_ProcessPlayerSelect(CW.NetworkResponse response) {
+		CW.ResponsePlayerSelect args = response as CW.ResponsePlayerSelect;
 	}
 
 	IEnumerator wait(Boolean condition)

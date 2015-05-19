@@ -7,6 +7,7 @@ namespace CW
 {
 	public class Login : MonoBehaviour
 	{
+	
 		private int window_id = Constants.LOGIN_WIN;
 		// Window Properties
 		private float left;
@@ -27,8 +28,10 @@ namespace CW
 		private bool isActive = true;
 		private bool isInitial = true;
 		// Tests
-		private Tests tests = new Tests ();
-		private int player2ID = Constants.PLAYER2ID;
+		//private Tests tests = new Tests();
+		// Hardcded player2 for match initialization in built version
+		private int playerID2 = Constants.PLAYER2ID;
+		// Hardcded player2 for match initialization in built version
 
 		void Awake ()
 		{
@@ -131,30 +134,24 @@ namespace CW
 
 		public void EnterBattle ()
 		{
-			// Toggle to test 
-			if (testing) {
-				tests.runTest ();
-			} else {
-				CWGame.SwitchScene ("Battle");
-			}
-		}
 
-		public void InitMatch ()
+			Game.SwitchScene ("Battle");
+		}
+	
+		public void  InitMatch ()
 		{
-			if (testing) {
-				tests.initMatch ();
-			} else {
-				// For using player Nat
-				NetworkManager.Send (MatchInitProtocol.Prepare (GameState.player.GetID (), player2ID), ProcessMatchInit);
-			}
+			int playerID1 = GameState.player.GetID ();
+			NetworkManager.Send (
+			MatchInitProtocol.Prepare (GameState.player.GetID (), playerID2), ProcessMatchInit);
+			Debug.Log ("Init for player: " + playerID1);
 		}
-
+	
 		public void ProcessMatchInit (NetworkResponse response)
 		{
 			ResponseMatchInit args = response as ResponseMatchInit;
 
 			if (args.status == 0) {
-				GameManager.matchID = args.matchID;
+				GameState.matchID = args.matchID;
 				Debug.Log ("MatchID set to: " + args.matchID);
 			}
 		}
@@ -191,6 +188,7 @@ namespace CW
 	
 		public void ProcessLogin (NetworkResponse response)
 		{
+			/*
 			ResponseLogin args = response as ResponseLogin;
 		
 			if (args.status == 0) {
@@ -205,20 +203,23 @@ namespace CW
 				Debug.Log ("login failed, server message = " + args.status);
 				//mainObject.GetComponent<Main>().CreateMessageBox("Login Failed");
 			}
+			*/
 		}
 	
 		public void ProcessPlayerSelect (NetworkResponse response)
 		{
+			/*
 			ResponsePlayerSelect args = response as ResponsePlayerSelect;
 
 			//TODO: scene is null 
 			if (args.status == 0) {
 				GameState.player = args.player;
-				//Application.LoadLevel("CWBattle");
-				//Game.SwitchScene("CWBattleMainMenu"); //"World");
-				Debug.Log ("Switching to BattleMainMenu");
+				//Application.LoadLevel("Battle");
+				//Game.SwitchScene("BattleMainMenu"); //"World");
+				Debug.Log ("Switching to CWBattleMainMenu");
 			 
 			}
+			*/
 		}
 	
 		public void SwitchToRegister ()

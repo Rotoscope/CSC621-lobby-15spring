@@ -1,30 +1,34 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Config.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CWAssets/Scripts/Battle/BattlePlayer.cs">
     <Files>
-      <File FileName="Assets/Scripts/ClashOfSpecies.cs" Line="159" Column="5" />
-      <File FileName="Assets/Scripts/Login.cs" Line="146" Column="4" />
-      <File FileName="Assets/RRAssets/Scripts/Login.cs" Line="1" Column="1" />
-      <File FileName="Assets/RRAssets/Network/RRConnectionManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/RRAssets/Scripts/RRMain.cs" Line="29" Column="1" />
-      <File FileName="Assets/RRAssets/Scripts/RRMessageQueue.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Config.cs" Line="7" Column="2" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/GameManager.cs" Line="72" Column="27" />
+      <File FileName="Assets/Scripts/GameState.cs" Line="15" Column="20" />
+      <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="25" Column="6" />
+      <File FileName="Assets/CWAssets/Scripts/GUI/Database/Database.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/GUI/Graph/Graph.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/GameLoop.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/World/WorldController.cs" Line="1" Column="1" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/Cards/AbstractCard.cs" Line="316" Column="10" />
+      <File FileName="Assets/Scripts/Login.cs" Line="208" Column="4" />
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkManager.cs" Line="49" Column="46" />
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkProtocolTable.cs" Line="30" Column="28" />
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkCode.cs" Line="16" Column="43" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/BattlePlayer.cs" Line="408" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="CWAssets" expanded="True">
+              <Node name="Resources" expanded="True" />
               <Node name="Scripts" expanded="True">
+                <Node name="Battle" expanded="True" />
                 <Node name="Network" expanded="True" />
               </Node>
             </Node>
-            <Node name="RRAssets" expanded="True">
-              <Node name="Network" expanded="True" />
-              <Node name="Scripts" expanded="True" />
-            </Node>
             <Node name="Scripts" expanded="True">
-              <Node name="Config.cs" selected="True" />
+              <Node name="Containers" expanded="True" />
             </Node>
           </Node>
         </State>

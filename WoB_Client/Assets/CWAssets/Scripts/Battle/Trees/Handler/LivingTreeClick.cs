@@ -24,7 +24,9 @@ public class LivingTreeClick : TreesHandler {
 	
 	//Clicked card attacks the tree
 	override public void affect(){
-		
+
+		GameManager.curPlayer.getProtocolManager().sendTreeAttack(GameManager.curPlayer.playerID, GameManager.curPlayer.clickedCard.fieldIndex);
+
 		GameManager.curPlayer.clickedCard.attackTree(tree);
 
 	}

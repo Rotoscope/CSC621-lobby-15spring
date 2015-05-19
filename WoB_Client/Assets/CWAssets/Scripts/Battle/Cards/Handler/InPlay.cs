@@ -22,9 +22,13 @@ public class InPlay : AbstractCardHandler
 			
 		}else if(currentPlayer != player && currentPlayer.clickedCard != null && currentPlayer.clickedCard.diet != AbstractCard.DIET.HERBIVORE){
 			currentPlayer.targetCard = card;	
-			
+			bool attackback = false;
+			if(currentPlayer.targetCard.diet != AbstractCard.DIET.HERBIVORE){
+				attackback = true;
+			}
+			currentPlayer.clickedCard.attack(currentPlayer.clickedCard, currentPlayer.targetCard, attackback);
 
-			currentPlayer.clickedCard.attack(currentPlayer.targetCard);
+			currentPlayer.getProtocolManager().sendCardAttack(currentPlayer.playerID, currentPlayer.clickedCard.fieldIndex, currentPlayer.targetCard.fieldIndex);
 			
 			currentPlayer.clickedCard = null;
 			currentPlayer.targetCard = null;
@@ -42,5 +46,5 @@ public class InPlay : AbstractCardHandler
 		affect();
 	}
 }
-
 }
+

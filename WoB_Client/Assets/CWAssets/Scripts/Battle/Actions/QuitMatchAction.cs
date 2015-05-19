@@ -5,7 +5,9 @@ namespace CW{
 public class QuitMatchAction : TurnAction {
 
 	public QuitMatchAction(int intCount, int stringCount, List<int> intList, List<string> stringList):
-	base(intCount, stringCount, intList, stringList){}	
+	base(intCount, stringCount, intList, stringList){
+
+	}	
 	
 	override public void readData(){
 		// Nothing to do 
@@ -13,9 +15,11 @@ public class QuitMatchAction : TurnAction {
 	}
 	
 	override public void execute(){
-		readData ();
 		Debug.Log ("Executing QuitMatchAction");
-		// Do stuff
+		Debug.Log ("Returning player to Lobby -- no transition");
+
+		// display game over and calls returnToLobby
+		GameManager.player1.createGameover();
 	}
 }
 }

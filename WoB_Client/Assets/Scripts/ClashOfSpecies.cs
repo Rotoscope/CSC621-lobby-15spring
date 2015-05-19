@@ -182,7 +182,7 @@ public class ClashOfSpecies : MonoBehaviour {
 		StartCoroutine(RequestGetRooms(1f));
 	}
 
-	public void ProcessMatchInit(NetworkResponse response) {
+	public void ProcessMatchInit(CW.NetworkResponse response) {
 		CW.ResponseMatchInit args = response as CW.ResponseMatchInit;
 		
 		if (args.status == 0) {
