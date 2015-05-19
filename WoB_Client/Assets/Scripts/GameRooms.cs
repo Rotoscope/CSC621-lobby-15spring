@@ -6,6 +6,7 @@ public class Room {
 	public int id = -1;
 	public int game_id = -1;
 	public List<int> players = new List<int>();
+	public string host;
 
 	public int numPlayers() {
 		return players.Count;

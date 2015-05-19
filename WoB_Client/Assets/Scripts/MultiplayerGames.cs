@@ -2,12 +2,12 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class ClashOfSpecies : MonoBehaviour {
+public class MultiplayerGames : MonoBehaviour {
 	
 	private GameObject mainObject;
 
 	// Window Properties
-	private float width = 500;
+	private float width = 600;
 	private float height = 300;
 
 	// Other
@@ -63,8 +63,9 @@ public class ClashOfSpecies : MonoBehaviour {
 
 		GUILayout.BeginHorizontal();
 		GUILayout.Label(new GUIContent("#"));
-		GUILayout.Label(new GUIContent("Game"));
+		GUILayout.Label(new GUIContent("         Game"));
 		GUILayout.Label(new GUIContent("         Status"));
+		GUILayout.Label(new GUIContent("    Host"));
 		GUILayout.Label(new GUIContent(""), GUILayout.Width(100));
 		GUILayout.EndHorizontal();
 
@@ -73,6 +74,7 @@ public class ClashOfSpecies : MonoBehaviour {
 			GUILayout.Label(new GUIContent("" + item.Key));
 			GUILayout.Label(new GUIContent(Room.getGameName(item.Value.game_id)));
 			GUILayout.Label(new GUIContent(item.Value.status()));
+			GUILayout.Label(new GUIContent(item.Value.host));
 
 			if (item.Value.containsPlayer(GameState.account.account_id)) {
 				if(GUILayout.Button(new GUIContent("Quit"), GUILayout.Width(100))) {
@@ -154,11 +156,9 @@ public class ClashOfSpecies : MonoBehaviour {
 				RR.RRConnectionManager cManager = RR.RRConnectionManager.getInstance();
 				cManager.Send (RR_RequestRaceInit ());
 
-				//RR.ReadyScene.ROOM_ID = args.id;
 				Game.SwitchScene ("RRReadyScene");
 			} else if (args.gameID == Constants.MINIGAME_CARDS_OF_WILD) {
 				CW.GameManager.matchID = args.id;
-				//Game.SwitchScene ("CWBattle");
 				CW.NetworkManager.Send (CW.MatchInitProtocol.Prepare 
 				                        (GameState.player.GetID(), args.id), 
 				                        ProcessMatchInit);
@@ -166,6 +166,7 @@ public class ClashOfSpecies : MonoBehaviour {
 		} else {
 			Debug.Log("New room allocated [room id=" + args.id + "]");
 			var room = RoomManager.getInstance().addRoom(args.id, args.gameID);
+			room.host = GameState.player.GetName();
 			room.addPlayer(userID);
 
 			this.enableRRButton = false;

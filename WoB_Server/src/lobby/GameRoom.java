@@ -16,6 +16,7 @@ public class GameRoom {
     private int mNumClients = 0;
     private int mID = 0;
     private int mGameID = 0;
+    private String mHostName = "";
     
     public GameRoom () {
         mClients = new GameClient[CAPACITY];
@@ -32,6 +33,9 @@ public class GameRoom {
     public boolean addClient(GameClient player) {
         if(mNumClients == CAPACITY) {
             return false;
+        }
+        if (mNumClients == 0) {
+            mHostName = player.getPlayer().getName();
         }
         mClients[mNumClients++] = player;
         return true;
@@ -87,6 +91,10 @@ public class GameRoom {
      */
     public int getGameID() {
         return mGameID;
+    }
+    
+    public String getHost() {
+        return mHostName;
     }
 
     /**

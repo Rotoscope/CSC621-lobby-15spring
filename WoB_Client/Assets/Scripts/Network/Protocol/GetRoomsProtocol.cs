@@ -18,8 +18,10 @@ public class GetRoomsProtocol {
 		for (short i = 0; i < numRooms; ++i) {
 			short id = DataReader.ReadShort(dataStream);
 			short gameid = DataReader.ReadShort(dataStream);
+			string host = DataReader.ReadString(dataStream);
 
 			var room = RoomManager.getInstance ().addRoom(id, gameid);
+			room.host = host;
 
 			short numClients = DataReader.ReadShort(dataStream);
 			for(short c = 0; c < numClients; ++c) {

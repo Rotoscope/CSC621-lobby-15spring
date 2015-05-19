@@ -30,6 +30,7 @@ public class ResponseGetRooms extends GameResponse {
             GameRoom room = it.next();
             packet.addShort16((short)room.getID());
             packet.addShort16((short)room.getGameID());
+            packet.addString(room.getHost());
             packet.addShort16((short)room.getNumClients());
             
             for (int i = 0; i < room.getNumClients(); ++i)  {

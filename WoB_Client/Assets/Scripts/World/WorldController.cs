@@ -37,7 +37,7 @@ public class WorldController : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (140, 50, 130, 30), "Multiplayer Games")) {
-			gameObject.AddComponent ("ClashOfSpecies");
+			gameObject.AddComponent ("MultiplayerGames");
 		}
 
 		if (GUI.Button (new Rect (10, 90, 120, 30), "Converge")) {

@@ -48,7 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\CWAssets\CWGame.cs" />
      <Compile Include="Assets\CWAssets\Resources\Images\Battle\TextOutline.cs" />
-     <Compile Include="Assets\CWAssets\Resources\Prefabs\Battle\TextOutline.cs" />
      <Compile Include="Assets\CWAssets\Scripts\AI.cs" />
      <Compile Include="Assets\CWAssets\Scripts\AnimalAI.cs" />
      <Compile Include="Assets\CWAssets\Scripts\Battle\Actions\CardAttackAction.cs" />
@@ -255,7 +254,6 @@
      <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\AnimalAI.cs" />
      <Compile Include="Assets\Scripts\Camera\BasicCamera.cs" />
-     <Compile Include="Assets\Scripts\ClashOfSpecies.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleController.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleToggle.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleUnit.cs" />
@@ -349,6 +347,7 @@
      <Compile Include="Assets\Scripts\MainGUI.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MessageBox.cs" />
+     <Compile Include="Assets\Scripts\MultiplayerGames.cs" />
      <Compile Include="Assets\Scripts\Network\ConnectionManager.cs" />
      <Compile Include="Assets\Scripts\Network\DataReader.cs" />
      <Compile Include="Assets\Scripts\Network\GamePacketStream.cs" />
@@ -437,8 +436,8 @@
      <Compile Include="Assets\Scripts\WorldMenu.cs" />
      <None Include="Assets\RRAssets\Resources\Prefabs\map\ItemLocationFiles\1.txt" />
      <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$Alpha-Selective.shader" />
-     <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$3DTextOneSided.shader" />
      <None Include="Assets\RRAssets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$3DTextOneSided.shader" />
      <None Include="Assets\RRAssets\SpritePack1\!Readme.txt" />
      <None Include="Assets\CWAssets\Resources\Images\Battle\$Alpha-Selective.shader" />
      <None Include="Assets\RRAssets\Resources\ItemLocationFiles\1.txt" />

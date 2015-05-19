@@ -75,6 +75,12 @@ namespace RR
 		
 			GUI.Label (new Rect (Screen.width - 150, 0, 200, 100), "Running Time:  " + time, myStyle);
 		
+			if (GUI.Button (new Rect (10, //left
+			                          10, //height
+			                          120, 
+			                          (Screen.width / 12.8f) / 100 * 40), "Back to Lobby")) {
+				Game.SwitchScene("World");
+			}
 		}
 
 		void Start ()
@@ -272,10 +278,8 @@ namespace RR
 			}
 			if (!called) {
 				RRMessageQueue.getInstance ().AddCallback (Constants.SMSG_RRENDGAME, ResponseRREndGame);
-				//Debug.Log ("Running.cs :::::::::: Start");
 				called = true;
 			}
-		
 		}
 	
 		public void SetGameStateOn ()

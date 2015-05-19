@@ -123,6 +123,7 @@ namespace CW
 			int gold = 100; //100 gold if won
 			isGameOver = true;
 			Debug.Log ("Battleplayer game_over");
+
 			gameOver = (GameObject)Instantiate (Resources.Load ("Prefabs/Battle/GameOver"));
 			if (!isWon) {
 				gold = 25;//25 gold if lost
@@ -132,22 +133,16 @@ namespace CW
 				Texture2D winTexture = (Texture2D)Resources.Load ("Prefabs/Battle/win", typeof(Texture2D));
 				gameOver.renderer.material.mainTexture = winTexture;
 			}
-			gameOver.transform.Find ("GameOverText").GetComponent<TextMesh> ().text = "You've been awarded " + gold + " gold";
-			gameOver.transform.position = new Vector3 (0, 30, 0);
+			//gameOver.transform.Find ("GameOverText").GetComponent<TextMesh> ().text = "You've been awarded " + gold + " gold";
+			//gameOver.transform.position = new Vector3 (0, 30, 0);
 			// return player to lobby
 			GameManager.protocols.sendQuitMatch (playerID);
-			// Adding transition would be googd
-//		GameManager.protocols.sendReturnToLobby();
-
-		
 		}
-
 
 		//Method Instantiates the cards with AbstractCard scripts from the deckData
 		//passed in from server and adds the new card to the deck arraylist
 		public void createDeck ()
 		{		
-		
 			//For loop for every card in deck passed in from server
 			for (int i = 0; i < deckData.getSize(); i++) {
 			
