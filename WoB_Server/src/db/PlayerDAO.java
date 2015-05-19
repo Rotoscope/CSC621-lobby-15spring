@@ -124,6 +124,41 @@ public final class PlayerDAO {
 
         return player;
     }
+    
+    public static Player getPlayerByName(String name) {
+        Player player = null;
+
+        String query = "SELECT * FROM `player` WHERE `name` = ?";
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = GameDB.getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, name);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                try {
+                    player = new Player(rs.getInt("player_id"), rs.getInt("account_id"), rs.getString("name"), rs.getInt("credits"), Color.parseColor(rs.getString("color")));
+                    player.setLevel(rs.getShort("level"));
+                    player.setExperience(rs.getInt("experience"));
+                    player.setLastPlayed(rs.getString("last_played"));
+                } catch (NumberFormatException ex) {
+                    Log.println_e(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            Log.println_e(ex.getMessage());
+        } finally {
+            GameDB.closeConnection(con, pstmt, rs);
+        }
+
+        return player;
+    }
 
     public static boolean updateLevel(int player_id, int level) {
         boolean status = false;

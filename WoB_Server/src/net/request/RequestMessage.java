@@ -12,6 +12,7 @@ import util.DataReader;
 import util.NetworkFunctions;
 import model.Player;
 import core.GameServer;
+import db.PlayerDAO;
 
 /**
  * The RequestMessage class handles all incoming chat messages and redirect those
@@ -54,17 +55,20 @@ public class RequestMessage extends GameRequest {
         
         if (type == 0) {
             NetworkFunctions.sendToGlobal(response);
-        } else if (type == 2) { //private message - get online players, search for recipient, 
+        } else if (type == 2) { //private message - search db for recipient, check if online, 
                                 //and either send message to recipient or error back to sender
-            List<Player> players = GameServer.getInstance().getActivePlayers();
-            int playerID = 0;
-            boolean found = false;
             
-            for (int i=0; i<players.size(); i++) {
-                if (players.get(i).getName().equals(recipient)) {
-                    playerID = players.get(i).getID();
+            boolean found = false;
+            int playerID = 0;
+            
+            Player r = PlayerDAO.getPlayerByName(recipient);
+            
+            if (r != null) {
+                playerID = r.getID();
+                r = GameServer.getInstance().getActivePlayer(playerID);
+                
+                if (r != null) {
                     found = true;
-                    break;
                 }
             }
             
