@@ -77,6 +77,7 @@ public class GameRequestTable {
         add(NetworkCode.QUIT_ROOM, "RequestQuitRoom");
         add(NetworkCode.GET_ROOMS, "RequestGetRooms");
         add(NetworkCode.BACK_TO_LOBBY, "RequestBackToLobby");
+        add(NetworkCode.PLAY_GAME, "RequestPlayGame");
         
         //Clash of species
 	add(NetworkCode.CLASH_ENTRY, "clashgame.RequestClashEntry");
