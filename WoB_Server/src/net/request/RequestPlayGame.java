@@ -48,9 +48,9 @@ public class RequestPlayGame extends GameRequest {
                 creditDiff = 0;
                 break;
             
-            default: //all other games cost 10 credits
+            default: //all other games cost 5 credits
                 if (client.getPlayer().getCredits() >= 10) {
-                    creditDiff = 10;
+                    creditDiff = 5;
                     status = 1;
                     PlayerDAO.updateCredits(client.getPlayer().getID(), -creditDiff);
                 }
