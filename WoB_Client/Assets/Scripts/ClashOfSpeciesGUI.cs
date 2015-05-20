@@ -72,12 +72,25 @@ public class ClashOfSpeciesGUI : MonoBehaviour {
 	}
 	
 	public void StartGame() {
-		//Do protocol stuff
-		Destroy (this);
-		Game.SwitchScene("ClashSplash");
+		NetworkManager.Send(
+			PlayGameProtocol.Prepare(2),
+			ProcessPlayGame
+			);
 	}
 	
 	// Update is called once per frame
 	void Update() {
+	}
+
+	
+	public void ProcessPlayGame(NetworkResponse response) {
+		ResponsePlayGame args = response as ResponsePlayGame;
+		
+		if (args.status == 1) {
+			Destroy (this);
+			Game.SwitchScene ("ClashSplash");
+		} else {
+			Debug.Log ("Not enough credits");
+		}
 	}
 }

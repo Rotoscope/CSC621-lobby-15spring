@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ClashOfSpeciesGUI.cs">
     <Files>
+      <File FileName="Assets/CWAssets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GameState.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Login.cs" Line="1" Column="1" />
@@ -11,7 +12,6 @@
       <File FileName="Assets/CWAssets/Scripts/World/WorldController.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Battle/Cards/AbstractCard.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Login.cs" Line="1" Column="1" />
-      <File FileName="Assets/CWAssets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Network/NetworkProtocolTable.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Network/NetworkCode.cs" Line="1" Column="1" />
       <File FileName="Assets/Game.cs" Line="1" Column="1" />
@@ -22,15 +22,28 @@
       <File FileName="Assets/Scripts/GameRooms.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MessageBox.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/Protocol/GetRoomsProtocol.cs" Line="1" Column="1" />
-      <File FileName="Assets/CWAssets/Scripts/Battle/BattlePlayer.cs" Line="137" Column="6" />
-      <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="51" Column="56" />
-      <File FileName="Assets/Scripts/ClashOfSpeciesGUI.cs" Line="49" Column="56" />
+      <File FileName="Assets/CWAssets/Scripts/Battle/BattlePlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="75" Column="1" />
+      <File FileName="Assets/Scripts/ClashOfSpeciesGUI.cs" Line="76" Column="30" />
+      <File FileName="Assets/Scripts/Config.cs" Line="5" Column="2" />
+      <File FileName="Assets/Scripts/HUD/GameResources.cs" Line="103" Column="2" />
+      <File FileName="Assets/CWAssets/Scripts/Containers/Player.cs" Line="9" Column="2" />
+      <File FileName="Assets/CWAssets/Scripts/Network/Protocol/BattleProtocols/MatchOverProtocol.cs" Line="26" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="CWAssets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Containers" expanded="True" />
+                <Node name="Network" expanded="True">
+                  <Node name="Protocol" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
             <Node name="Scripts" expanded="True">
+              <Node name="HUD" expanded="True" />
               <Node name="ClashOfSpeciesGUI.cs" selected="True" />
             </Node>
           </Node>
