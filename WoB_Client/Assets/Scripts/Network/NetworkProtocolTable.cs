@@ -46,6 +46,7 @@ public class NetworkProtocolTable {
 		Add(NetworkCode.GET_ROOMS, "GetRooms");
 		Add(NetworkCode.BACK_TO_LOBBY, "BackToLobby");
 		Add(NetworkCode.PLAY_GAME, "PlayGame");
+		Add(NetworkCode.END_GAME, "EndGame");
 
 		//Clash of Species
 		Add(NetworkCode.CLASH_ENTRY, "ClashEntry");

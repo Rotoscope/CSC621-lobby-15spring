@@ -74,6 +74,7 @@
 	public static readonly short GET_ROOMS = 161;
 	public static readonly short BACK_TO_LOBBY = 192;
 	public static readonly short PLAY_GAME = 193;
+	public static readonly short END_GAME = 193;
 
 	//Clash of Species
 	public static readonly short CLASH_ENTRY = 162;
