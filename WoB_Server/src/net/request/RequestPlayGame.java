@@ -41,6 +41,7 @@ public class RequestPlayGame extends GameRequest {
     public void process() throws Exception {
         short status = 0;
         int creditDiff = 0;
+        int oldCredits = client.getPlayer().getCredits();
         
         switch (game_id) {
             case 0: //converge - 0 credits
@@ -49,10 +50,11 @@ public class RequestPlayGame extends GameRequest {
                 break;
             
             default: //all other games cost 10 credits
-                if (client.getPlayer().getCredits() >= 10) {
+                if (oldCredits >= 10) {
                     creditDiff = 10;
                     status = 1;
-                    PlayerDAO.updateCredits(client.getPlayer().getID(), -creditDiff);
+                    PlayerDAO.updateCredits(client.getPlayer().getID(), oldCredits-creditDiff);
+                    client.getPlayer().setCredits(oldCredits-creditDiff);
                 }
                 break;
         }
