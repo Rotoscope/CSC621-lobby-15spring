@@ -24,7 +24,7 @@ using System.IO;
 public class PlayGameProtocol {
 	
 	public static NetworkRequest Prepare(short game_id) {
-		NetworkRequest request = new NetworkRequest(NetworkCode.LOGIN);
+		NetworkRequest request = new NetworkRequest(NetworkCode.PLAY_GAME);
 		request.AddShort16(game_id);
 		
 		return request;
