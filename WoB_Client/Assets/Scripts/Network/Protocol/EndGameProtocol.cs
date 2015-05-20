@@ -1,5 +1,5 @@
-// tells the server that we've finished playing a game,
-// so server can update credits based on whether the player won
+// tells the server that we've finished playing a game (and won),
+// so server can update credits
 
 // request parameters:
 // game_id - the game to be played
