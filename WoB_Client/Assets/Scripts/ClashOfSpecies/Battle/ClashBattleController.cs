@@ -29,6 +29,8 @@ public class ClashBattleController : MonoBehaviour {
 	public Text dmgBuffValue;
 	public Text spdBuffValue;
 
+	private Boolean finished = false;
+
 	void Awake() {
         manager = GameObject.Find("MainObject").GetComponent<ClashGameManager>();
 		toggleGroup = unitList.gameObject.GetComponent<ToggleGroup> ();
@@ -175,6 +177,10 @@ public class ClashBattleController : MonoBehaviour {
     }
 	
 	void FixedUpdate() {
+
+		if (finished)
+			return;
+
         int totalEnemyHealth = 0;
 
         foreach (var enemy in enemiesList) {
@@ -244,8 +250,8 @@ public class ClashBattleController : MonoBehaviour {
             }
         }
 
-        if (Time.timeSinceLevelLoad > 5.0f && totalAllyHealth == 0 && alliesList.Count() == 25) {
-            // ENEMIES HAVE WON!
+		if ((Time.timeSinceLevelLoad > 5.0f && totalAllyHealth == 0 && alliesList.Count() == 25) || Time.timeSinceLevelLoad > 75.0f) {
+			// ENEMIES HAVE WON!
 			ReportBattleOutcome(ClashEndBattleProtocol.BattleResult.LOSS);
         }
     }
@@ -357,6 +363,7 @@ public class ClashBattleController : MonoBehaviour {
 			messageText.text += "\nTotal Credits: " + response.credits;
 			manager.currentPlayer.credits = response.credits;
 			Debug.Log("Received ResponseClashEndBattle from server. credits earned: " + creditsEarned);
+			finished = true;
 		});
 	}
 
