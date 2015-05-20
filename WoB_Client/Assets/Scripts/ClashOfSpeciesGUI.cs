@@ -87,6 +87,7 @@ public class ClashOfSpeciesGUI : MonoBehaviour {
 		ResponsePlayGame args = response as ResponsePlayGame;
 		
 		if (args.status == 1) {
+			GameState.player.credits -= 10;
 			Destroy (this);
 			Game.SwitchScene ("ClashSplash");
 		} else {

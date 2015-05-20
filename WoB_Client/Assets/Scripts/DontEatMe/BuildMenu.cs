@@ -121,10 +121,13 @@ public class BuildMenu : MonoBehaviour {
 				);
 	}
 
+	// Updates player's credits
 	public void ProcessEndGame(NetworkResponse response) {
 		ResponsePlayGame args = response as ResponsePlayGame;
 		
 		if (args.status == 1) {
+
+			GameState.player.credits = args.creditDiff;
 			Debug.Log (args.creditDiff);
 		}
 	}
