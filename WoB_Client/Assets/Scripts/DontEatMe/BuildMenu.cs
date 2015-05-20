@@ -115,6 +115,23 @@ public class BuildMenu : MonoBehaviour {
 
 		//LOBBY TEAM, PUT YOUR RETURN CODE HERE, PASS BACK
 		//coins variable
+		NetworkManager.Send(
+			EndGameProtocol.Prepare(1, coins),
+			ProcessEndGame
+				);
+		}
+		
+		// Update is called once per frame
+		void Update() {
+		}
+		
+		public void ProcessEndGame(NetworkResponse response) {
+			ResponsePlayGame args = response as ResponsePlayGame;
+			
+			if (args.status == 1) {
+				Debug.Log (args.creditDiff);
+			}
+		}
 
 
 
