@@ -119,25 +119,19 @@ public class BuildMenu : MonoBehaviour {
 			EndGameProtocol.Prepare(1, coins),
 			ProcessEndGame
 				);
-		}
-		
-		// Update is called once per frame
-		void Update() {
-		}
-		
-		public void ProcessEndGame(NetworkResponse response) {
-			ResponsePlayGame args = response as ResponsePlayGame;
-			
-			if (args.status == 1) {
-				Debug.Log (args.creditDiff);
-			}
-		}
-
-
-
 	}
+
+	public void ProcessEndGame(NetworkResponse response) {
+		ResponsePlayGame args = response as ResponsePlayGame;
+		
+		if (args.status == 1) {
+			Debug.Log (args.creditDiff);
+		}
+	}
+		
 	// Update is called once per frame
-	void Update () {
-	
+	void Update() {
 	}
+		
+
 }

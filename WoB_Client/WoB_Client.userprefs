@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DontEatMe/BuildMenu.cs">
     <Files>
-      <File FileName="Assets/RRAssets/Network/RRConnectionManager.cs" Line="116" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMe/BuildMenu.cs" Line="112" Column="2" />
+      <File FileName="Assets/RRAssets/Network/RRConnectionManager.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Network/NetworkManager.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Network/Protocol/LoginProtocol.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GameState.cs" Line="1" Column="1" />
@@ -24,14 +25,13 @@
       <File FileName="Assets/Scripts/MessageBox.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network/Protocol/GetRoomsProtocol.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Battle/BattlePlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="74" Column="1" />
+      <File FileName="Assets/Scripts/DontEatMeGUI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ClashOfSpeciesGUI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Config.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/HUD/GameResources.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Containers/Player.cs" Line="1" Column="1" />
       <File FileName="Assets/CWAssets/Scripts/Network/Protocol/BattleProtocols/MatchOverProtocol.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/Protocol/EndGameProtocol.cs" Line="42" Column="23" />
-      <File FileName="Assets/Scripts/DontEatMe/BuildMenu.cs" Line="130" Column="4" />
+      <File FileName="Assets/Scripts/Network/Protocol/EndGameProtocol.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
