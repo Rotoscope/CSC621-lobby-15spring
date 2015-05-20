@@ -257,6 +257,8 @@
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleController.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleToggle.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleUnit.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashHealthBar.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\ClashReticle.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\GameOverManager.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Battle\animController.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Camera\ClashBattleCamera.cs" />
@@ -268,6 +270,7 @@
      <Compile Include="Assets\Scripts\ClashOfSpecies\ClashSplash.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\ClashStatusText.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Defense\ClashDefenseSetup.cs" />
+     <Compile Include="Assets\Scripts\ClashOfSpecies\Defense\ClashUnitListItem.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Main\ClashMainMenu.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\Main\ClashPreviewController.cs" />
      <Compile Include="Assets\Scripts\ClashOfSpecies\ResultMenu.cs" />
@@ -374,6 +377,7 @@
      <Compile Include="Assets\Scripts\Network\Protocol\ConvergePriorAttemptCountProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ConvergePriorAttemptProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\EcosystemProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\EndGameProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\ErrorLogProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\GetRoomsProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\HeartbeatProtocol.cs" />
@@ -383,6 +387,7 @@
      <Compile Include="Assets\Scripts\Network\Protocol\MessageProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\NoWaitForGameProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PairProtocol.cs" />
+     <Compile Include="Assets\Scripts\Network\Protocol\PlayGameProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PlayerSelectProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PlayersProtocol.cs" />
      <Compile Include="Assets\Scripts\Network\Protocol\PredictionProtocol.cs" />
@@ -434,9 +439,13 @@
      <Compile Include="Assets\Scripts\World\WorldMouse.cs" />
      <Compile Include="Assets\Scripts\World\Zone.cs" />
      <Compile Include="Assets\Scripts\WorldMenu.cs" />
+     <None Include="Assets\RRAssets\Resources\Prefabs\map\ItemLocationFiles\1.txt" />
      <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$Alpha-Selective.shader" />
+     <None Include="Assets\RRAssets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\CWAssets\Resources\Prefabs\Battle\$3DTextOneSided.shader" />
+     <None Include="Assets\RRAssets\SpritePack1\!Readme.txt" />
      <None Include="Assets\CWAssets\Resources\Images\Battle\$Alpha-Selective.shader" />
+     <None Include="Assets\RRAssets\Resources\ItemLocationFiles\1.txt" />
      <None Include="Assets\CWAssets\Resources\Images\Battle\$3DTextOneSided.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>

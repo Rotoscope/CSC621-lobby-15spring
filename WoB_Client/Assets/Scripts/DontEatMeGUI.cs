@@ -72,12 +72,24 @@ public class DontEatMeGUI : MonoBehaviour {
 	}
 
 	public void StartGame() {
-		//Do protocol stuff
-		Destroy (this);
-		Game.SwitchScene("DontEatMe");
+		NetworkManager.Send(
+			PlayGameProtocol.Prepare(1),
+			ProcessPlayGame
+			);
 	}
 	
 	// Update is called once per frame
 	void Update() {
+	}
+
+	public void ProcessPlayGame(NetworkResponse response) {
+		ResponsePlayGame args = response as ResponsePlayGame;
+		
+		if (args.status == 1) {
+			Destroy (this);
+			Game.SwitchScene ("DontEatMe");
+		} else {
+			Debug.Log ("Not enough credits");
+		}
 	}
 }

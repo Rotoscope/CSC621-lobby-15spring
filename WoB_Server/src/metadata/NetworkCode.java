@@ -93,6 +93,8 @@ public class NetworkCode {
     public final static short CLASH_END_BATTLE = 168;
     
     public final static short BACK_TO_LOBBY = 192;
+    public final static short PLAY_GAME = 193;
+    public final static short END_GAME = 194;
 
     /**
      * Check for duplicate values, if any.

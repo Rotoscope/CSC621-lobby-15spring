@@ -21,13 +21,42 @@ public class ClashSpecies {
     public float attackSpeed; 
     public float moveSpeed;
     public SpeciesType type;
+    
+    public string Stats() {
+		string stats = "Stats:\n\n" + name;
+		stats += "\nType: " + type; 
+		stats += "\nCost: " + cost; 
+		stats += "\nHealth: " + hp; 
+		
+		if (type == SpeciesType.PLANT) {
+			switch (name) {
+			case "Big Tree":	//hp buff
+				stats += "\nHP Buff: 100";
+				break;
+			case "Baobab":	//damage buff
+				stats += "\nDamage Buff: 8";
+				break;
+			case "Trees and Shrubs":	//movement speed buff
+				stats += "\nSpeed Buff: 5";
+				break;
+			default:
+				break;
+			}
+		} else {
+			stats += "\nAttack: " + attack; 
+			stats += "\nAttack Speed: " + attackSpeed; 
+			stats += "\nMovement Speed: " + moveSpeed;
+		}
+
+    	return stats;
+    }
 }
 
 [System.Serializable]
 public class ClashDefenseConfig {
 	public Player owner;
     public string terrain;
-    public Dictionary<ClashSpecies, Vector2> layout = new Dictionary<ClashSpecies, Vector2>(); 
+    public Dictionary<ClashSpecies, List<Vector2>> layout = new Dictionary<ClashSpecies, List<Vector2>>(); 
 }
 
 [System.Serializable]

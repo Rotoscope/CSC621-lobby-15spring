@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections;
@@ -15,8 +15,11 @@ public class ClashAttackShop : MonoBehaviour {
 
 	public HorizontalLayoutGroup selectedGroup;
 
-    public Image previewImage;
-    public Text previewText;
+	public Image previewImage;
+	public Text descriptionText;
+	public Text statsText;
+	public Button infoButton;
+	bool textSwitch;	//true for description text; false for stats tex
 
 	public GameObject shopElementPrefab;
 	public GameObject selectedUnitPrefab;
@@ -26,7 +29,7 @@ public class ClashAttackShop : MonoBehaviour {
 
 	void Awake() {
         manager = GameObject.Find("MainObject").GetComponent<ClashGameManager>();
-;
+
         foreach (var species in manager.availableSpecies) {
             var item = (Instantiate(shopElementPrefab) as GameObject).GetComponent<ClashShopItem>();
             item.displayText.text = species.name;
@@ -61,9 +64,30 @@ public class ClashAttackShop : MonoBehaviour {
             });
 
             var description = species.description;
+			var stats = species.Stats ();
             item.previewButton.onClick.AddListener(() => {
                 previewImage.sprite = item.displayImage.sprite;
-                previewText.text = description;
+                descriptionText.text = description;
+				statsText.text = stats;
+
+				infoButton.GetComponentInChildren<Text>().text = "Get Stat Info";
+				descriptionText.gameObject.SetActive(true);
+				statsText.gameObject.SetActive(false);
+				textSwitch = true;
+
+				infoButton.onClick.RemoveAllListeners();
+				infoButton.onClick.AddListener(() => {
+					textSwitch = !textSwitch;
+					if(textSwitch) {
+						infoButton.GetComponentInChildren<Text>().text = "Get Stat Info";
+						descriptionText.gameObject.SetActive(true);
+						statsText.gameObject.SetActive(false);
+					} else {
+						infoButton.GetComponentInChildren<Text>().text = "Get Description";
+						descriptionText.gameObject.SetActive(false);
+						statsText.gameObject.SetActive(true);
+					}
+				});
             }); 
 
             switch (species.type) {
@@ -116,6 +140,7 @@ public class ClashAttackShop : MonoBehaviour {
 				var species = manager.availableSpecies.Single (x => x.name == csu.label.text);
 				manager.attackConfig.layout.Add (species);
 			}
+			manager.currentPlayer.credits -= 10;
 			Game.LoadScene ("ClashBattle");
 		} else {
 			errorCanvas.SetActive(true);

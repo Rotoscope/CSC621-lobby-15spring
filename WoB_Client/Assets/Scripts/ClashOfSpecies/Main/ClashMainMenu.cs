@@ -12,6 +12,7 @@ public class ClashMainMenu : MonoBehaviour {
 	public List<Player> playerList = new List<Player>();
 	public Transform contentPanel;
     public GameObject playerItemPrefab;
+	public Button attackBtn;
 
     private Player selectedPlayer = null;
     private ToggleGroup toggleGroup;
@@ -21,6 +22,12 @@ public class ClashMainMenu : MonoBehaviour {
     }
 
 	void Start() {
+		if (manager.currentPlayer.credits < 10) {
+			attackBtn.interactable = false;
+		}
+
+		contentPanel.Find("Credit").GetComponent<Text>().text = "You have " + manager.currentPlayer.credits + " credits.";
+
         NetworkManager.Send(ClashPlayerListProtocol.Prepare(), (res) => {
             var response = res as ResponseClashPlayerList;
 
@@ -38,23 +45,24 @@ public class ClashMainMenu : MonoBehaviour {
 
                 var toggle = item.GetComponentInChildren<Toggle>().group = playerListGroup.GetComponent<ToggleGroup>();
                 item.GetComponentInChildren<Toggle>().onValueChanged.AddListener((val) => {
-                    contentPanel.GetComponentInChildren<Text>().enabled = !val;
+                    contentPanel.Find("Message").GetComponent<Text>().enabled = !val;
                     if (val) {
                         selectedPlayer = player;
                         manager.currentTarget = new ClashDefenseConfig();
                         NetworkManager.Send(ClashPlayerViewProtocol.Prepare(player.GetID()), (resView) => {
                             var responseView = resView as ResponseClashPlayerView;
-                            Debug.Log(responseView.terrain);
+//                            Debug.Log(responseView.terrain);
                             contentPanel.GetComponent<RawImage>().texture = Resources.Load("Images/ClashOfSpecies/" + responseView.terrain) as Texture;
                             manager.currentTarget.owner = player;
                             manager.currentTarget.terrain = responseView.terrain;
                             manager.currentTarget.layout = responseView.layout.Select(x => {
                                 var species = manager.availableSpecies.Single(s => s.id == x.Key);
+                                var positions = x.Value;
                                 return new { 
                                     species,
-                                    x.Value
+                                    positions
                                 };
-                            }).ToDictionary(p => p.species, p => p.Value);
+                            }).ToDictionary(p => p.species, p => p.positions);
                         });
                     } else {
                         selectedPlayer = null;

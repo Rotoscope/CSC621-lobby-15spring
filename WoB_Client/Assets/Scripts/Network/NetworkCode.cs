@@ -73,6 +73,8 @@
 	public static readonly short QUIT_ROOM = 160;
 	public static readonly short GET_ROOMS = 161;
 	public static readonly short BACK_TO_LOBBY = 192;
+	public static readonly short PLAY_GAME = 193;
+	public static readonly short END_GAME = 194;
 
 	//Clash of Species
 	public static readonly short CLASH_ENTRY = 162;
@@ -82,4 +84,5 @@
 	public static readonly short CLASH_PLAYER_VIEW = 166;
 	public static readonly short CLASH_INITIATE_BATTLE = 167;
 	public static readonly short CLASH_END_BATTLE = 168;
+
 }
