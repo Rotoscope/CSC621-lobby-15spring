@@ -1,23 +1,37 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RRAssets/Network/Response/ResponseKeyboard.cs">
     <Files>
-      <File FileName="Assets\Scripts\ClashOfSpeciesGUI.cs" Line="97" Column="1" />
-      <File FileName="Assets\Scripts\ClashOfSpecies\Defense\ClashDefenseSetup.cs" Line="102" Column="32" />
-      <File FileName="Assets\Scripts\ClashOfSpecies\ClashSplash.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleController.cs" Line="355" Column="65" />
-      <File FileName="Assets\Scripts\ClashOfSpecies\Battle\ClashBattleUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ClashOfSpecies\Camera\ClashBattleCamera.cs" Line="4" Column="1" />
+      <File FileName="Assets/RRAssets/Scripts/EndScene/EndGameManager.cs" Line="47" Column="13" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/GameManager.cs" Line="109" Column="24" />
+      <File FileName="Assets/RRAssets/Scripts/RunnerScene Scripts/Running.cs" Line="49" Column="26" />
+      <File FileName="Assets/Scripts/Config.cs" Line="6" Column="2" />
+      <File FileName="Assets/Scripts/ClashOfSpecies/Defense/ClashDefenseSetup.cs" Line="107" Column="33" />
+      <File FileName="Assets/RRAssets/Network/Response/ResponseKeyboard.cs" Line="34" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="RRAssets" expanded="True">
+              <Node name="Network" expanded="True">
+                <Node name="Response" expanded="True">
+                  <Node name="ResponseKeyboard.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="EndScene" expanded="True" />
+                <Node name="ReadyScene" expanded="True" />
+                <Node name="RunnerScene Scripts" expanded="True">
+                  <Node name="PlatformActions" expanded="True" />
+                  <Node name="ReadyScene" expanded="True" />
+                </Node>
+                <Node name="SelectionScene" expanded="True" />
+              </Node>
+            </Node>
             <Node name="Scripts" expanded="True">
               <Node name="ClashOfSpecies" expanded="True">
-                <Node name="Battle" expanded="True">
-                  <Node name="ClashBattleController.cs" selected="True" />
-                </Node>
+                <Node name="Defense" expanded="True" />
               </Node>
             </Node>
           </Node>
